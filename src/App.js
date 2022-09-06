@@ -6,12 +6,14 @@ import {
 } from "react-router-dom"
 import Home from './Views/Home/Home';
 import Currency from './Views/Currency/Currency';
+import Header from './Components/Header';
 // import Currency from './Views/Currency/Currency';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Header />
         <div>
           <Routes >
             <Route path="/" element={<Home />}  />
