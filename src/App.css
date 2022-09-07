@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+#headings_carousel {
+  margin-top: 20px;
+}
+
+#background_dark {
+  background-color: black;
+}
