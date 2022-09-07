@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -41,6 +41,19 @@
   margin-top: 20px;
 }
 
-#background_dark {
-  background-color: black;
+.dropdown-toggle::after {
+  display: none !important; 
 }
+
+#column_left {
+  text-align: left;
+}
+
+#column_right {
+  text-align: right;
+}
+
+#column_center {
+  text-align: center;
+}
+

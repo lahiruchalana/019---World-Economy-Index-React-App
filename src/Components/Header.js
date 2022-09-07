@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -11,11 +11,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Header() {
+
+    const [show, setShow] = useState(false);
+
+    const showDropdown = (e)=>{
+        setShow(!show);
+    }
+    const hideDropdown = e => {
+        setShow(false);
+    }
+
+
     return(
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container fluid>
-                    <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                    <Navbar.Brand href="#">World Economy Index</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -23,26 +34,80 @@ function Header() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
-                        <Nav.Link href="#action2">Link</Nav.Link>
-                        <NavDropdown title="Link" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action4">
-                            Another action
-                        </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action5">
-                            Something else here
-                        </NavDropdown.Item>
+
+                        <NavDropdown title="Economics" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                        <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#" disabled>
-                        Link
-                        </Nav.Link>
+
+                        <NavDropdown title="Industry" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                        <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Market" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Politics" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Technology" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Economy Forum" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Researches" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Academy" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Currency" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown title="Country" id="navbarScrllingDropdown" show={show} onMouseEnter={showDropdown}  onMouseLeave={hideDropdown}>
+                            <NavDropdown.Item href="#action3">Stock Market</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">GDP Per Capita</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                        </NavDropdown>
+
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control
                         type="search"
-                        placeholder="Search"
+                        placeholder="Search Economics"
                         className="me-2"
                         aria-label="Search"
                         />
