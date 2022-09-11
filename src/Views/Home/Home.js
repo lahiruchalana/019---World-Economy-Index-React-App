@@ -11,13 +11,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Home() {
+
+    var button_styles = {
+        marginTop:'10px'
+    };
+
+
     return(
         <div className='container'>
             <Row>
                 <Col>
-                    <div id='column_left'>
+                    <div id='column_center'>
                         <br></br>
-                        <Button variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
 
                     <div id='column_left'>
@@ -69,7 +75,7 @@ function Home() {
                     <div id='column_left'>
                         <br></br>
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/4133256/pexels-photo-4133256.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency">
                                     <Card.Title>India Becomes The Most Populous Country In The World??</Card.Title>
@@ -92,10 +98,20 @@ function Home() {
                         <Button variant="outline-secondary">Gold <div id='value_text'>20.3$</div></Button>
                     </ButtonGroup>
 
+                    <div id='column_center'>
+                        <Button id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+                    <div style={button_styles} id='column_center'>
+                        <Button id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+                    <div style={button_styles} id='column_center'>
+                        <Button id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+
                     <div id='column_left'>
                         <br></br>
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency">
                                     <Card.Title>Global Poverty Rate Increased</Card.Title>
