@@ -65,7 +65,7 @@ function Home() {
                                     alt="First slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>0.99</h4>
+                                    <h4 style={percentage_red_style}>20.56 USD</h4>
                                     <h5>Crude Oil</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -77,7 +77,7 @@ function Home() {
                                     alt="Second slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>1.01</h4>
+                                    <h4 style={percentage_green_style}>56.23 USD</h4>
                                     <h5>Gold</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -89,7 +89,7 @@ function Home() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>1.17</h4>
+                                    <h4 style={percentage_red_style}>12.36 USD</h4>
                                     <h5>Silver</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -101,7 +101,7 @@ function Home() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>1.05</h4>
+                                    <h4 style={percentage_green_style}>89.25 USD</h4>
                                     <h5>Platinum</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -200,23 +200,29 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} variant="outline-secondary" size="lg">Secondary</Button>
+                        <Button className='w-100' style={button_low_top_margin} variant="outline-secondary" size="lg">GDP Data</Button>
                     </div>
                     
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">GDP Per Capita</Button>
                     </div>
                                         
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Foreign Reserves</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Growth Rate</Button>
                     </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Population</Button>
+                    </div>
+
                 </Col>
 
                 {/* 2nd Column Navigation Ends */}
@@ -231,7 +237,7 @@ function Home() {
                             <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency">
-                                    <Card.Title>Global Poverty Rate Increased</Card.Title>
+                                    <Card.Title>Global Poverty Rate Increased. Lower Income People Going...</Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -251,8 +257,14 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Poverty Rate</Button>
                     </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Index</Button>
+                    </div>
+
                 </Col>
                 
 
@@ -338,7 +350,7 @@ function Home() {
                             <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency">
-                                    <Card.Title>China Increased GDP Growth Rate In 2022</Card.Title>
+                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The...</Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
