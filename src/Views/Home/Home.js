@@ -17,19 +17,24 @@ function Home() {
         borderRadius:'0px'
     };
 
+    var button_low_top_margin = {
+        borderRadius:'0px',
+        marginTop: '-13px'
+    };
+
     var button_styles = {
         marginTop:'10px',
         borderRadius:'0px'
     };
 
     var button_support_ukrain = {
-        marginTop:'20px',
+        marginTop:'33px',
         borderRadius:'0px',
-        marginLeft: '10px'
+        marginLeft: '15px'
     };
 
     var uklrain_flag_image = {
-        marginTop:'10px',
+        marginTop:'23px',
     };
 
     var percentage_green_style = {
@@ -63,22 +68,32 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
 
                     <Row>
@@ -86,7 +101,7 @@ function Home() {
                             <Image style={uklrain_flag_image} src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
                         </Col>
                         <Col>
-                            <Button style={button_support_ukrain} id='home_buttons' variant="outline-secondary" size="lg">Support Ukrain</Button>
+                            <Button className='w-100 rounded-pill border border-0' style={button_support_ukrain} id='home_buttons' variant="outline-info" size="lg">Need Your Help</Button>
                         </Col>
                     </Row>
 
@@ -113,14 +128,24 @@ function Home() {
                         </Card>                    
                     </div>
 
-                    <div id='column_left'>
+                    <div id='column_center'>
                         <br></br>
-                        <Button style={button} variant="outline-secondary" size="lg">Secondary</Button>
+                        <Button className='w-100' style={button_low_top_margin} variant="outline-secondary" size="lg">Secondary</Button>
                     </div>
                     
                     <div id='column_center'>
                         <br></br>
-                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+                                        
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
                 </Col>
 
@@ -153,7 +178,13 @@ function Home() {
                             </Card.Body>
                         </Card>
                     </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
                 </Col>
+                
 
                 {/* 3rd Column Navigation Ends */}
 
@@ -162,18 +193,18 @@ function Home() {
 
                 <Col id='column_left'>
                     <br></br>
-                    <ButtonGroup size="lg" className="mb-2">
+                    <ButtonGroup size="lg" className="mb-2 w-100">
                         <Button style={button} variant="outline-secondary">NasDaQ<div id='value_text'><div style={percentage_red_style}>2.1%</div></div></Button>
                         <Button style={button} variant="outline-secondary">Tokyo<div id='value_text'><div style={percentage_green_style}>4.21%</div></div></Button>
                         <Button style={button} variant="outline-secondary">Amsterdam <div id='value_text'><div style={percentage_red_style}>5.1%</div></div></Button>
                     </ButtonGroup>
-                    <ButtonGroup size="lg" className="mb-2">
+                    <ButtonGroup size="lg" className="mb-2 w-100">
                         <Button style={button} variant="outline-secondary">London<div id='value_text'><div style={percentage_green_style}>1.51%</div></div></Button>
                         <Button style={button} variant="outline-secondary">NewYork<div id='value_text'><div style={percentage_green_style}>1.91%</div></div></Button>
                         <Button style={button} variant="outline-secondary">HongKong <div id='value_text'><div style={percentage_red_style}>3.1%</div></div></Button>
                     </ButtonGroup>
                     <br></br>
-                    <ButtonGroup size="lg" className="mb-2">
+                    <ButtonGroup size="lg" className="mb-2 w-100">
                         <Button style={button} variant="outline-secondary">Crude Oil <div id='value_text'><div style={percentage_green_style}>2.1%</div></div></Button>
                         <Button style={button} variant="outline-secondary">Gold <div id='value_text'><div style={percentage_red_style}>2.1%</div></div></Button>
                         <Button style={button} variant="outline-secondary">Silver <div id='value_text'><div style={percentage_red_style}>2.1%</div></div></Button>
@@ -182,28 +213,28 @@ function Home() {
                     <Row>
                         <Col>
                             <div id='column_center'>
-                                <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">USD</Button>
+                                <Button className='w-100' style={button} id='home_buttons' variant="outline-secondary" size="lg">USD</Button>
                             </div>
                         </Col>
                         <Col>
                             <div id='column_center'>
-                                <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">EURO</Button>
+                                <Button className='w-100' style={button} id='home_buttons' variant="outline-secondary" size="lg">EURO</Button>
                             </div>
                         </Col>
                         <Col>
                             <div id='column_center'>
-                                <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Pound</Button>
+                                <Button className='w-100' style={button} id='home_buttons' variant="outline-secondary" size="lg">Pound</Button>
                             </div>
                         </Col>
                     </Row>
                     
                     <div style={button_styles} id='column_center'>
-                        <Button style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
+                        <Button className='w-100' style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
                     </div>
 
                     <div id='column_left'>
                         <br></br>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency">
