@@ -54,6 +54,61 @@ function Home() {
                 {/* 1st Column Navigation Starts */}
 
                 <Col>
+
+                    <Col>
+                        <div id='headings_carousel' >
+                            <Carousel>
+                                <Carousel.Item interval={2000}>
+                                    <img height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2016/07/10/20/12/money-1508454_960_720.jpg"
+                                    alt="First slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>0.99</h4>
+                                    <h5>Crude Oil</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={1500}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2022/08/31/23/04/sunset-7424323_960_720.jpg"
+                                    alt="Second slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>1.01</h4>
+                                    <h5>Gold</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={2000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>1.17</h4>
+                                    <h5>Silver</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={2000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>1.05</h4>
+                                    <h5>Platinum</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            </Carousel>
+                        </div>
+                    </Col>
+
                     <div id='column_left'>
                         <br></br>
                         <Card style={{ width: '18rem' }}>
@@ -66,30 +121,44 @@ function Home() {
                         </Card>
                     </div>
 
-                    <div id='column_center'>
-                        <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
-                    </div>
+                    <Col>
+                        <div id='headings_carousel'>
+                            <Carousel>
+                                <Carousel.Item interval={4000}>
+                                    <img height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2016/07/10/20/12/money-1508454_960_720.jpg"
+                                    alt="First slide"
+                                    />
+                                    <Carousel.Caption>
+                                        <h4>United States</h4>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={3500}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2022/08/31/23/04/sunset-7424323_960_720.jpg"
+                                    alt="Second slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>China</h4>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={4000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>United Kingdom</h4>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            </Carousel>
+                        </div>
+                    </Col>
 
                     <div id='column_center'>
                         <br></br>
@@ -101,9 +170,10 @@ function Home() {
                             <Image style={uklrain_flag_image} src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
                         </Col>
                         <Col>
-                            <Button className='w-100 rounded-pill border border-0' style={button_support_ukrain} id='home_buttons' variant="outline-info" size="lg">Need Your Help</Button>
+                            <Button className='w-100 rounded-pill border border-0' style={button_support_ukrain} id='home_buttons' variant="outline-primary" size="lg">Ukrain Need Your Help</Button>
                         </Col>
                     </Row>
+
 
                 </Col>
 
@@ -203,30 +273,60 @@ function Home() {
                         <Button style={button} variant="outline-secondary">NewYork<div id='value_text'><div style={percentage_green_style}>1.91%</div></div></Button>
                         <Button style={button} variant="outline-secondary">HongKong <div id='value_text'><div style={percentage_red_style}>3.1%</div></div></Button>
                     </ButtonGroup>
-                    <br></br>
-                    <ButtonGroup size="lg" className="mb-2 w-100">
-                        <Button style={button} variant="outline-secondary">Crude Oil <div id='value_text'><div style={percentage_green_style}>2.1%</div></div></Button>
-                        <Button style={button} variant="outline-secondary">Gold <div id='value_text'><div style={percentage_red_style}>2.1%</div></div></Button>
-                        <Button style={button} variant="outline-secondary">Silver <div id='value_text'><div style={percentage_red_style}>2.1%</div></div></Button>
-                    </ButtonGroup>
 
-                    <Row>
-                        <Col>
-                            <div id='column_center'>
-                                <Button className='w-100' style={button} id='home_buttons' variant="outline-secondary" size="lg">USD</Button>
-                            </div>
-                        </Col>
-                        <Col>
-                            <div id='column_center'>
-                                <Button className='w-100' style={button} id='home_buttons' variant="outline-secondary" size="lg">EURO</Button>
-                            </div>
-                        </Col>
-                        <Col>
-                            <div id='column_center'>
-                                <Button className='w-100' style={button} id='home_buttons' variant="outline-secondary" size="lg">Pound</Button>
-                            </div>
-                        </Col>
-                    </Row>
+                    <Col>
+                        <div id='headings_carousel' style={{marginTop: '0px'}}>
+                            <Carousel>
+                                <Carousel.Item interval={2000}>
+                                    <img height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2016/07/10/20/12/money-1508454_960_720.jpg"
+                                    alt="First slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>0.99</h4>
+                                    <h5>USD/EUR</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={1500}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2022/08/31/23/04/sunset-7424323_960_720.jpg"
+                                    alt="Second slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>1.01</h4>
+                                    <h5>EUR/USD</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={2000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>1.17</h4>
+                                    <h5>GBP/USD</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={2000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>1.05</h4>
+                                    <h5>CHF/USD</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            </Carousel>
+                        </div>
+                    </Col>
                     
                     <div style={button_styles} id='column_center'>
                         <Button className='w-100' style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
