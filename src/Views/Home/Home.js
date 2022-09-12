@@ -22,7 +22,7 @@ function Home() {
     };
 
     var percentage_green_style = {
-        color:'green'
+        color: 'rgb(5, 223, 12)'
     };
 
     var percentage_red_style = {
@@ -33,24 +33,53 @@ function Home() {
     return(
         <div className='container'>
             <Row>
+
+                {/* 1st Column Navigation Starts */}
+
                 <Col>
+                    <div id='column_left'>
+                        <br></br>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/158776/euro-money-currency-the-european-158776.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Body>
+                                <a href="/Currency">
+                                    <Card.Title>Breaking - Putin Hit A Massive Damage On Euro</Card.Title>
+                                </a>
+                            </Card.Body>
+                        </Card>
+                    </div>
+
                     <div id='column_center'>
                         <br></br>
                         <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
 
-                    <div id='column_left'>
+                    <div id='column_center'>
                         <br></br>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-                            <Card.Body>
-                                <a href="/Currency">
-                                    <Card.Title>Global Poverty Rate Increased</Card.Title>
-                                </a>
-                            </Card.Body>
-                        </Card>
+                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
                 </Col>
+
+                {/* 1st Column Navigation Ends */}
+
+
+                {/* 2nd Column Navigation Starts */}
+
                 <Col>
                     <div id='column_left'>
                         <br></br>
@@ -71,7 +100,18 @@ function Home() {
                         <br></br>
                         <Button style={button} variant="outline-secondary" size="lg">Secondary</Button>
                     </div>
+                    
+                    <div id='column_center'>
+                        <br></br>
+                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                    </div>
                 </Col>
+
+                {/* 2nd Column Navigation Ends */}
+
+
+                {/* 3rd Column Navigation Starts */}
+
                 <Col>
                     <div id='column_left'>
                         <br></br>
@@ -97,6 +137,12 @@ function Home() {
                         </Card>
                     </div>
                 </Col>
+
+                {/* 3rd Column Navigation Ends */}
+
+
+                {/* 4th Column Navigation Starts */}
+
                 <Col id='column_left'>
                     <br></br>
                     <ButtonGroup size="lg" className="mb-2">
@@ -150,7 +196,12 @@ function Home() {
                         </Card>
                     </div>
                 </Col>
+
+                {/* 4th Column Navigation Ends */}
+
             </Row>
+
+            {/* News Section Starts */}
 
             <Row>
                 <Col>
@@ -194,7 +245,10 @@ function Home() {
                 </Col>
 
                 <Col xs lg="2">
+                    <br></br>
                     <h1>Latest News</h1>
+
+                    <div id='singele_line'></div>
 
                     <div id='column_left'>
                         <br></br>
@@ -207,6 +261,9 @@ function Home() {
                     </div>
                 </Col>
             </Row>
+
+            {/* News Section Ends */}
+
             
 
         </div>
