@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -23,11 +24,14 @@ function Header() {
     const [dropdownCountryOpen, toggleDropdownCountryOpen] = useState(false);
     const [dropdownInvestmentsOpen, toggleDropdownInvestmentsOpen] = useState(false);
 
+    var style_navbar = {
+        backgroundColor: 'black'
+    };
 
 
     return(
         <div>
-            <Navbar bg="dark" variant="dark">
+            <Navbar style={style_navbar} variant="dark">
                 <Container fluid>
                     <Navbar.Brand href="#">World Economy Index</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />

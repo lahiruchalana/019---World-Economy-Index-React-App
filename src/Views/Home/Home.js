@@ -6,6 +6,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Image from "react-bootstrap/Image";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,6 +22,16 @@ function Home() {
         borderRadius:'0px'
     };
 
+    var button_support_ukrain = {
+        marginTop:'20px',
+        borderRadius:'0px',
+        marginLeft: '10px'
+    };
+
+    var uklrain_flag_image = {
+        marginTop:'10px',
+    };
+
     var percentage_green_style = {
         color: 'rgb(5, 223, 12)'
     };
@@ -28,6 +39,7 @@ function Home() {
     var percentage_red_style = {
         color:'red'
     };
+    
 
 
     return(
@@ -69,10 +81,15 @@ function Home() {
                         <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
                     </div>
 
-                    <div id='column_center'>
-                        <br></br>
-                        <Button style={button} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
-                    </div>
+                    <Row>
+                        <Col xs lg="2">
+                            <Image style={uklrain_flag_image} src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
+                        </Col>
+                        <Col>
+                            <Button style={button_support_ukrain} id='home_buttons' variant="outline-secondary" size="lg">Support Ukrain</Button>
+                        </Col>
+                    </Row>
+
                 </Col>
 
                 {/* 1st Column Navigation Ends */}
