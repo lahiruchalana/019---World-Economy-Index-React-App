@@ -61,3 +61,27 @@
   background-color: #282c34;
   height: 10px;
 }
+
+#thin_singele_line {
+  background-color: #282c34;
+  height: 5px;
+  margin-top: 10px;
+}
+
+#button_sub_title_blue {
+  color: blue;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+#button_sub_date {
+  color: rgb(17, 17, 17);
+  font-size: 14px;
+  font-weight: 800;
+
+}
+
+#title_in_card {
+  text-decoration: none;
+}

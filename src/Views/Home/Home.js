@@ -114,7 +114,7 @@ function Home() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/158776/euro-money-currency-the-european-158776.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency">
+                                <a href="/Currency" id='title_in_card'>
                                     <Card.Title>Breaking - Putin Hit A Massive Damage On Euro</Card.Title>
                                 </a>
                             </Card.Body>
@@ -162,7 +162,7 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Dive In Your Country</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Your Country <a href='/#' id='button_sub_title_blue'>Dive In</a></Button>
                     </div>
 
                     <Row>
@@ -200,27 +200,27 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} variant="outline-secondary" size="lg">GDP Data</Button>
+                        <Button className='w-100' style={button_low_top_margin} variant="outline-secondary" size="lg">GDP Data <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                     
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">GDP Per Capita</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">GDP Per Capita <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                                         
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Foreign Reserves</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Foreign Reserves <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Growth Rate</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Poverty Rate <a href='/#' id='button_sub_title_blue'>Latest</a></Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Population</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Population <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
 
                 </Col>
@@ -236,8 +236,8 @@ function Home() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency">
-                                    <Card.Title>Global Poverty Rate Increased. Lower Income People Going...</Card.Title>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>Global Poverty Rate Increased. Lower Income People Going... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -248,8 +248,8 @@ function Home() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/4133256/pexels-photo-4133256.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency">
-                                    <Card.Title>India Becomes The Most Populous Country In The World??</Card.Title>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>India Becomes The Most Populous Country In The World?? <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -257,12 +257,12 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Poverty Rate</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Growth Rate</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Index</Button>
+                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Index <a href='/#' id='button_sub_title_blue'>World Bank</a></Button>
                     </div>
 
                 </Col>
@@ -349,8 +349,8 @@ function Home() {
                         <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency">
-                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The...</Card.Title>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -412,12 +412,14 @@ function Home() {
 
                     <div id='column_left'>
                         <br></br>
-                        <Button style={button} variant="outline-secondary" size="lg">Secondary</Button>
+                        <Button className='w-100 border border-0'  style={button} variant="outline-secondary" size="lg">dufbickkcnjcn sfcojbasikcvbknfcjKLC COUBAIKC</Button>
                     </div>
+
+                    <div id='thin_singele_line'></div>
 
                     <div id='column_left'>
                         <br></br>
-                        <Button style={button} variant="outline-secondary" size="lg">Secondary</Button>
+                        <Button className='w-100 border border-0' style={button} variant="outline-secondary" size="lg">Secondary coiwsuhbcauicsna ckscbaysicbvlajhc auicyvastucv</Button>
                     </div>
                 </Col>
             </Row>
