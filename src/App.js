@@ -7,6 +7,7 @@ import {
 import Home from './Views/Home/Home';
 import Currency from './Views/Currency/Currency';
 import Header from './Components/Header';
+import Footer from './Components/Footer';
 // import Currency from './Views/Currency/Currency';
 
 function App() {
@@ -14,14 +15,15 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <div>
-          <Routes >
-            <Route path="/" element={<Home />}  />
-          </Routes >
-          <Routes >
-            <Route path="/currency" element={<Currency />}  />
-          </Routes >
-        </div>
+          <div>
+            <Routes >
+              <Route path="/" element={<Home />}  />
+            </Routes >
+            <Routes >
+              <Route path="/currency" element={<Currency />}  />
+            </Routes >
+          </div>
+        <Footer />
       </Router>
     </div>
   );

@@ -487,8 +487,6 @@ function Home() {
 
             {/* News Section Ends */}
 
-            
-
         </div>
     )
 }
