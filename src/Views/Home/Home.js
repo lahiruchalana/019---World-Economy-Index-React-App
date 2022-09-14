@@ -89,7 +89,7 @@ function Home() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/158776/euro-money-currency-the-european-158776.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/currency/1" id='title_in_card'>
+                                <a href="/news/currency/1" id='title_in_card'>
                                     <Card.Title>Breaking - Putin Hit A Massive Damage On Euro</Card.Title>
                                 </a>
                             </Card.Body>

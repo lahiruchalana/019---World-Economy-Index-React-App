@@ -117,3 +117,10 @@
   margin-left: 15px;
 }
 
+#subscribe_title_in_card {
+  color: #3c3c3f;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 15px;
+}
+

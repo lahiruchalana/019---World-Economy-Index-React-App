@@ -7,7 +7,7 @@ import {
 import Home from './Views/Home/Home';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import Currency from './Views/Currency/Currency';
+import NewsOfCurrency from './Views/Currency/NewsOfCurrency';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
               <Route path="/" element={<Home />}  />
             </Routes >
             <Routes >
-              <Route path="/currency/:id" element={<Currency />}  />
+              <Route path="/news/currency/:id" element={<NewsOfCurrency />}  />
             </Routes >
           </div>
         <Footer />
