@@ -38,11 +38,18 @@ function Home() {
     };
 
     var percentage_green_style = {
-        color: 'rgb(5, 223, 12)'
+        color: 'rgb(5, 223, 12)',
+        textShadow: '1px 1px  white'
     };
 
     var percentage_red_style = {
-        color:'red'
+        color:'red',
+        textShadow: '1px 1px  white'
+    };
+
+    var number_white_style = {
+        color:'white',
+        textShadow: '2px 2px  black'
     };
     
 
@@ -58,10 +65,10 @@ function Home() {
                     <Col>
                         <div id='headings_carousel' >
                             <Carousel>
-                                <Carousel.Item interval={2000}>
+                                <Carousel.Item interval={3000}>
                                     <img height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2016/07/10/20/12/money-1508454_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2018/08/17/18/36/refinery-3613526__340.jpg"
                                     alt="First slide"
                                     />
                                     <Carousel.Caption>
@@ -69,11 +76,11 @@ function Home() {
                                     <h5>Crude Oil</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
-                                <Carousel.Item interval={1500}>
+                                <Carousel.Item interval={4000}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2022/08/31/23/04/sunset-7424323_960_720.jpg"
+                                    src="https://images.pexels.com/photos/321452/pexels-photo-321452.jpeg?auto=compress&cs=tinysrgb&w=1600"
                                     alt="Second slide"
                                     />
                                     <Carousel.Caption>
@@ -81,11 +88,11 @@ function Home() {
                                     <h5>Gold</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
-                                <Carousel.Item interval={2000}>
+                                <Carousel.Item interval={3500}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    src="https://st2.depositphotos.com/1050267/6671/i/950/depositphotos_66715947-stock-photo-stack-of-silver-bars-in.jpg"
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
@@ -93,11 +100,11 @@ function Home() {
                                     <h5>Silver</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
-                                <Carousel.Item interval={2000}>
+                                <Carousel.Item interval={3500}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    src="https://newagemetals.com/wp-content/uploads/Platinum-Bar.jpg"
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
@@ -124,36 +131,80 @@ function Home() {
                     <Col>
                         <div id='headings_carousel'>
                             <Carousel>
-                                <Carousel.Item interval={4000}>
+                                <Carousel.Item interval={1000}>
                                     <img height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2016/07/10/20/12/money-1508454_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2016/10/16/13/06/new-york-1745089__340.jpg"
                                     alt="First slide"
                                     />
                                     <Carousel.Caption>
                                         <h4>United States</h4>
                                     </Carousel.Caption>
                                 </Carousel.Item>
-                                <Carousel.Item interval={3500}>
+                                <Carousel.Item interval={1500}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2022/08/31/23/04/sunset-7424323_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2019/12/14/12/08/night-4694750__340.jpg"
                                     alt="Second slide"
                                     />
                                     <Carousel.Caption>
                                     <h4>China</h4>
                                     </Carousel.Caption>
                                 </Carousel.Item>
-                                <Carousel.Item interval={4000}>
+                                <Carousel.Item interval={1000}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2016/01/03/00/16/big-ben-1118888__340.jpg"
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
                                     <h4>United Kingdom</h4>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={1500}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2020/09/14/22/27/river-5572289__340.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>Japan</h4>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={1000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2020/04/08/13/24/sunset-5017360__340.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>India</h4>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={1500}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2016/07/30/08/13/moscow-1556561__340.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>Russia</h4>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={1000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2019/08/19/15/13/eiffel-tower-4416700__340.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4>France</h4>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             </Carousel>
@@ -292,48 +343,48 @@ function Home() {
                                 <Carousel.Item interval={2000}>
                                     <img height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2016/07/10/20/12/money-1508454_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2015/09/15/15/53/bank-notes-941246__340.jpg"
                                     alt="First slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>0.99</h4>
-                                    <h5>USD/EUR</h5>
+                                    <h4 style={number_white_style}>0.99 EUR</h4>
+                                    <h5>USD</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={1500}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2022/08/31/23/04/sunset-7424323_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2017/08/21/15/55/money-2665824__340.jpg"
                                     alt="Second slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>1.01</h4>
-                                    <h5>EUR/USD</h5>
+                                    <h4 style={number_white_style}>1.01 USD</h4>
+                                    <h5>EUR</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={2000}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2016/02/19/11/28/british-1209730__340.jpg"
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>1.17</h4>
-                                    <h5>GBP/USD</h5>
+                                    <h4 style={number_white_style}>1.17 USD</h4>
+                                    <h5>GBP</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={2000}>
                                     <img
                                     height={150}
                                     className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
+                                    src="https://cdn.pixabay.com/photo/2019/07/03/13/12/swiss-francs-4314471__340.jpg"
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4>1.05</h4>
-                                    <h5>CHF/USD</h5>
+                                    <h4 style={number_white_style}>1.05 USD</h4>
+                                    <h5>CHF</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             </Carousel>
@@ -369,6 +420,7 @@ function Home() {
                         <Carousel>
                             <Carousel.Item interval={2000}>
                                 <img
+                                height={600}
                                 className="d-block w-100"
                                 src="https://cdn.pixabay.com/photo/2016/07/10/20/12/money-1508454_960_720.jpg"
                                 alt="First slide"
@@ -380,6 +432,7 @@ function Home() {
                             </Carousel.Item>
                             <Carousel.Item interval={1500}>
                                 <img
+                                height={600}
                                 className="d-block w-100"
                                 src="https://cdn.pixabay.com/photo/2022/08/31/23/04/sunset-7424323_960_720.jpg"
                                 alt="Second slide"
@@ -391,6 +444,7 @@ function Home() {
                             </Carousel.Item>
                             <Carousel.Item interval={2000}>
                                 <img
+                                height={600}
                                 className="d-block w-100"
                                 src="https://cdn.pixabay.com/photo/2017/07/02/09/10/stock-2463798_960_720.jpg"
                                 alt="Third slide"
@@ -412,14 +466,21 @@ function Home() {
 
                     <div id='column_left'>
                         <br></br>
-                        <Button className='w-100 border border-0'  style={button} variant="outline-secondary" size="lg">dufbickkcnjcn sfcojbasikcvbknfcjKLC COUBAIKC</Button>
+                        <Button id='column_left' className='w-100 border border-0'  style={button} variant="outline-secondary" size="lg">UK Inflation Rate Eases but Still Near 40-Year High</Button>
                     </div>
 
                     <div id='thin_singele_line'></div>
 
                     <div id='column_left'>
                         <br></br>
-                        <Button className='w-100 border border-0' style={button} variant="outline-secondary" size="lg">Secondary coiwsuhbcauicsna ckscbaysicbvlajhc auicyvastucv</Button>
+                        <Button id='column_left' className='w-100 border border-0' style={button} variant="outline-secondary" size="lg">A US-China Battle on the Moon Is Possible, and Avoidable</Button>
+                    </div>
+
+                    <div id='thin_singele_line'></div>
+
+                    <div id='column_left'>
+                        <br></br>
+                        <Button id='column_left' className='w-100 border border-0' style={button} variant="outline-secondary" size="lg">Yen Rings Alarm in Japan Amid Global Stock Rout: Markets Wrap</Button>
                     </div>
                 </Col>
             </Row>
