@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -11,44 +12,9 @@ import Image from "react-bootstrap/Image";
 function Currency() {
     const { id } = useParams();
 
-    // var button = {
-    //     borderRadius:'0px'
-    // };
-
-    var button_low_top_margin = {
-        borderRadius:'0px',
-        marginTop: '-13px'
+    var button = {
+        borderRadius:'0px'
     };
-
-    // var button_styles = {
-    //     marginTop:'10px',
-    //     borderRadius:'0px'
-    // };
-
-    var button_support_ukrain = {
-        marginTop:'33px',
-        borderRadius:'0px',
-        marginLeft: '15px'
-    };
-
-    var uklrain_flag_image = {
-        marginTop:'23px',
-    };
-
-    var percentage_green_style = {
-        color: 'rgb(5, 223, 12)',
-        textShadow: '1px 1px  white'
-    };
-
-    var percentage_red_style = {
-        color:'red',
-        textShadow: '1px 1px  white'
-    };
-
-    // var number_white_style = {
-    //     color:'white',
-    //     textShadow: '2px 2px  black'
-    // };
 
 
     return(
@@ -59,6 +25,11 @@ function Currency() {
                 {/* Page Related Content Column Starts */}
 
                 <Col>
+                    <br></br>
+                    <h2>Breaking - Putin Hit A Massive Damage On Euro</h2>
+                    <h6>2022_09_23, Amesterdam, Netherland - Mark Zchenn</h6>
+                    <br></br>
+                    <h5>casbciabci</h5>
 
                 </Col>
 
@@ -66,7 +37,7 @@ function Currency() {
 
                 {/* News Column Starts */}
 
-                <Col>
+                <Col xs lg='3'>
 
                     <Col>
                         <div id='headings_carousel' >
@@ -78,8 +49,8 @@ function Currency() {
                                     alt="First slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_red_style}>20.56 USD</h4>
-                                    <h5>Crude Oil</h5>
+                                    <h4 id='percentage_red_style' >20.56 USD</h4>
+                                    <h5 id='number_white_style'>Crude Oil</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={4000}>
@@ -90,8 +61,8 @@ function Currency() {
                                     alt="Second slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_green_style}>56.23 USD</h4>
-                                    <h5>Gold</h5>
+                                    <h4 id='percentage_green_style' >56.23 USD</h4>
+                                    <h5 id='number_white_style'>Gold</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={3500}>
@@ -102,8 +73,8 @@ function Currency() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_red_style}>12.36 USD</h4>
-                                    <h5>Silver</h5>
+                                    <h4 id='percentage_red_style' >12.36 USD</h4>
+                                    <h5 id='number_white_style'>Silver</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={3500}>
@@ -114,8 +85,72 @@ function Currency() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_green_style}>89.25 USD</h4>
-                                    <h5>Platinum</h5>
+                                    <h4 id='percentage_green_style' >89.25 USD</h4>
+                                    <h5 id='number_white_style'>Platinum</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            </Carousel>
+                        </div>
+                    </Col>
+
+                    <br></br>
+                    <ButtonGroup size="lg" className="mb-2 w-100">
+                        <Button style={button} variant="outline-secondary">NasDaQ<div id='percentage_red_style'><div >2.1%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">Tokyo<div id='percentage_green_style'><div >4.21%</div></div></Button>
+                    </ButtonGroup>
+                    <ButtonGroup size="lg" className="mb-2 w-100">
+                        <Button style={button} variant="outline-secondary">London<div id='percentage_green_style'><div >1.51%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">NewYork<div id='percentage_green_style'><div >1.91%</div></div></Button>
+                    </ButtonGroup>
+
+                    <Col>
+                        <div id='headings_carousel' style={{marginTop: '0px'}}>
+                            <Carousel>
+                                <Carousel.Item interval={2000}>
+                                    <img height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2015/09/15/15/53/bank-notes-941246__340.jpg"
+                                    alt="First slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4 id='number_white_style'>0.99 EUR</h4>
+                                    <h5 id='number_white_style'>USD</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={1500}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2017/08/21/15/55/money-2665824__340.jpg"
+                                    alt="Second slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4 id='number_white_style'>1.01 USD</h4>
+                                    <h5 id='number_white_style'>EUR</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={2000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2016/02/19/11/28/british-1209730__340.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4 id='number_white_style'>1.17 USD</h4>
+                                    <h5 id='number_white_style'>GBP</h5>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                <Carousel.Item interval={2000}>
+                                    <img
+                                    height={150}
+                                    className="d-block w-100"
+                                    src="https://cdn.pixabay.com/photo/2019/07/03/13/12/swiss-francs-4314471__340.jpg"
+                                    alt="Third slide"
+                                    />
+                                    <Carousel.Caption>
+                                    <h4 id='number_white_style'>1.05 USD</h4>
+                                    <h5 id='number_white_style'>CHF</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             </Carousel>
@@ -124,15 +159,16 @@ function Currency() {
 
                     <div id='column_left'>
                         <br></br>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://images.pexels.com/photos/158776/euro-money-currency-the-european-158776.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                        <Card className='w-100'>
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/4133256/pexels-photo-4133256.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/currency/1" id='title_in_card'>
-                                    <Card.Title>Breaking - Putin Hit A Massive Damage On Euro</Card.Title>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>India Becomes The Most Populous Country In The World?? <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
                     </div>
+
 
                     <Col>
                         <div id='headings_carousel'>
@@ -219,15 +255,15 @@ function Currency() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Your Country <a href='/#' id='button_sub_title_blue'>Dive In</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Your Country <a href='/#' id='button_sub_title_blue'>Dive In</a></Button>
                     </div>
 
                     <Row>
                         <Col xs lg="2">
-                            <Image style={uklrain_flag_image} src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
+                            <Image id='uklrain_flag_image' src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
                         </Col>
                         <Col>
-                            <Button className='w-100 rounded-pill border border-0' style={button_support_ukrain} id='home_buttons' variant="outline-primary" size="lg">Ukrain Need Your Help</Button>
+                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Ukrain Need Your Help</Button>
                         </Col>
                     </Row>
 
