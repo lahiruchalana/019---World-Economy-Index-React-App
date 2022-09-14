@@ -11,19 +11,19 @@ import Image from "react-bootstrap/Image";
 function Currency() {
     const { id } = useParams();
 
-    var button = {
-        borderRadius:'0px'
-    };
+    // var button = {
+    //     borderRadius:'0px'
+    // };
 
     var button_low_top_margin = {
         borderRadius:'0px',
         marginTop: '-13px'
     };
 
-    var button_styles = {
-        marginTop:'10px',
-        borderRadius:'0px'
-    };
+    // var button_styles = {
+    //     marginTop:'10px',
+    //     borderRadius:'0px'
+    // };
 
     var button_support_ukrain = {
         marginTop:'33px',
@@ -45,12 +45,12 @@ function Currency() {
         textShadow: '1px 1px  white'
     };
 
-    var number_white_style = {
-        color:'white',
-        textShadow: '2px 2px  black'
-    };
+    // var number_white_style = {
+    //     color:'white',
+    //     textShadow: '2px 2px  black'
+    // };
 
-    
+
     return(
         <div className='container'>
 

@@ -91,3 +91,29 @@
   border-radius: 0px;
   margin-top: -13px;
 }
+
+#percentage_green_style {
+  color: rgb(5, 223, 12);
+  text-shadow: 1px 1px  white;
+}
+
+#number_white_style {
+  color: white;
+  text-shadow: 2px 2px  black;
+}
+
+#percentage_red_style {
+  color: red;
+  text-shadow: 1px 1px  white;
+}
+
+#uklrain_flag_image {
+  margin-top: 23px;
+}
+
+#button_support_ukrain {
+  margin-top: 33px;
+  border-radius: 0px;
+  margin-left: 15px;
+}
+

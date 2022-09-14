@@ -20,33 +20,7 @@ function Home() {
         marginTop:'10px',
         borderRadius:'0px'
     };
-
-    var button_support_ukrain = {
-        marginTop:'33px',
-        borderRadius:'0px',
-        marginLeft: '15px'
-    };
-
-    var uklrain_flag_image = {
-        marginTop:'23px',
-    };
-
-    var percentage_green_style = {
-        color: 'rgb(5, 223, 12)',
-        textShadow: '1px 1px  white'
-    };
-
-    var percentage_red_style = {
-        color:'red',
-        textShadow: '1px 1px  white'
-    };
-
-    var number_white_style = {
-        color:'white',
-        textShadow: '2px 2px  black'
-    };
-    
-
+ 
 
     return(
         <div className='container'>
@@ -66,8 +40,8 @@ function Home() {
                                     alt="First slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_red_style}>20.56 USD</h4>
-                                    <h5>Crude Oil</h5>
+                                    <h4 id='percentage_red_style' >20.56 USD</h4>
+                                    <h5 id='number_white_style'>Crude Oil</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={4000}>
@@ -78,8 +52,8 @@ function Home() {
                                     alt="Second slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_green_style}>56.23 USD</h4>
-                                    <h5>Gold</h5>
+                                    <h4 id='percentage_green_style' >56.23 USD</h4>
+                                    <h5 id='number_white_style'>Gold</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={3500}>
@@ -90,8 +64,8 @@ function Home() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_red_style}>12.36 USD</h4>
-                                    <h5>Silver</h5>
+                                    <h4 id='percentage_red_style' >12.36 USD</h4>
+                                    <h5 id='number_white_style'>Silver</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={3500}>
@@ -102,8 +76,8 @@ function Home() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={percentage_green_style}>89.25 USD</h4>
-                                    <h5>Platinum</h5>
+                                    <h4 id='percentage_green_style' >89.25 USD</h4>
+                                    <h5 id='number_white_style'>Platinum</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             </Carousel>
@@ -212,10 +186,10 @@ function Home() {
 
                     <Row>
                         <Col xs lg="2">
-                            <Image style={uklrain_flag_image} src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
+                            <Image id='uklrain_flag_image' src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
                         </Col>
                         <Col>
-                            <Button className='w-100 rounded-pill border border-0' style={button_support_ukrain} id='home_buttons' variant="outline-primary" size="lg">Ukrain Need Your Help</Button>
+                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Ukrain Need Your Help</Button>
                         </Col>
                     </Row>
 
@@ -321,14 +295,14 @@ function Home() {
                 <Col id='column_left'>
                     <br></br>
                     <ButtonGroup size="lg" className="mb-2 w-100">
-                        <Button style={button} variant="outline-secondary">NasDaQ<div id='value_text'><div style={percentage_red_style}>2.1%</div></div></Button>
-                        <Button style={button} variant="outline-secondary">Tokyo<div id='value_text'><div style={percentage_green_style}>4.21%</div></div></Button>
-                        <Button style={button} variant="outline-secondary">Amsterdam <div id='value_text'><div style={percentage_red_style}>5.1%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">NasDaQ<div id='percentage_red_style'><div >2.1%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">Tokyo<div id='percentage_green_style'><div >4.21%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">Amsterdam <div id='percentage_red_style'><div >5.1%</div></div></Button>
                     </ButtonGroup>
                     <ButtonGroup size="lg" className="mb-2 w-100">
-                        <Button style={button} variant="outline-secondary">London<div id='value_text'><div style={percentage_green_style}>1.51%</div></div></Button>
-                        <Button style={button} variant="outline-secondary">NewYork<div id='value_text'><div style={percentage_green_style}>1.91%</div></div></Button>
-                        <Button style={button} variant="outline-secondary">HongKong <div id='value_text'><div style={percentage_red_style}>3.1%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">London<div id='percentage_green_style'><div >1.51%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">NewYork<div id='percentage_green_style'><div >1.91%</div></div></Button>
+                        <Button style={button} variant="outline-secondary">HongKong <div id='percentage_red_style'><div >3.1%</div></div></Button>
                     </ButtonGroup>
 
                     <Col>
@@ -341,8 +315,8 @@ function Home() {
                                     alt="First slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={number_white_style}>0.99 EUR</h4>
-                                    <h5>USD</h5>
+                                    <h4 id='number_white_style'>0.99 EUR</h4>
+                                    <h5 id='number_white_style'>USD</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={1500}>
@@ -353,8 +327,8 @@ function Home() {
                                     alt="Second slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={number_white_style}>1.01 USD</h4>
-                                    <h5>EUR</h5>
+                                    <h4 id='number_white_style'>1.01 USD</h4>
+                                    <h5 id='number_white_style'>EUR</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={2000}>
@@ -365,8 +339,8 @@ function Home() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={number_white_style}>1.17 USD</h4>
-                                    <h5>GBP</h5>
+                                    <h4 id='number_white_style'>1.17 USD</h4>
+                                    <h5 id='number_white_style'>GBP</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={2000}>
@@ -377,8 +351,8 @@ function Home() {
                                     alt="Third slide"
                                     />
                                     <Carousel.Caption>
-                                    <h4 style={number_white_style}>1.05 USD</h4>
-                                    <h5>CHF</h5>
+                                    <h4 id='number_white_style'>1.05 USD</h4>
+                                    <h5 id='number_white_style'>CHF</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             </Carousel>
