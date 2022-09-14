@@ -51,6 +51,12 @@ footer {
   #space {
     margin-top: 20px;
   }
+
+  #logo {
+    height: 180px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
   
   /* footer social icons */
   
