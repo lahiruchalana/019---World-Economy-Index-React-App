@@ -8,18 +8,12 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Image from "react-bootstrap/Image";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Home() {
 
     var button = {
         borderRadius:'0px'
-    };
-
-    var button_low_top_margin = {
-        borderRadius:'0px',
-        marginTop: '-13px'
     };
 
     var button_styles = {
@@ -121,7 +115,7 @@ function Home() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/158776/euro-money-currency-the-european-158776.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
+                                <a href="/currency/1" id='title_in_card'>
                                     <Card.Title>Breaking - Putin Hit A Massive Damage On Euro</Card.Title>
                                 </a>
                             </Card.Body>
@@ -213,7 +207,7 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Your Country <a href='/#' id='button_sub_title_blue'>Dive In</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Your Country <a href='/#' id='button_sub_title_blue'>Dive In</a></Button>
                     </div>
 
                     <Row>
@@ -251,27 +245,27 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} variant="outline-secondary" size="lg">GDP Data <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Data <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                     
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">GDP Per Capita <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Per Capita <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                                         
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Foreign Reserves <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Foreign Reserves <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Poverty Rate <a href='/#' id='button_sub_title_blue'>Latest</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Poverty Rate <a href='/#' id='button_sub_title_blue'>Latest</a></Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Population <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Population <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
 
                 </Col>
@@ -308,12 +302,12 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Growth Rate</Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Economy Growth Rate</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' style={button_low_top_margin} id='home_buttons' variant="outline-secondary" size="lg">Economy Index <a href='/#' id='button_sub_title_blue'>World Bank</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Economy Index <a href='/#' id='button_sub_title_blue'>World Bank</a></Button>
                     </div>
 
                 </Col>

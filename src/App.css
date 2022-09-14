@@ -86,3 +86,8 @@
   color: #1d1d1e;
   text-decoration: none;
 }
+
+#button_low_top_margin {
+  border-radius: 0px;
+  margin-top: -13px;
+}

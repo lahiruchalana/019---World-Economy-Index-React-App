@@ -5,10 +5,9 @@ import {
   Route
 } from "react-router-dom"
 import Home from './Views/Home/Home';
-import Currency from './Views/Currency/Currency';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-// import Currency from './Views/Currency/Currency';
+import Currency from './Views/Currency/Currency';
 
 function App() {
   return (
@@ -20,7 +19,7 @@ function App() {
               <Route path="/" element={<Home />}  />
             </Routes >
             <Routes >
-              <Route path="/currency" element={<Currency />}  />
+              <Route path="/currency/:id" element={<Currency />}  />
             </Routes >
           </div>
         <Footer />

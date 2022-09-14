@@ -33,7 +33,7 @@ function Header() {
         <div>
             <Navbar style={style_navbar} variant="dark">
                 <Container fluid>
-                    <Navbar.Brand href="#">World Economy Index</Navbar.Brand>
+                    <Navbar.Brand href="/">World Economy Index</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     <Nav
