@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
 
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
@@ -14,8 +14,7 @@ import CanvasJSReact from '../assets/canvasjs.react';
 
 
 function NewsOfCurrency() {
-    const { id } = useParams();
-
+    // const { id } = useParams();
 
     // var CanvasJS = CanvasJSReact.CanvasJS;
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -23,13 +22,13 @@ function NewsOfCurrency() {
     const options = {
         animationEnabled: true,
         title:{
-            text: "Monthly Sales - 2017"
+            text: "Euro"
         },
         axisX: {
             valueFormatString: "MMM"
         },
         axisY: {
-            title: "Sales (in USD)",
+            title: "USD",
             prefix: "$"
         },
         data: [{
@@ -56,7 +55,6 @@ function NewsOfCurrency() {
     var button = {
         borderRadius:'0px'
     };
-
 
     return(
         <div className='container'>
@@ -110,7 +108,11 @@ function NewsOfCurrency() {
                     <h2>Breaking - Putin Hit A Massive Damage On Euro</h2>
                     <h6>2022_09_23, Amesterdam, Netherland - Mark Zchenn</h6>
                     <br></br>
-                    <h5>casbciabci</h5>
+                    <h5>The euro fell below $0.99 this morning for the first time in two decades as the energy crisis rocks the financial markets. Meanwhile, benchmark European prices jumped as much as 35 percent after Russia's state energy firm Gazprom announced its Nord Stream 1 pipeline to Germany will remain closed indefinitely.
+                        It had been shut down for three days, reportedly for maintenance work, but will remain closed for longer after Gazprom claimed it had found an oil leak in a turbine, sparking fears of further increases in energy prices around Europe.
+                        The former chief executive of Energy UK said the Russian President has been "playing" the "economic war" and "psychological war extremely well" amid the fallout over the decision to keep the pipeline closed.
+                        Angela Knight told Times Radio yesterday: "He's actually playing the economic war extremely well, he's playing the psychological war extremely well.
+                    </h5>
 
                     <br></br>
                     <br></br>
@@ -369,7 +371,72 @@ function NewsOfCurrency() {
 
             </Row>
 
-            <h2>{id}</h2>
+            {/* More News Starts */}
+
+            <br></br>
+            <h2>Latest News Available</h2>
+            <div id='singele_line'></div>
+
+            <Row>
+                <Col>
+                    <div id='column_left'>
+                        <br></br>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Body>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>Global Poverty Rate Increased. Lower Income People Going... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
+                                </a>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                </Col>
+                
+                <Col>
+                    <div id='column_left'>
+                        <br></br>
+                        <Card className='w-100' style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Body>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
+                                </a>
+                            </Card.Body>
+                        </Card>
+                    </div>                    
+                </Col>
+
+                <Col>
+                    <div id='column_left'>
+                        <br></br>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Body>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>Global Poverty Rate Increased. Lower Income People Going... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
+                                </a>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                </Col>
+                
+                <Col>
+                    <div id='column_left'>
+                        <br></br>
+                        <Card className='w-100' style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Body>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
+                                </a>
+                            </Card.Body>
+                        </Card>
+                    </div>                    
+                </Col>
+            </Row>
+            {/* More News Ends */}
+
+
         </div>
     )
 }
