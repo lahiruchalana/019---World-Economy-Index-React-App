@@ -1,5 +1,9 @@
-import React from 'react'
-// import { useParams } from 'react-router';
+import React, { useState, useEffect } from 'react'
+// import { useParams } from 'react-router';.
+
+import CanvasJSReact from '../assets/canvasjs.react';
+
+import axios from "axios";
 
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
@@ -9,12 +13,20 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Image from "react-bootstrap/Image";
 
-import CanvasJSReact from '../assets/canvasjs.react';
-
+const currencyURL = 'http://localhost:8080/api/data/currency/rate/current/USD/Euro';
 
 
 function NewsOfCurrency() {
+    const [currency, setCurrency] = useState(null);
     // const { id } = useParams();
+
+    useEffect(() => {
+        axios.get(currencyURL).then((response) => {
+            setCurrency(response.data);
+        })
+    }, []);    
+
+    console.log(currency);
 
     // var CanvasJS = CanvasJSReact.CanvasJS;
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -62,6 +74,15 @@ function NewsOfCurrency() {
             <Row>
 
                 {/* Page Related Content Column Starts */}
+
+                <br></br>
+
+                <h5>{currency.currencyRateValue}</h5>
+                <h5>{currency.recordStatus}</h5>
+                <h5>{currency.year}, {currency.month}</h5>
+                <h5>{currency.currency.currencyName}</h5>
+                <h5>{currency.equalsCurrency.currencyName}</h5>
+
 
                 <Col>
                     <div id='column_left'>
