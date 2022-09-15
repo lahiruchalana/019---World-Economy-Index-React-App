@@ -68,7 +68,7 @@ function Currency() {
                     <div id='column_left'>
                         <br></br>
                         <Card className='w-100'>
-                            <Card.Img height={280} variant="top" src="https://cdn.pixabay.com/photo/2022/08/15/09/12/chongqing-7387442__340.jpg" />
+                            <Card.Img height={400} variant="top" src="https://cdn.pixabay.com/photo/2016/11/23/15/44/buildings-1853632__340.jpg" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
                                     <Card.Title id='subscribe_title_in_card'>Be Updated With Us, Subscribe Us. Economy, Forum, Researches, Investments and Academy All in a One Place </Card.Title>
@@ -81,7 +81,20 @@ function Currency() {
                     <div id='column_left'>
                         <br></br>
                         <Card className='w-100'>
-                            <Card.Img height={230} variant="top" src="https://cdn.pixabay.com/photo/2021/05/18/08/18/buildings-6262615__340.jpg" />
+                            <Card.Img height={300} variant="top" src="https://cdn.pixabay.com/photo/2022/08/15/09/12/chongqing-7387442__340.jpg" />
+                            <Card.Body>
+                                <a href="/Currency" id='title_in_card'>
+                                    <Card.Title id='subscribe_title_in_card'>Be Updated With Us, Subscribe Us. Economy, Forum, Researches, Investments and Academy All in a One Place </Card.Title>
+                                    <Card.Title id='subscribe_title_in_card'> - World Economy Index - </Card.Title>
+                                </a>
+                            </Card.Body>
+                        </Card>
+                    </div>
+
+                    <div id='column_left'>
+                        <br></br>
+                        <Card className='w-100'>
+                            <Card.Img height={300} variant="top" src="https://cdn.pixabay.com/photo/2021/05/18/08/18/buildings-6262615__340.jpg" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
                                     <Card.Title id='subscribe_title_in_card'>Ukraine Need Your Help !!!</Card.Title>
