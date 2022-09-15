@@ -186,10 +186,10 @@ function Home() {
 
                     <Row>
                         <Col xs lg="2">
-                            <Image id='uklrain_flag_image' src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
+                            <Image id='uklrain_flag_image' src="https://cdn-icons-png.flaticon.com/64/330/330540.png"></Image>
                         </Col>
                         <Col>
-                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Ukrain Need Your Help</Button>
+                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Ukraine Need You</Button>
                         </Col>
                     </Row>
 
@@ -360,7 +360,7 @@ function Home() {
                     </Col>
                     
                     <div style={button_styles} id='column_center'>
-                        <Button className='w-100' style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
+                        <Button href='/currency/1' className='w-100' style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
                     </div>
 
                     <div id='column_left'>

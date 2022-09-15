@@ -357,12 +357,17 @@ function NewsOfCurrency() {
 
                     <Row>
                         <Col xs lg="2">
-                            <Image id='uklrain_flag_image' src="https://cdn.icon-icons.com/icons2/97/PNG/64/ukraine_flags_flag_17076.png"></Image>
+                            <Image id='uklrain_flag_image' src="https://cdn-icons-png.flaticon.com/64/330/330540.png"></Image>
                         </Col>
                         <Col>
-                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Ukraine Need Your Help</Button>
+                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Ukraine Need You</Button>
                         </Col>
                     </Row>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-success" size="lg">Subscribe Us</Button>
+                    </div>
 
 
                 </Col>
@@ -399,7 +404,7 @@ function NewsOfCurrency() {
                             <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
-                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
+                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -410,10 +415,10 @@ function NewsOfCurrency() {
                     <div id='column_left'>
                         <br></br>
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2017/10/13/11/49/putin-2847423__340.jpg" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
-                                    <Card.Title>Global Poverty Rate Increased. Lower Income People Going... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
+                                    <Card.Title>Putin Tells Xi He Understands China ‘Concerns’ on War in Ukraine... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -424,10 +429,10 @@ function NewsOfCurrency() {
                     <div id='column_left'>
                         <br></br>
                         <Card className='w-100' style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                            <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2015/09/13/15/14/money-938269__340.jpg" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
-                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
+                                    <Card.Title>Offshore Yuan Drops Past 7 Per Dollar for First Time Since 2020... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>

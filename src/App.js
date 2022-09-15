@@ -8,6 +8,7 @@ import Home from './Views/Home/Home';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import NewsOfCurrency from './Views/Currency/NewsOfCurrency';
+import Currency from './Views/Currency/Currency';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             <Routes >
               <Route path="/news/currency/:id" element={<NewsOfCurrency />}  />
             </Routes >
+            <Routes >
+              <Route path='/currency/:id' element={<Currency />}/>
+            </Routes>
           </div>
         <Footer />
       </Router>
