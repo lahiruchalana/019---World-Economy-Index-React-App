@@ -219,7 +219,7 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Data <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button href='/gdp/1' className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Data <a href='/gdp/1' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                     
                     <div id='column_center'>

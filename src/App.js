@@ -9,6 +9,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import NewsOfCurrency from './Views/Currency/NewsOfCurrency';
 import Currency from './Views/Currency/Currency';
+import GDP from './Views/GDP/GDP';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
             </Routes >
             <Routes >
               <Route path='/currency/:id' element={<Currency />}/>
+            </Routes>
+            <Routes>
+              <Route path='/gdp/:id' element={<GDP />}/>
             </Routes>
           </div>
         <Footer />

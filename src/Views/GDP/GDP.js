@@ -1,5 +1,9 @@
-import React from 'react'
-// import { useParams } from 'react-router';
+import React, { useState, useEffect } from 'react'
+// import { useParams } from 'react-router';.
+
+import CanvasJSReact from '../assets/canvasjs.react';
+
+import axios from "axios";
 
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
@@ -9,12 +13,78 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Image from "react-bootstrap/Image";
 
-import CanvasJSReact from '../assets/canvasjs.react';
+// const currencyURL = 'http://localhost:8080/api/data/currency/rate/current/USD/Euro';
+const currencyURL = 'http://localhost:8080/api/data/currency/rate';
 
 
-
-function Currency() {
+function GDP() {
+    const [currency, setCurrency] = useState([]);
+    const [currencyDataArray, setCurrencyDataArray] = useState([]);
     // const { id } = useParams();
+
+    const monthsShort = {
+        JANUARY: 0,
+        FEBRUARY: 1,
+        MARCH: 2,
+        APRIL: 3,
+        MAY: 4,
+        JUNE: 5,
+        JULY: 6,
+        AUGUST: 7,
+        SEPTEMBER: 8,
+        OCTOBER: 9,
+        NOVEMBER: 10,
+        DECEMBER: 11,
+      };
+
+
+    useEffect(() => {
+        axios.get(currencyURL).then((response) => {
+            response.data.forEach(element => {
+                const currencyData = {
+                    x: new Date (Number(element.year), monthsShort[element.month]),
+                    y: element.currencyRateValue
+                }
+
+                console.log(currencyData);
+    
+                setCurrencyDataArray(oldArray => [...oldArray, currencyData]);
+
+            });
+            setCurrency(response.data);
+        })
+    }, []);    
+
+    console.log(currency);
+    
+    console.log(currencyDataArray);
+
+    // var currencyBlock;
+    // if (currency != null) {
+    //     currencyBlock =  `${currency.currencyRateValue} ` +
+    //                         `${currency.recordStatus} ` +
+    //                         `${currency.year}, ${currency.month} ` +
+    //                         `${currency.currency.currencyName} ` +
+    //                         `${currency.equalsCurrency.currencyName} ` ;
+    // } else if (currency == null) {
+    //     currencyBlock = null
+    // }
+
+
+    // var currencyDataArray = [
+    //     { x: new Date(2010, 0), y: 25060 },
+    //     { x: new Date(2011, 1), y: 27980 },
+    //     { x: new Date(2013, 2), y: 42800 },
+    //     { x: new Date(2014, 3), y: 32400 },
+    //     { x: new Date(2015, 4), y: 35260 },
+    //     { x: new Date(2016, 5), y: 83900 },
+    //     { x: new Date(2016, 6), y: 90000 },
+    //     { x: new Date(2017, 1), y: 52500 },
+    //     { x: new Date(2017, 5), y: 72300 },
+    //     { x: new Date(2017, 9), y: 142000 },
+    //     { x: new Date(2018, 10), y: 187160 },
+    //     { x: new Date(2019, 11), y: 238400 }
+    // ]
 
     // var CanvasJS = CanvasJSReact.CanvasJS;
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -25,7 +95,7 @@ function Currency() {
             text: "Euro"
         },
         axisX: {
-            valueFormatString: "MMM"
+            valueFormatString: "YYYYMMM"
         },
         axisY: {
             title: "USD",
@@ -35,20 +105,7 @@ function Currency() {
             yValueFormatString: "$#,###",
             xValueFormatString: "MMMM",
             type: "spline",
-            dataPoints: [
-                { x: new Date(2017, 0), y: 25060 },
-                { x: new Date(2017, 1), y: 27980 },
-                { x: new Date(2017, 2), y: 42800 },
-                { x: new Date(2017, 3), y: 32400 },
-                { x: new Date(2017, 4), y: 35260 },
-                { x: new Date(2017, 5), y: 33900 },
-                { x: new Date(2017, 6), y: 40000 },
-                { x: new Date(2017, 7), y: 52500 },
-                { x: new Date(2017, 8), y: 32300 },
-                { x: new Date(2017, 9), y: 42000 },
-                { x: new Date(2017, 10), y: 37160 },
-                { x: new Date(2017, 11), y: 38400 }
-            ]
+            dataPoints: currencyDataArray
         }]
     };
 
@@ -63,16 +120,17 @@ function Currency() {
 
                 {/* Page Related Content Column Starts */}
 
+                {/* <div>{currencyBlock}</div> */}
+
                 <Col>
 
                     <div id='column_left'>
                         <br></br>
                         <Card className='w-100'>
-                            <Card.Img height={400} variant="top" src="https://cdn.pixabay.com/photo/2016/11/23/15/44/buildings-1853632__340.jpg" />
+                            <Card.Img height={300} variant="top" src="https://cdn.pixabay.com/photo/2021/05/18/08/18/buildings-6262615__340.jpg" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
-                                    <Card.Title id='subscribe_title_in_card'>Be Updated With Us, Subscribe Us. Economy, Forum, Researches, Investments and Academy All in a One Place </Card.Title>
-                                    <Card.Title id='subscribe_title_in_card'> - World Economy Index - </Card.Title>
+                                    <Card.Title id='subscribe_title_in_card'>Ukraine Need Your Help !!!</Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -84,9 +142,9 @@ function Currency() {
                     <h2>Breaking - Putin Hit A Massive Damage On Euro</h2>
                     <h6>2022_09_23, Amesterdam, Netherland - Mark Zchenn</h6>
                     <br></br>
-                    <h5>The euro fell below $0.99 this morning for the first time in two decades as the energy crisis rocks the financial markets. Meanwhile, benchmark European prices jumped as much as 35 percent after Russia's state energy firm Gazprom announced its Nord Stream 1 pipeline to Germany will remain closed indefinitely.
-                        It had been shut down for three days, reportedly for maintenance work, but will remain closed for longer after Gazprom claimed it had found an oil leak in a turbine, sparking fears of further increases in energy prices around Europe.
-                        The former chief executive of Energy UK said the Russian President has been "playing" the "economic war" and "psychological war extremely well" amid the fallout over the decision to keep the pipeline closed.
+                    <h5>The euro fell below $0.99 this morning for the first time in two decades as the energy crisis rocks the financial markets. Meanwhile, benchmark European prices jumped as much as 35 percent after Russia's state energy firm Gazprom announced its Nord Stream 1 pipeline to Germany will remain closed indefinitely. <br></br><br></br>
+                        It had been shut down for three days, reportedly for maintenance work, but will remain closed for longer after Gazprom claimed it had found an oil leak in a turbine, sparking fears of further increases in energy prices around Europe. <br></br> <br></br>
+                        The former chief executive of Energy UK said the Russian President has been "playing" the "economic war" and "psychological war extremely well" amid the fallout over the decision to keep the pipeline closed. <br></br>
                         Angela Knight told Times Radio yesterday: "He's actually playing the economic war extremely well, he's playing the psychological war extremely well.
                     </h5>
 
@@ -422,4 +480,4 @@ function Currency() {
     )
 }
 
-export default Currency
+export default GDP
