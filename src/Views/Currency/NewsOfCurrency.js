@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { useParams } from 'react-router';.
+import { useParams } from 'react-router';
 
 import CanvasJSReact from '../assets/canvasjs.react';
 
@@ -13,14 +13,13 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Image from "react-bootstrap/Image";
 
-// const currencyURL = 'http://localhost:8080/api/data/currency/rate/current/USD/Euro';
-const currencyURL = 'http://localhost:8080/api/data/currency/rate';
-
 
 function NewsOfCurrency() {
     const [currency, setCurrency] = useState([]);
     const [currencyDataArray, setCurrencyDataArray] = useState([]);
-    // const { id } = useParams();
+    const { currencyname, equalscurrencyname } = useParams();
+
+    const currencyURL = `http://localhost:8080/api/data/currency/rate/all/${equalscurrencyname}/${currencyname}`;   // change `${currencyname}/${equalscurrencyname}` to this
 
     const monthsShort = {
         JANUARY: 0,
@@ -40,70 +39,45 @@ function NewsOfCurrency() {
 
     useEffect(() => {
         axios.get(currencyURL).then((response) => {
-            response.data.forEach(element => {
-                const currencyData = {
-                    x: new Date (Number(element.year), monthsShort[element.month]),
-                    y: element.currencyRateValue
-                }
-
-                console.log(currencyData);
-    
-                setCurrencyDataArray(oldArray => [...oldArray, currencyData]);
-
-            });
             setCurrency(response.data);
         })
     }, []);    
 
-    console.log(currency);
+    useEffect(() => {
+        setCurrencyDataArray([]);
+
+        currency.forEach(element => {
+            const currencyData = {
+                x: new Date (Number(element.year), monthsShort[element.month]),
+                y: element.currencyRateValue
+            }
+
+            console.log(currencyData);
+            setCurrencyDataArray(oldArray => [...oldArray, currencyData]);
     
+        })
+    }, [currency.length]);
+
+    console.log(currency);
     console.log(currencyDataArray);
 
-    // var currencyBlock;
-    // if (currency != null) {
-    //     currencyBlock =  `${currency.currencyRateValue} ` +
-    //                         `${currency.recordStatus} ` +
-    //                         `${currency.year}, ${currency.month} ` +
-    //                         `${currency.currency.currencyName} ` +
-    //                         `${currency.equalsCurrency.currencyName} ` ;
-    // } else if (currency == null) {
-    //     currencyBlock = null
-    // }
-
-
-    // var currencyDataArray = [
-    //     { x: new Date(2010, 0), y: 25060 },
-    //     { x: new Date(2011, 1), y: 27980 },
-    //     { x: new Date(2013, 2), y: 42800 },
-    //     { x: new Date(2014, 3), y: 32400 },
-    //     { x: new Date(2015, 4), y: 35260 },
-    //     { x: new Date(2016, 5), y: 83900 },
-    //     { x: new Date(2016, 6), y: 90000 },
-    //     { x: new Date(2017, 1), y: 52500 },
-    //     { x: new Date(2017, 5), y: 72300 },
-    //     { x: new Date(2017, 9), y: 142000 },
-    //     { x: new Date(2018, 10), y: 187160 },
-    //     { x: new Date(2019, 11), y: 238400 }
-    // ]
-
-    // var CanvasJS = CanvasJSReact.CanvasJS;
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
     const options = {
         animationEnabled: true,
         title:{
-            text: "Euro"
+            text: "Euro Rate"
         },
         axisX: {
-            valueFormatString: "YYYYMMM"
+            valueFormatString: "YYYY-MMM"
         },
         axisY: {
             title: "USD",
             prefix: "$"
         },
         data: [{
-            yValueFormatString: "$#,###",
-            xValueFormatString: "MMMM",
+            yValueFormatString: "$########.###",
+            xValueFormatString: "YYYY-MMMM",
             type: "spline",
             dataPoints: currencyDataArray
         }]
@@ -119,8 +93,6 @@ function NewsOfCurrency() {
             <Row>
 
                 {/* Page Related Content Column Starts */}
-
-                {/* <div>{currencyBlock}</div> */}
 
                 <Col>
                     <div id='column_left'>
@@ -157,14 +129,10 @@ function NewsOfCurrency() {
 
                     {/* Charts or Tables Ends */}
 
-
-
-                    {/* News Content Starts */}
-
-
                 </Col>
 
                 {/* Page Related Content Column Ends */}
+
 
                 {/* News Column Starts */}
 
@@ -410,7 +378,7 @@ function NewsOfCurrency() {
 
             </Row>
 
-            {/* More News Starts */}
+            {/* Footer News Starts */}
 
             <br></br>
             <h2>Latest News Available</h2>
@@ -473,7 +441,7 @@ function NewsOfCurrency() {
                     </div>                    
                 </Col>
             </Row>
-            {/* More News Ends */}
+            {/* Footer News Ends */}
 
 
         </div>

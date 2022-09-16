@@ -21,7 +21,7 @@ function App() {
               <Route path="/" element={<Home />}  />
             </Routes >
             <Routes >
-              <Route path="/news/currency/:id" element={<NewsOfCurrency />}  />
+              <Route path="/news/currency/:currencyname/:equalscurrencyname" element={<NewsOfCurrency />}  />
             </Routes >
             <Routes >
               <Route path='/currency/:id' element={<Currency />}/>

@@ -89,7 +89,7 @@ function Home() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/158776/euro-money-currency-the-european-158776.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/news/currency/1" id='title_in_card'>
+                                <a href="/news/currency/euro/usd" id='title_in_card'>
                                     <Card.Title>Breaking - Putin Hit A Massive Damage On Euro</Card.Title>
                                 </a>
                             </Card.Body>
@@ -328,7 +328,7 @@ function Home() {
                                     />
                                     <Carousel.Caption>
                                     <h4 id='number_white_style'>1.01 USD</h4>
-                                    <h5 id='number_white_style'>EUR</h5>
+                                    <h5 id='number_white_style'>EURO</h5>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 <Carousel.Item interval={2000}>
