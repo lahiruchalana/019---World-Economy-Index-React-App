@@ -32,7 +32,7 @@ function Home() {
 
                     <Col>
                         <div id='headings_carousel' >
-                            <Carousel>
+                            <Carousel className='w-100'>
                                 <Carousel.Item interval={3000}>
                                     <img height={150}
                                     className="d-block w-100"
@@ -86,7 +86,7 @@ function Home() {
 
                     <div id='column_left'>
                         <br></br>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/158776/euro-money-currency-the-european-158776.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/news/currency/euro/usd" id='title_in_card'>
@@ -204,7 +204,7 @@ function Home() {
                 <Col>
                     <div id='column_left'>
                         <br></br>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <Card.Title>What Happened To GDP Per Capita?</Card.Title>
@@ -252,7 +252,7 @@ function Home() {
                 <Col>
                     <div id='column_left'>
                         <br></br>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
@@ -264,7 +264,7 @@ function Home() {
 
                     <div id='column_left'>
                         <br></br>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/4133256/pexels-photo-4133256.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
@@ -305,9 +305,9 @@ function Home() {
                         <Button style={button} variant="outline-secondary">HongKong <div id='percentage_red_style'><div >3.1%</div></div></Button>
                     </ButtonGroup>
 
-                    <Col>
+                    <Col >
                         <div id='headings_carousel' style={{marginTop: '0px'}}>
-                            <Carousel>
+                            <Carousel className='w-100'>
                                 <Carousel.Item interval={2000}>
                                     <img height={150}
                                     className="d-block w-100"
