@@ -4,12 +4,10 @@ import CanvasJSReact from '../assets/canvasjs.react';
 
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function AdminHome() {
@@ -334,6 +332,11 @@ function AdminHome() {
                 <Col id="vartical_nav" xs lg={2}>
                     <div id='column_center'>
                         <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Home <a href='/#' id='button_sub_title_blue'> </a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
                         <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Countries <a href='/#' id='button_sub_title_blue'> </a></Button>
                     </div>
 
@@ -349,7 +352,7 @@ function AdminHome() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency Rates <a href='/#' id='button_sub_title_blue'></a></Button>
+                        <Button href='/admin/home/currency/rate/usd/euro' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency Rates <a href='/#' id='button_sub_title_blue'></a></Button>
                     </div>
 
                     <div id='column_center'>
@@ -607,7 +610,7 @@ function AdminHome() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="primary" size="lg">Update Currency Rates<a href='/#' id='button_sub_title_blue'></a></Button>
+                        <Button href='/admin/home/currency/rate/usd/euro' className='w-100' id='button_low_top_margin' variant="primary" size="lg">Currency Rates<a href='/#' id='button_sub_title_blue'></a></Button>
                     </div>
 
                     <div id='column_center'>

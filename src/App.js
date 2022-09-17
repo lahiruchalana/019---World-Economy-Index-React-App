@@ -11,6 +11,7 @@ import NewsOfCurrency from './Views/Currency/NewsOfCurrency';
 import Currency from './Views/Currency/Currency';
 import GDP from './Views/GDP/GDP';
 import AdminHome from './Views/Admin/AdminHome';
+import CurrencyRates from './Views/Admin/CurrencyRates';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Routes >
             <Routes>
               <Route path='/admin/home' element={<AdminHome />}/>
+            </Routes>
+            <Routes>
+              <Route path='/admin/home/currency/rate/:currencyname/:equalscurrencyname' element={<CurrencyRates/>}/>
             </Routes>
             <Routes >
               <Route path="/news/currency/:currencyname/:equalscurrencyname" element={<NewsOfCurrency />}  />
