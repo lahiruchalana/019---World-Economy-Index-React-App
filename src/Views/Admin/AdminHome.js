@@ -15,7 +15,6 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function AdminHome() {
 
     const optionsUsersAndIncome = {
-        theme: "light2",
         animationEnabled: true,
         title:{
             text: "Subscribed Users and Income"
@@ -92,7 +91,6 @@ function AdminHome() {
     }
 
     const optionsAcademyStudents = {
-        theme: "light2",
         animationEnabled: true,
         title:{
             text: "All Updates Per Day"
@@ -181,8 +179,8 @@ function AdminHome() {
             prefix: ""
         },
         data: [{
-            yValueFormatString: "Updates###,###",
-            xValueFormatString: "MMMM",
+            yValueFormatString: "Updates ###,###",
+            xValueFormatString: "MMM-DD",
             type: "spline",
             dataPoints: [
                 { x: new Date(2017, 0), y: 25 },
@@ -228,7 +226,6 @@ function AdminHome() {
     
     const optionsUsersByCountry = {
         animationEnabled: true,
-        theme: "light2",
         title:{
             text: "Most Popular Social Networking Sites"
         },
@@ -256,14 +253,13 @@ function AdminHome() {
     }
 
     const optionsForumUsers = {
-        theme: "light2",
         animationEnabled: true,
         exportEnabled: true,
         title: {
-          text: "Energy usage for Air Conditioning"
+          text: "Users Of Forum"
         },
         axisY: {
-          title: "Energy (in terawatt hours)"
+          title: "Number Of Users"
         },
         toolTip: {
           shared: true
@@ -275,105 +271,102 @@ function AdminHome() {
           cursor: "pointer"
         },
         data: [
+            {
+                type: "stackedArea",
+                name: "No Data",
+                showInLegend: true,
+                xValueFormatString: "YYYY-MMM",
+                dataPoints: [
+                    {x: new Date(2022, 3), y: 9562},
+                    {x: new Date(2022, 4), y: 9584},
+                    {x: new Date(2022, 5), y: 11568},
+                    {x: new Date(2022, 6), y: 12569}
+                ]
+            },
           {
               type: "stackedArea",
-              name: "US",
+              name: "Professions",
               showInLegend: true,
-              xValueFormatString: "YYYY",
+              xValueFormatString: "YYYY-MMM",
               dataPoints: [
-                  {x: new Date(1990, 0), y: 339},
-                  {x: new Date(2000, 0), y: 448},
-                  {x: new Date(2010, 0), y: 588},
-                  {x: new Date(2016, 0), y: 616}
+                {x: new Date(2022, 3), y: 1095},
+                {x: new Date(2022, 4), y: 1100},
+                {x: new Date(2022, 5), y: 1359},
+                {x: new Date(2022, 6), y: 1459}
               ]
           },
           {
-              type: "stackedArea",
-              name: "European Union",
-              showInLegend: true,
-              xValueFormatString: "YYYY",
-              dataPoints: [
-                  {x: new Date(1990, 0), y: 63},
-                  {x: new Date(2000, 0), y: 100},
-                  {x: new Date(2010, 0), y: 149},
-                  {x: new Date(2016, 0), y: 152}
-              ]
-          },
-          {
-              type: "stackedArea",
-              name: "Japan",
-              showInLegend: true,
-              xValueFormatString: "YYYY",
-              dataPoints: [
-                  {x: new Date(1990, 0), y: 48},
-                  {x: new Date(2000, 0), y: 100},
-                  {x: new Date(2010, 0), y: 119},
-                  {x: new Date(2016, 0), y: 107},
-          ]
-          },
-          {
-              type: "stackedArea",
-              name: "China",
-              showInLegend: true,
-              xValueFormatString: "YYYY",
-              dataPoints: [
-                  {x: new Date(1990, 0), y: 7 },
-                  {x: new Date(2000, 0), y: 45},
-                  {x: new Date(2010, 0), y: 243},
-                  {x: new Date(2016, 0), y: 450},
-              ]
-          },
-          {
-              type: "stackedArea",
-              name: "India",
-              showInLegend: true,
-              xValueFormatString: "YYYY",
-              dataPoints: [
-                  {x: new Date(1990, 0), y: 6},
-                  {x: new Date(2000, 0), y: 22},
-                  {x: new Date(2010, 0), y: 49},
-                  {x: new Date(2016, 0), y: 91},
-              ]
-          }
+            type: "stackedArea",
+            name: "Students",
+            showInLegend: true,
+            xValueFormatString: "YYYY-MMM",
+            dataPoints: [
+                {x: new Date(2022, 3), y: 6584},
+                {x: new Date(2022, 4), y: 8145},
+                {x: new Date(2022, 5), y: 11584},
+                {x: new Date(2022, 6), y: 12456}
+            ]
+        },
+        {
+            type: "stackedArea",
+            name: "University Students",
+            showInLegend: true,
+            xValueFormatString: "YYYY-MMM",
+            dataPoints: [
+                {x: new Date(2022, 3), y: 1023},
+                {x: new Date(2022, 4), y: 1058},
+                {x: new Date(2022, 5), y: 1158},
+                {x: new Date(2022, 6), y: 1235}
+            ]
+        },
+        {
+            type: "stackedArea",
+            name: "Other Professions",
+            showInLegend: true,
+            xValueFormatString: "YYYY-MMM",
+            dataPoints: [
+                {x: new Date(2022, 3), y: 5369},
+                {x: new Date(2022, 4), y: 5481},
+                {x: new Date(2022, 5), y: 6589},
+                {x: new Date(2022, 6), y: 8490}
+            ]
+        }
         ]
     }
 
     const optionsResearchesPerDay = {
         animationEnabled: true,
         title:{
-            text: "Monthly Sales - 2017"
+            text: "Researches Per Day"
         },
         axisX: {
-            valueFormatString: "MMM"
+            valueFormatString: "YY-MMM-DD"
         },
         axisY: {
-            title: "Sales (in USD)",
-            prefix: "$"
+            title: "Number Of Researches",
+            prefix: ""
         },
         data: [{
-            yValueFormatString: "$#,###",
-            xValueFormatString: "MMMM",
+            yValueFormatString: "Researches #,###",
+            xValueFormatString: "MMM-DD",
             type: "spline",
             dataPoints: [
-                { x: new Date(2017, 0), y: 25060 },
-                { x: new Date(2017, 1), y: 27980 },
-                { x: new Date(2017, 2), y: 42800 },
-                { x: new Date(2017, 3), y: 32400 },
-                { x: new Date(2017, 4), y: 35260 },
-                { x: new Date(2017, 5), y: 33900 },
-                { x: new Date(2017, 6), y: 40000 },
-                { x: new Date(2017, 7), y: 52500 },
-                { x: new Date(2017, 8), y: 32300 },
-                { x: new Date(2017, 9), y: 42000 },
-                { x: new Date(2017, 10), y: 37160 },
-                { x: new Date(2017, 11), y: 38400 }
+                { x: new Date(2017, 0), y: 25 },
+                { x: new Date(2017, 1), y: 30 },
+                { x: new Date(2017, 2), y: 4 },
+                { x: new Date(2017, 3), y: 38 },
+                { x: new Date(2017, 4), y: 36 },
+                { x: new Date(2017, 5), y: 39 },
+                { x: new Date(2017, 6), y: 68 },
+                { x: new Date(2017, 7), y: 50 },
+                { x: new Date(2017, 8), y: 23 },
+                { x: new Date(2017, 9), y: 82 },
+                { x: new Date(2017, 10), y: 37 },
+                { x: new Date(2017, 11), y: 94 }
             ]
         }]
     }
 
-    var button = {
-        borderRadius:'0px'
-    };
 
     return(
         <div className='admin_container'>

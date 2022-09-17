@@ -146,8 +146,10 @@
 
 #vertical_nav_button {
   border-radius: 0px;
+  font-size: 16px;
   margin-top: -13px;
   margin-left: 5px;
   border-radius: 10px;
   border-style: none;
+  text-align: left;
 }
