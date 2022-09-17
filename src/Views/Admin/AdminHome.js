@@ -14,7 +14,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function AdminHome() {
 
-    const options = {
+    const optionsUsersAndIncome = {
         theme: "light2",
         animationEnabled: true,
         title:{
@@ -91,7 +91,7 @@ function AdminHome() {
         }]
     }
 
-    const optionstwo = {
+    const optionsAcademyStudents = {
         theme: "light2",
         animationEnabled: true,
         title:{
@@ -168,6 +168,209 @@ function AdminHome() {
         }]
     }
 
+    const optionsUpdates = {
+        animationEnabled: true,
+        title:{
+            text: "Updates Per Day"
+        },
+        axisX: {
+            valueFormatString: "YY-MMM-DDD"
+        },
+        axisY: {
+            title: "Updates Per Day",
+            prefix: ""
+        },
+        data: [{
+            yValueFormatString: "Updates###,###",
+            xValueFormatString: "MMMM",
+            type: "spline",
+            dataPoints: [
+                { x: new Date(2017, 0), y: 25 },
+                { x: new Date(2017, 1), y: 27 },
+                { x: new Date(2017, 2), y: 42 },
+                { x: new Date(2017, 3), y: 32 },
+                { x: new Date(2017, 4), y: 35 },
+                { x: new Date(2017, 5), y: 33 },
+                { x: new Date(2017, 6), y: 40 },
+                { x: new Date(2017, 7), y: 52 },
+                { x: new Date(2017, 8), y: 32 },
+                { x: new Date(2017, 9), y: 42 },
+                { x: new Date(2017, 10), y: 3 },
+                { x: new Date(2017, 11), y: 68 }
+            ]
+        }]
+    }
+
+    const optionsUsers = {
+        exportEnabled: true,
+        animationEnabled: true,
+        title: {
+            text: "Users"
+        },
+        data: [{
+            type: "pie",
+            startAngle: 75,
+            toolTipContent: "<b>{label}</b>: {y}%",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}%",
+            dataPoints: [
+                { y: 6, label: "Academic Users" },
+                { y: 12, label: "Subscribed Users" },
+                { y: 1, label: "Investments Users" },
+                { y: 78, label: "Free Users" },
+                { y: 3, label: "Researches Users" }
+            ]
+        }]
+    }
+
+    
+    const optionsUsersByCountry = {
+        animationEnabled: true,
+        theme: "light2",
+        title:{
+            text: "Most Popular Social Networking Sites"
+        },
+        axisX: {
+            title: "Social Network",
+            reversed: true,
+        },
+        axisY: {
+            title: "Monthly Active Users",
+            includeZero: true,
+        },
+        data: [{
+            type: "bar",
+            dataPoints: [
+                { y:  2200000000, label: "Facebook" },
+                { y:  1800000000, label: "YouTube" },
+                { y:  1800000000, label: "YouTube" },
+                { y:  1800000000, label: "YouTube" },
+                { y:  1800000000, label: "YouTube" },
+                { y:  1800000000, label: "YouTube" },
+                { y:  1800000000, label: "YouTube" },
+                { y:  800000000, label: "Instagram" }
+            ]
+        }]
+    }
+
+    const optionsForumUsers = {
+        theme: "light2",
+        animationEnabled: true,
+        exportEnabled: true,
+        title: {
+          text: "Energy usage for Air Conditioning"
+        },
+        axisY: {
+          title: "Energy (in terawatt hours)"
+        },
+        toolTip: {
+          shared: true
+        },
+        legend: {
+          verticalAlign: "center",
+          horizontalAlign: "right",
+          reversed: true,
+          cursor: "pointer"
+        },
+        data: [
+          {
+              type: "stackedArea",
+              name: "US",
+              showInLegend: true,
+              xValueFormatString: "YYYY",
+              dataPoints: [
+                  {x: new Date(1990, 0), y: 339},
+                  {x: new Date(2000, 0), y: 448},
+                  {x: new Date(2010, 0), y: 588},
+                  {x: new Date(2016, 0), y: 616}
+              ]
+          },
+          {
+              type: "stackedArea",
+              name: "European Union",
+              showInLegend: true,
+              xValueFormatString: "YYYY",
+              dataPoints: [
+                  {x: new Date(1990, 0), y: 63},
+                  {x: new Date(2000, 0), y: 100},
+                  {x: new Date(2010, 0), y: 149},
+                  {x: new Date(2016, 0), y: 152}
+              ]
+          },
+          {
+              type: "stackedArea",
+              name: "Japan",
+              showInLegend: true,
+              xValueFormatString: "YYYY",
+              dataPoints: [
+                  {x: new Date(1990, 0), y: 48},
+                  {x: new Date(2000, 0), y: 100},
+                  {x: new Date(2010, 0), y: 119},
+                  {x: new Date(2016, 0), y: 107},
+          ]
+          },
+          {
+              type: "stackedArea",
+              name: "China",
+              showInLegend: true,
+              xValueFormatString: "YYYY",
+              dataPoints: [
+                  {x: new Date(1990, 0), y: 7 },
+                  {x: new Date(2000, 0), y: 45},
+                  {x: new Date(2010, 0), y: 243},
+                  {x: new Date(2016, 0), y: 450},
+              ]
+          },
+          {
+              type: "stackedArea",
+              name: "India",
+              showInLegend: true,
+              xValueFormatString: "YYYY",
+              dataPoints: [
+                  {x: new Date(1990, 0), y: 6},
+                  {x: new Date(2000, 0), y: 22},
+                  {x: new Date(2010, 0), y: 49},
+                  {x: new Date(2016, 0), y: 91},
+              ]
+          }
+        ]
+    }
+
+    const optionsResearchesPerDay = {
+        animationEnabled: true,
+        title:{
+            text: "Monthly Sales - 2017"
+        },
+        axisX: {
+            valueFormatString: "MMM"
+        },
+        axisY: {
+            title: "Sales (in USD)",
+            prefix: "$"
+        },
+        data: [{
+            yValueFormatString: "$#,###",
+            xValueFormatString: "MMMM",
+            type: "spline",
+            dataPoints: [
+                { x: new Date(2017, 0), y: 25060 },
+                { x: new Date(2017, 1), y: 27980 },
+                { x: new Date(2017, 2), y: 42800 },
+                { x: new Date(2017, 3), y: 32400 },
+                { x: new Date(2017, 4), y: 35260 },
+                { x: new Date(2017, 5), y: 33900 },
+                { x: new Date(2017, 6), y: 40000 },
+                { x: new Date(2017, 7), y: 52500 },
+                { x: new Date(2017, 8), y: 32300 },
+                { x: new Date(2017, 9), y: 42000 },
+                { x: new Date(2017, 10), y: 37160 },
+                { x: new Date(2017, 11), y: 38400 }
+            ]
+        }]
+    }
+
     var button = {
         borderRadius:'0px'
     };
@@ -176,6 +379,8 @@ function AdminHome() {
         <div className='admin_container'>
 
             <Row>
+
+                {/* 1st Column Navigation Starts */}
 
                 <Col id="vartical_nav" xs lg={2}>
                     <div id='column_center'>
@@ -224,6 +429,10 @@ function AdminHome() {
                     </div>
 
                 </Col>
+
+                {/* 1st Column Navigation Ends */}
+
+                {/* 2nd Column Navigation Starts */}                
 
                 <Col>
 
@@ -278,7 +487,7 @@ function AdminHome() {
                                 alt="First slide"
                                 />
                                 <Carousel.Caption>
-                                    <h4>Update All Data</h4>
+                                    <h4>Researches</h4>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item interval={2000}>
@@ -316,29 +525,62 @@ function AdminHome() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="success" size="lg">Add New Data</Button>
+                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="outline-success" size="lg">Add New Data</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="success" size="lg">Update Data</Button>
+                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="outline-success" size="lg">Update Data</Button>
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="success" size="lg">Delete Data</Button>
+                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="outline-success" size="lg">Delete Data</Button>
                     </div>
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="success" size="lg">Find Data</Button>
+                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="outline-success" size="lg">Find Data</Button>
                     </div>
 
                     <br></br>
                     <div id="chart_container">
-                        <CanvasJSChart options = {optionstwo} />
+                        <CanvasJSChart options = {optionsUpdates} />
                     </div>
+
+                    <br></br>
+                    <div id="chart_container">
+                        <CanvasJSChart options = {optionsForumUsers} />
+                    </div> 
                     
                 </Col>
+
+                {/* 2nd Column Navigation Ends */}
+
+                {/* 3rd Column Navigation Starts */}
+                
+                <Col>
+
+                    <br></br>
+                    <br></br>
+                    <div id="chart_container">
+                        <CanvasJSChart options = {optionsUsersAndIncome} />
+                    </div>   
+
+                    <br></br>
+                    <div id="chart_container">
+                        <CanvasJSChart options = {optionsUsersByCountry} />
+                    </div>   
+
+                    <br></br>
+                    <div id="chart_container">
+                        <CanvasJSChart options = {optionsAcademyStudents} />
+                    </div>   
+
+                </Col>
+
+                {/* 3rd Column Navigation Ends */}
+
+                {/* 4th Column Navigation Starts */}
 
                 <Col>
 
@@ -368,7 +610,7 @@ function AdminHome() {
 
                     <br></br>
                     <div id="chart_container">
-                        <CanvasJSChart options = {options} />
+                        <CanvasJSChart options = {optionsUsers} />
                     </div>
 
                     {/* chart of users data ends */}
@@ -393,7 +635,15 @@ function AdminHome() {
                         <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="outline-info" size="lg">Investments</Button>
                     </div>
 
+                    <br></br>
+                    <div id="chart_container">
+                        <CanvasJSChart options = {optionsResearchesPerDay} />
+                    </div> 
+
                 </Col>
+
+                {/* 4th Column Navigation Ends */}
+
             </Row>
         </div>
     )

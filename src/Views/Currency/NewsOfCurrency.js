@@ -76,7 +76,7 @@ function NewsOfCurrency() {
             prefix: "$"
         },
         data: [{
-            yValueFormatString: "$########.###",
+            yValueFormatString: "$##,###,###.###",
             xValueFormatString: "YYYY-MMMM",
             type: "spline",
             dataPoints: currencyDataArray
