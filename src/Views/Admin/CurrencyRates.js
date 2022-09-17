@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import VerticalNavBar from "./VerticalNavBar";
+import { useParams } from 'react-router';
 
 import axios from "axios";
 
@@ -8,12 +9,17 @@ import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
+
+const currencyNameUrl = 'http://localhost:8080/api/data/currency';
+
+
 function CurrencyRates() {
+    const { currencyname, equalscurrencyname } = useParams(); 
     const [currencyList, setCurrencyList] = useState([]);
     const [currencyNameList, setCurrencyNameList] = useState([]);
     const [currencyName, setCurrencyName] = useState("usd");
+    const [equalsCurrencyName, setEqualsCurrencyName] = useState("euro");
 
-    const currencyNameUrl = 'http://localhost:8080/api/data/currency';
 
     useEffect(() => {
         axios.get(currencyNameUrl).then((response) => {
@@ -22,6 +28,7 @@ function CurrencyRates() {
 
     }, [])
     
+    console.log(currencyName + "/" + equalsCurrencyName);
     console.log(currencyNameList);
 
     useEffect(() => {
@@ -31,7 +38,7 @@ function CurrencyRates() {
             setCurrencyNameList(oldArray => [...oldArray, element.currencyName])
         });
 
-    }, [])
+    }, [])    
 
     return(
         <div className='admin_container'>
@@ -40,7 +47,7 @@ function CurrencyRates() {
                     <VerticalNavBar/>
                 </Col>
 
-                <Col>
+                <Col xs lg={4}>
                     <h2>Currency Rates</h2>
                     <div id='singele_line'></div>
 
@@ -48,27 +55,27 @@ function CurrencyRates() {
                     
                     <Row>
                         
-                        <Col>
+                        <Col id="column_center">
                             <DropdownButton id="dropdown-basic-button" title="Select Currency" >
                                 {currencyNameList.map(currencyName => {
-                                    return <Dropdown.Item href="#/selected-the-currency">{currencyName}</Dropdown.Item>
+                                    return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
                             </DropdownButton>
                         </Col>
 
-                        <Col>
+                        <Col id="column_center">
                             <DropdownButton id="dropdown-basic-button" title="Select Equals Currency">
-                                <Dropdown.Item href="/admin/currency/rate/usd/euro">Action</Dropdown.Item>
-                                <Dropdown.Item href="/admin/currency/rate/usd/gbp">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                {currencyNameList.map(currencyName => {
+                                    return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                })}
                             </DropdownButton>
                         </Col>
 
-                        <Col xs lg={6}>
-                            <h4>currency/equals currency</h4>
-                        </Col>
-
                     </Row>
+
+                    <br></br>
+                    <h5 id="column_center">1 {currencyName.toUpperCase()} equals to {equalsCurrencyName.toUpperCase()} rates in table</h5>
+
                 </Col>
 
                 <Col>
