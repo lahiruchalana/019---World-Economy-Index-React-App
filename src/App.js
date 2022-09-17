@@ -10,6 +10,7 @@ import Footer from './Components/Footer';
 import NewsOfCurrency from './Views/Currency/NewsOfCurrency';
 import Currency from './Views/Currency/Currency';
 import GDP from './Views/GDP/GDP';
+import AdminHome from './Views/Admin/AdminHome';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             <Routes >
               <Route path="/" element={<Home />}  />
             </Routes >
+            <Routes>
+              <Route path='/admin/home' element={<AdminHome />}/>
+            </Routes>
             <Routes >
               <Route path="/news/currency/:currencyname/:equalscurrencyname" element={<NewsOfCurrency />}  />
             </Routes >

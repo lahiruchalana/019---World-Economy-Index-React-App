@@ -19,7 +19,7 @@ function NewsOfCurrency() {
     const [currencyDataArray, setCurrencyDataArray] = useState([]);
     const { currencyname, equalscurrencyname } = useParams();
 
-    const currencyURL = `http://localhost:8080/api/data/currency/rate/all/${currencyname}/${equalscurrencyname}`;   // change `${currencyname}/${equalscurrencyname}` to this
+    const currencyURL = `http://localhost:8080/api/data/currency/rate/all/${currencyname}/${equalscurrencyname}`;   
 
     const monthsShort = {
         JANUARY: 0,
