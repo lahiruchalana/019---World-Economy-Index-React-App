@@ -31,7 +31,7 @@ function VerticalNavBar() {
 
             <div id='column_center'>
                 <br></br>
-                <Button href='/admin/home/currency/rate/usd/euro' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency Rates <a href='/#' id='button_sub_title_blue'></a></Button>
+                <Button href='/admin/currency/rate/usd/euro' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency Rates <a href='/#' id='button_sub_title_blue'></a></Button>
             </div>
 
             <div id='column_center'>
