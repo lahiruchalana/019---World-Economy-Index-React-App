@@ -8,20 +8,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-
-
-const currencyNameUrl = 'http://localhost:8080/api/data/currency';
+import Table from 'react-bootstrap/Table';
 
 
 function CurrencyRates() {
     const { currencyname, equalscurrencyname } = useParams(); 
     const [currencyList, setCurrencyList] = useState([]);
     const [currencyNameList, setCurrencyNameList] = useState([]);
-    const [currencyName, setCurrencyName] = useState("usd");
-    const [equalsCurrencyName, setEqualsCurrencyName] = useState("euro");
+    const [currencyName, setCurrencyName] = useState(currencyname);
+    const [equalsCurrencyName, setEqualsCurrencyName] = useState(equalscurrencyname);
+    const [currencyRateList, setCurrencyRateList] = useState([]);
 
 
     useEffect(() => {
+        const currencyNameUrl = `http://localhost:8080/api/data/currency`;
+
         axios.get(currencyNameUrl).then((response) => {
             setCurrencyList(response.data);
         })
@@ -39,6 +40,17 @@ function CurrencyRates() {
         });
 
     }, [])    
+
+    useEffect(() => {
+        const currencyRateURL = `http://localhost:8080/api/data/currency/rate/all/${currencyName}/${equalsCurrencyName}`;
+
+        axios.get(currencyRateURL).then((response) => {
+            setCurrencyRateList(response.data);
+        })
+
+    }, [currencyName, equalsCurrencyName])
+
+    console.log(currencyRateList);
 
     return(
         <div className='admin_container'>
@@ -75,6 +87,43 @@ function CurrencyRates() {
 
                     <br></br>
                     <h5 id="column_center">1 {currencyName.toUpperCase()} equals to {equalsCurrencyName.toUpperCase()} rates in table</h5>
+
+                    <div id='thin_singele_line'></div>
+                    <br></br>
+
+                    {/* table starts */}
+
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                            <th>Id</th>
+                            <th>Rates</th>
+                            <th>Delete</th>
+                            <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            </tr>
+                            <tr>
+                            <td>2</td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            </tr>
+                            <tr>
+                            <td>3</td>
+                            <td colSpan={2}>Larry the Bird</td>
+                            <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+
+                    {/* table ends */}
 
                 </Col>
 
