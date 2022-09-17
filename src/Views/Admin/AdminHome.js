@@ -52,18 +52,18 @@ function AdminHome() {
             xValueFormatString: "MMM YYYY",
             yValueFormatString: "#,##0 Users",
             dataPoints: [
-                { x: new Date(2017, 0, 1), y: 120 },
-                { x: new Date(2017, 1, 1), y: 135 },
-                { x: new Date(2017, 2, 1), y: 144 },
-                { x: new Date(2017, 3, 1), y: 103 },
-                { x: new Date(2017, 4, 1), y: 93 },
-                { x: new Date(2017, 5, 1), y: 129 },
-                { x: new Date(2017, 6, 1), y: 143 },
-                { x: new Date(2017, 7, 1), y: 156 },
-                { x: new Date(2017, 8, 1), y: 122 },
-                { x: new Date(2017, 9, 1), y: 106 },
-                { x: new Date(2017, 10, 1), y: 137 },
-                { x: new Date(2017, 11, 1), y: 142 }
+                { x: new Date(2021, 10, 10), y: 120 },
+                { x: new Date(2021, 11, 11), y: 135 },
+                { x: new Date(2022, 0, 0), y: 144 },
+                { x: new Date(2022, 1, 1), y: 103 },
+                { x: new Date(2022, 2, 2), y: 93 },
+                { x: new Date(2022, 3, 3), y: 129 },
+                { x: new Date(2022, 4, 4), y: 143 },
+                { x: new Date(2022, 5, 5), y: 156 },
+                { x: new Date(2022, 6, 6), y: 122 },
+                { x: new Date(2022, 7, 7), y: 106 },
+                { x: new Date(2022, 8, 8), y: 137 },
+                { x: new Date(2022, 9, 9), y: 142 }
             ]
         },
         {
@@ -74,18 +74,18 @@ function AdminHome() {
             xValueFormatString: "MMM YYYY",
             yValueFormatString: "$#,##0.#",
             dataPoints: [
-                { x: new Date(2017, 0, 1), y: 19034.5 },
-                { x: new Date(2017, 1, 1), y: 20015 },
-                { x: new Date(2017, 2, 1), y: 27342 },
-                { x: new Date(2017, 3, 1), y: 20088 },
-                { x: new Date(2017, 4, 1), y: 20234 },
-                { x: new Date(2017, 5, 1), y: 29034 },
-                { x: new Date(2017, 6, 1), y: 30487 },
-                { x: new Date(2017, 7, 1), y: 32523 },
-                { x: new Date(2017, 8, 1), y: 20234 },
-                { x: new Date(2017, 9, 1), y: 27234 },
-                { x: new Date(2017, 10, 1), y: 33548 },
-                { x: new Date(2017, 11, 1), y: 32534 }
+                { x: new Date(2021, 10, 10), y: 19034.5 },
+                { x: new Date(2021, 11, 11), y: 20015 },
+                { x: new Date(2022, 0, 0), y: 27342 },
+                { x: new Date(2022, 1, 1), y: 20088 },
+                { x: new Date(2022, 2, 2), y: 20234 },
+                { x: new Date(2022, 3, 3), y: 29034 },
+                { x: new Date(2022, 4, 4), y: 30487 },
+                { x: new Date(2022, 5, 5), y: 32523 },
+                { x: new Date(2022, 6, 6), y: 20234 },
+                { x: new Date(2022, 7, 7), y: 27234 },
+                { x: new Date(2022, 8, 8), y: 33548 },
+                { x: new Date(2022, 9, 9), y: 32534 }
             ]
         }]
     }
@@ -93,79 +93,35 @@ function AdminHome() {
     const optionsAcademyStudents = {
         animationEnabled: true,
         title:{
-            text: "All Updates Per Day"
+            text: "Academic Students"
         },
-        subtitles: [{
-            text: "Click Legend to Hide or Unhide Data Series"
-        }],
         axisX: {
-            title: "States"
+            valueFormatString: "YY-MMM"
         },
         axisY: {
-            title: "Units Sold",
-            titleFontColor: "#6D78AD",
-            lineColor: "#6D78AD",
-            labelFontColor: "#6D78AD",
-            tickColor: "#6D78AD"
-        },
-        axisY2: {
-            title: "Profit in USD",
-            titleFontColor: "#51CDA0",
-            lineColor: "#51CDA0",
-            labelFontColor: "#51CDA0",
-            tickColor: "#51CDA0"
-        },
-        toolTip: {
-            shared: true
-        },
-        legend: {
-            cursor: "pointer"
+            title: "Number Of Students",
+            prefix: ""
         },
         data: [{
+            yValueFormatString: "Students ###,###",
+            xValueFormatString: "YY-MMM",
             type: "spline",
-            name: "Units Sold",
-            showInLegend: true,
-            xValueFormatString: "MMM YYYY",
-            yValueFormatString: "#,##0 Units",
             dataPoints: [
-                { x: new Date(2017, 0, 1), y: 120 },
-                { x: new Date(2017, 1, 1), y: 135 },
-                { x: new Date(2017, 2, 1), y: 144 },
-                { x: new Date(2017, 3, 1), y: 103 },
-                { x: new Date(2017, 4, 1), y: 93 },
-                { x: new Date(2017, 5, 1), y: 129 },
-                { x: new Date(2017, 6, 1), y: 143 },
-                { x: new Date(2017, 7, 1), y: 156 },
-                { x: new Date(2017, 8, 1), y: 122 },
-                { x: new Date(2017, 9, 1), y: 106 },
-                { x: new Date(2017, 10, 1), y: 137 },
-                { x: new Date(2017, 11, 1), y: 142 }
-            ]
-        },
-        {
-            type: "spline",
-            name: "Profit",
-            axisYType: "secondary",
-            showInLegend: true,
-            xValueFormatString: "MMM YYYY",
-            yValueFormatString: "$#,##0.#",
-            dataPoints: [
-                { x: new Date(2017, 0, 1), y: 19034.5 },
-                { x: new Date(2017, 1, 1), y: 20015 },
-                { x: new Date(2017, 2, 1), y: 27342 },
-                { x: new Date(2017, 3, 1), y: 20088 },
-                { x: new Date(2017, 4, 1), y: 20234 },
-                { x: new Date(2017, 5, 1), y: 29034 },
-                { x: new Date(2017, 6, 1), y: 30487 },
-                { x: new Date(2017, 7, 1), y: 32523 },
-                { x: new Date(2017, 8, 1), y: 20234 },
-                { x: new Date(2017, 9, 1), y: 27234 },
-                { x: new Date(2017, 10, 1), y: 33548 },
-                { x: new Date(2017, 11, 1), y: 32534 }
+                { x: new Date(2021, 0), y: 2558 },
+                { x: new Date(2021, 1), y: 2762 },
+                { x: new Date(2021, 2), y: 4245 },
+                { x: new Date(2021, 3), y: 3223 },
+                { x: new Date(2021, 4), y: 3541 },
+                { x: new Date(2021, 5), y: 3323 },
+                { x: new Date(2021, 6), y: 4024 },
+                { x: new Date(2021, 7), y: 5224 },
+                { x: new Date(2021, 8), y: 3285 },
+                { x: new Date(2021, 9), y: 4295 },
+                { x: new Date(2021, 10), y: 3234 },
+                { x: new Date(2021, 11), y: 6825 }
             ]
         }]
     }
-
     const optionsUpdates = {
         animationEnabled: true,
         title:{
@@ -183,18 +139,18 @@ function AdminHome() {
             xValueFormatString: "MMM-DD",
             type: "spline",
             dataPoints: [
-                { x: new Date(2017, 0), y: 25 },
-                { x: new Date(2017, 1), y: 27 },
-                { x: new Date(2017, 2), y: 42 },
-                { x: new Date(2017, 3), y: 32 },
-                { x: new Date(2017, 4), y: 35 },
-                { x: new Date(2017, 5), y: 33 },
-                { x: new Date(2017, 6), y: 40 },
-                { x: new Date(2017, 7), y: 52 },
-                { x: new Date(2017, 8), y: 32 },
-                { x: new Date(2017, 9), y: 42 },
-                { x: new Date(2017, 10), y: 3 },
-                { x: new Date(2017, 11), y: 68 }
+                { x: new Date(2021, 0), y: 25 },
+                { x: new Date(2021, 1), y: 27 },
+                { x: new Date(2021, 2), y: 42 },
+                { x: new Date(2021, 3), y: 32 },
+                { x: new Date(2021, 4), y: 35 },
+                { x: new Date(2021, 5), y: 33 },
+                { x: new Date(2021, 6), y: 40 },
+                { x: new Date(2021, 7), y: 52 },
+                { x: new Date(2021, 8), y: 32 },
+                { x: new Date(2021, 9), y: 42 },
+                { x: new Date(2021, 10), y: 3 },
+                { x: new Date(2021, 11), y: 68 }
             ]
         }]
     }
@@ -227,10 +183,10 @@ function AdminHome() {
     const optionsUsersByCountry = {
         animationEnabled: true,
         title:{
-            text: "Most Popular Social Networking Sites"
+            text: "Most Users By Country"
         },
         axisX: {
-            title: "Social Network",
+            title: "Countries",
             reversed: true,
         },
         axisY: {
@@ -240,14 +196,14 @@ function AdminHome() {
         data: [{
             type: "bar",
             dataPoints: [
-                { y:  2200000000, label: "Facebook" },
-                { y:  1800000000, label: "YouTube" },
-                { y:  1800000000, label: "YouTube" },
-                { y:  1800000000, label: "YouTube" },
-                { y:  1800000000, label: "YouTube" },
-                { y:  1800000000, label: "YouTube" },
-                { y:  1800000000, label: "YouTube" },
-                { y:  800000000, label: "Instagram" }
+                { y:  1568490, label: "Australia" },
+                { y:  1256894, label: "United States" },
+                { y:  1224569, label: "United Kingdom" },
+                { y:  1123549, label: "India" },
+                { y:  1054869, label: "Pakistan" },
+                { y:  958947, label: "Nigeria" },
+                { y:  945876, label: "China" },
+                { y:  936514, label: "Bangladesh" }
             ]
         }]
     }
@@ -351,18 +307,18 @@ function AdminHome() {
             xValueFormatString: "MMM-DD",
             type: "spline",
             dataPoints: [
-                { x: new Date(2017, 0), y: 25 },
-                { x: new Date(2017, 1), y: 30 },
-                { x: new Date(2017, 2), y: 4 },
-                { x: new Date(2017, 3), y: 38 },
-                { x: new Date(2017, 4), y: 36 },
-                { x: new Date(2017, 5), y: 39 },
-                { x: new Date(2017, 6), y: 68 },
-                { x: new Date(2017, 7), y: 50 },
-                { x: new Date(2017, 8), y: 23 },
-                { x: new Date(2017, 9), y: 82 },
-                { x: new Date(2017, 10), y: 37 },
-                { x: new Date(2017, 11), y: 94 }
+                { x: new Date(2021, 0), y: 25 },
+                { x: new Date(2021, 1), y: 30 },
+                { x: new Date(2021, 2), y: 4 },
+                { x: new Date(2021, 3), y: 38 },
+                { x: new Date(2021, 4), y: 36 },
+                { x: new Date(2021, 5), y: 39 },
+                { x: new Date(2021, 6), y: 68 },
+                { x: new Date(2021, 7), y: 50 },
+                { x: new Date(2021, 8), y: 23 },
+                { x: new Date(2021, 9), y: 82 },
+                { x: new Date(2021, 10), y: 37 },
+                { x: new Date(2021, 11), y: 94 }
             ]
         }]
     }
@@ -389,6 +345,11 @@ function AdminHome() {
                     <div id='column_center'>
                         <br></br>
                         <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency Rates <a href='/#' id='button_sub_title_blue'></a></Button>
                     </div>
 
                     <div id='column_center'>
@@ -421,6 +382,71 @@ function AdminHome() {
                         <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Population <a href='/#' id='button_sub_title_blue'></a></Button>
                     </div>
 
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Stock Market <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Economy Sectors <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Inflation <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">World Development Level <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Continents <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">World Economy News <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Other Sectors <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Reviews <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+                    
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Academy <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Forum <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Researches <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Invetments <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Settings <a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+                    
                 </Col>
 
                 {/* 1st Column Navigation Ends */}
@@ -596,7 +622,12 @@ function AdminHome() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="primary" size="lg">Statics<a href='/#' id='button_sub_title_blue'></a></Button>
+                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="primary" size="lg">Stock Market<a href='/#' id='button_sub_title_blue'></a></Button>
+                    </div>
+
+                    <div id='column_center'>
+                        <br></br>
+                        <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="primary" size="lg">Overview<a href='/#' id='button_sub_title_blue'></a></Button>
                     </div>
 
                     {/* chart of users data starts */}
