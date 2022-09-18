@@ -27,6 +27,14 @@ function CurrencyRates() {
     const [currencyRateId, setCurrencyRateId] = useState(null);
     const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
     const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
+    const [addNewYear, setAddNewYear] = useState(2022);
+    const [addNewMonth, setAddNewMonth] = useState("JANUARY");
+    const [addNewDate, setAddNewDate] = useState(1);
+    const [addNewRecordStatus, setAddNewRecordStatus] = useState("past");
+
+    const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
+    const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
+    const dateList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
     const currencyUrl = `http://localhost:8080/api/data/currency`;
 
@@ -69,6 +77,9 @@ function CurrencyRates() {
     console.log(currencyNameList);
     console.log("delete or update = " + currencyRateId + " currencyRateId");
 
+    var margin_top = {
+        marginTop:'10px',
+    };
 
     return(
         <div className='admin_container'>
@@ -191,24 +202,47 @@ function CurrencyRates() {
 
                             <Col id="column_center">
                                 <h6 id="column_left">Year</h6>
-                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2022</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2021</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2020</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2019</Dropdown.Item>
+                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewYear}`}>
+                                    {yearList.map(year => {
+                                        return <Dropdown.Item onClick={() => setAddNewYear(year)}>{year}</Dropdown.Item>
+                                    })}
                                 </DropdownButton>
                             </Col>
 
                             <Col id="column_center">
                                 <h6 id="column_left">Month</h6>
-                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2022</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2021</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2020</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2019</Dropdown.Item>
+                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewMonth}`}>
+                                    {monthList.map(month => {
+                                        return <Dropdown.Item onClick={() => setAddNewMonth(month)}>{month}</Dropdown.Item>
+                                    })}
                                 </DropdownButton>
                             </Col>
 
+                            <Col id="column_center">
+                                <h6 id="column_left">Date</h6>
+                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewDate}`}>
+                                    {dateList.map(date => {
+                                        return <Dropdown.Item onClick={() => setAddNewDate(date)}>{date}</Dropdown.Item>
+                                    })}
+                                </DropdownButton>
+                            </Col>
+
+                        </Row>
+                        
+                        <Row>
+                            
+                            <Col id="column_center">
+                                <h6 style={margin_top} id="column_left">Record Status</h6>
+                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewRecordStatus}`}>
+                                    <Dropdown.Item onClick={() => setAddNewRecordStatus("past")}>Past</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setAddNewRecordStatus("current")}>Current</Dropdown.Item>
+                                </DropdownButton>
+                            </Col>
+
+                            <Col >
+                                <br ></br>
+                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> equals to <a href="/#" id="blue_title">{addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>                                                        
+                            </Col>
                         </Row>
 
                         <br></br>
@@ -216,12 +250,12 @@ function CurrencyRates() {
                         <Row>
 
                             <Col id="column_center">
-                                <h5 id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> equals to <a href="/#" id="blue_title">{addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>
+
                             </Col>
 
                             <Col id="column_center">
                                 <div id='column_center'>
-                                    <Button className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
+                                    <Button className='w-100' id='home_buttons' variant="primary" size="lg">Add/Update Data</Button>
                                 </div>
                             </Col>
 
