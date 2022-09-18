@@ -27,10 +27,12 @@ function CurrencyRates() {
     const [currencyRateId, setCurrencyRateId] = useState(null);
     const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
     const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
+    const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState(0.00);
     const [addNewYear, setAddNewYear] = useState(2022);
     const [addNewMonth, setAddNewMonth] = useState("JANUARY");
     const [addNewDate, setAddNewDate] = useState(1);
     const [addNewRecordStatus, setAddNewRecordStatus] = useState("past");
+    const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
@@ -38,14 +40,14 @@ function CurrencyRates() {
 
     const currencyUrl = `http://localhost:8080/api/data/currency`;
 
-    useEffect(() => {
+    useEffect(() => {   // get currency data (purpose to store in drop down buttons)
         axios.get(currencyUrl).then((response) => {
             setCurrencyList(response.data);
         })
 
     }, [currencyUrl])
     
-    useEffect(() => {
+    useEffect(() => {   // create currencyNameList using currencyList (includes only currencyNames)
         setCurrencyNameList([]);
         
         currencyList.forEach(element => {
@@ -54,11 +56,27 @@ function CurrencyRates() {
 
     }, [currencyList])    
 
-    useEffect(() => {
+    useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
         const currencyRateURL = `http://localhost:8080/api/data/currency/rate/all/${currencyName}/${equalsCurrencyName}`;
 
         axios.get(currencyRateURL).then((response) => {
             setCurrencyRateList(response.data);
+            setIsResponseErrorOnGetCurrencyRates(false);
+        })
+        .catch(function (error) {
+            if (error.response) {
+              // Request made and server responded
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+              setIsResponseErrorOnGetCurrencyRates(true);
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
         })
         
     }, [currencyName, equalsCurrencyName])
@@ -73,8 +91,8 @@ function CurrencyRates() {
 
     console.log(currencyList);
     console.log(currencyRateList);
-    console.log(currencyName + "/" + equalsCurrencyName);
     console.log(currencyNameList);
+    console.log(currencyName + "/" + equalsCurrencyName);
     console.log("delete or update = " + currencyRateId + " currencyRateId");
 
     var margin_top = {
@@ -134,7 +152,14 @@ function CurrencyRates() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currencyRateList.map(element => {
+                            {isResponseErrorOnGetCurrencyRates === true  ? <tr>
+                                <td>No Data</td>
+                                <td>No Data</td>
+                                <td>No Data</td>
+                                <td>No Data</td>
+                                <td>No Data</td>
+                                <td>No Data</td>
+                                </tr> :  currencyRateList.map(element => {
                                 return <tr>
                                             <td>{element.currencyRateId}</td>
                                             <td>{element.currencyRateValue} {equalsCurrencyName}</td>
@@ -195,6 +220,7 @@ function CurrencyRates() {
                             <Form.Control
                             aria-label="Default"
                             aria-describedby="inputGroup-sizing-default"
+                            onChange={(e) => setAddNewCurrencyRateValue(e.target.value)}
                             />
                         </InputGroup>
 
@@ -241,7 +267,7 @@ function CurrencyRates() {
 
                             <Col >
                                 <br ></br>
-                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> equals to <a href="/#" id="blue_title">{addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>                                                        
+                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> equals to <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>                                                        
                             </Col>
                         </Row>
 
