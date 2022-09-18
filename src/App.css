@@ -153,3 +153,12 @@
   border-style: none;
   text-align: left;
 }
+
+#dropdown-basic-button {
+  width: 100%;
+}
+
+#blue_title {
+  text-decoration: none;
+  font-weight: 800;
+}
