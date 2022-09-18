@@ -27,13 +27,15 @@ function CurrencyRates() {
     const [currencyRateId, setCurrencyRateId] = useState(null);
     const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
     const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
+    const [addNewCurrency, setAddNewCurrency] = useState(null);
+    const [addNewEqualsCurrency, setAddNewEqualsCurrency] = useState(null);
     const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState(0.00);
     const [addNewYear, setAddNewYear] = useState(2022);
     const [addNewMonth, setAddNewMonth] = useState("JANUARY");
     const [addNewDate, setAddNewDate] = useState(1);
     const [addNewRecordStatus, setAddNewRecordStatus] = useState("past");
     const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
-    const [post, setPost] = useState(null);
+    const [post, setPost] = useState([]);
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
@@ -81,7 +83,7 @@ function CurrencyRates() {
             }
         })
         
-    }, [currencyName, equalsCurrencyName, post])
+    }, [currencyName, equalsCurrencyName, post.length])
 
     function addOrUpdateData() {
         axios.post(currencyRatePostUrl, {
@@ -90,14 +92,14 @@ function CurrencyRates() {
             year: addNewYear,
             month: addNewMonth,
             currency: {
-                currencyId: 2
+                currencyId: addNewCurrency.currencyId
             },
             equalsCurrency: {
-                currencyId: 3
+                currencyId: addNewEqualsCurrency.currencyId
             }
         })
         .then((response) => {
-            setPost(response.data);
+            setPost(oldList => [...oldList, response.data]);
         });
 
         console.log(post);
@@ -217,8 +219,11 @@ function CurrencyRates() {
                             <Col id="column_center">
                                 <h6 id="column_left">Select Currency</h6>
                                 <DropdownButton id="dropdown_basic_button" variant="outline-secondary" title={`${addNewCurrencyName}`} >
-                                    {currencyNameList.map(currencyName => {
-                                        return <Dropdown.Item onClick={() => setAddNewCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    {currencyList.map(currency => {
+                                        return <Dropdown.Item onClick={() => {
+                                            setAddNewCurrency(currency); 
+                                            setAddNewCurrencyName(currency.currencyName);
+                                        }}>{currency.currencyName}</Dropdown.Item>
                                     })}
                                 </DropdownButton>
                             </Col>
@@ -226,8 +231,11 @@ function CurrencyRates() {
                             <Col id="column_center">
                                 <h6 id="column_left">Select Equals Currency</h6>
                                 <DropdownButton  id="dropdown_basic_button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
-                                    {currencyNameList.map(currencyName => {
-                                        return <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    {currencyList.map(currency => {
+                                        return <Dropdown.Item onClick={() => {
+                                            setAddNewEqualsCurrency(currency);
+                                            setAddNewEqualsCurrencyName(currency.currencyName);
+                                        }}>{currency.currencyName}</Dropdown.Item>
                                     })}
                                 </DropdownButton>
                             </Col>
