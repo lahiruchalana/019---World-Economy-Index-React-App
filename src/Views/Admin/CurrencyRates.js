@@ -33,12 +33,14 @@ function CurrencyRates() {
     const [addNewDate, setAddNewDate] = useState(1);
     const [addNewRecordStatus, setAddNewRecordStatus] = useState("past");
     const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
+    const [post, setPost] = useState(null);
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
     const dateList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
     const currencyUrl = `http://localhost:8080/api/data/currency`;
+    const currencyRatePostUrl = "http://localhost:8080/api/data/currency/rate";
 
     useEffect(() => {   // get currency data (purpose to store in drop down buttons)
         axios.get(currencyUrl).then((response) => {
@@ -57,9 +59,9 @@ function CurrencyRates() {
     }, [currencyList])    
 
     useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        const currencyRateURL = `http://localhost:8080/api/data/currency/rate/all/${currencyName}/${equalsCurrencyName}`;
+        const currencyRateGetURL = `http://localhost:8080/api/data/currency/rate/all/${currencyName}/${equalsCurrencyName}`;
 
-        axios.get(currencyRateURL).then((response) => {
+        axios.get(currencyRateGetURL).then((response) => {
             setCurrencyRateList(response.data);
             setIsResponseErrorOnGetCurrencyRates(false);
         })
@@ -79,7 +81,27 @@ function CurrencyRates() {
             }
         })
         
-    }, [currencyName, equalsCurrencyName])
+    }, [currencyName, equalsCurrencyName, post])
+
+    function addOrUpdateData() {
+        axios.post(currencyRatePostUrl, {
+            currencyRateValue: addNewCurrencyRateValue,
+            recordStatus: addNewRecordStatus,
+            year: addNewYear,
+            month: addNewMonth,
+            currency: {
+                currencyId: 2
+            },
+            equalsCurrency: {
+                currencyId: 3
+            }
+        })
+        .then((response) => {
+            setPost(response.data);
+        });
+
+        console.log(post);
+    }
 
     function deleteTableData(id) {
         console.log("deleted " + id);
@@ -281,7 +303,7 @@ function CurrencyRates() {
 
                             <Col id="column_center">
                                 <div id='column_center'>
-                                    <Button className='w-100' id='home_buttons' variant="primary" size="lg">Add/Update Data</Button>
+                                    <Button onClick={addOrUpdateData} className='w-100' id='home_buttons' variant="primary" size="lg">Add/Update Data</Button>
                                 </div>
                             </Col>
 
