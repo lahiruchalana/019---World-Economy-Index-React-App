@@ -154,11 +154,25 @@
   text-align: left;
 }
 
-#dropdown-basic-button {
+#dropdown_basic_button {
   width: 100%;
 }
 
 #blue_title {
   text-decoration: none;
   font-weight: 800;
+  color: #040484;
+}
+
+#form_dropdown_basic_button {
+  width: 100%;
+  text-align: left;
+}
+
+#form_block {
+  padding: 20px;
+  border-radius: 10px;
+  border-color: #040484;
+  border-style: solid;
+  border-width: 2px;
 }

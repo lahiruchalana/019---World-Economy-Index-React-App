@@ -86,7 +86,7 @@ function CurrencyRates() {
                     <Row>
                         
                         <Col id="column_center">
-                            <DropdownButton id="dropdown-basic-button" title="Select Currency" >
+                            <DropdownButton id="dropdown_basic_button" title="Currency" >
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -94,7 +94,7 @@ function CurrencyRates() {
                         </Col>
 
                         <Col id="column_center">
-                            <DropdownButton id="dropdown-basic-button" title="Select Equals Currency">
+                            <DropdownButton id="dropdown_basic_button" title="Equals Currency">
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -151,63 +151,83 @@ function CurrencyRates() {
                     <div id='singele_line'></div>
 
                     <br></br>
-                    <Row>
-                        
-                        <Col id="column_center">
-                            <DropdownButton id="dropdown-basic-button" variant="outline-secondary" title={`${addNewCurrencyName}`} >
-                                {currencyNameList.map(currencyName => {
-                                    return <Dropdown.Item onClick={() => setAddNewCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
-                                })}
-                            </DropdownButton>
-                        </Col>
 
-                        <Col id="column_center">
-                            <DropdownButton  id="dropdown-basic-button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
-                                {currencyNameList.map(currencyName => {
-                                    return <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
-                                })}
-                            </DropdownButton>
-                        </Col>
+                    <div id="form_block">
 
-                    </Row>
+                        <Row>
+                            
+                            <Col id="column_center">
+                                <h6 id="column_left">Select Currency</h6>
+                                <DropdownButton id="dropdown_basic_button" variant="outline-secondary" title={`${addNewCurrencyName}`} >
+                                    {currencyNameList.map(currencyName => {
+                                        return <Dropdown.Item onClick={() => setAddNewCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    })}
+                                </DropdownButton>
+                            </Col>
 
-                    <br></br>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                        <Form.Control
-                        placeholder="Username"
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
-                        />
-                    </InputGroup>
+                            <Col id="column_center">
+                                <h6 id="column_left">Select Equals Currency</h6>
+                                <DropdownButton  id="dropdown_basic_button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
+                                    {currencyNameList.map(currencyName => {
+                                        return <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    })}
+                                </DropdownButton>
+                            </Col>
 
-                    <InputGroup className="mb-3">
-                        <Form.Control
-                        placeholder="Recipient's username"
-                        aria-label="Recipient's username"
-                        aria-describedby="basic-addon2"
-                        />
-                        <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>
-                    </InputGroup>
+                        </Row>
 
-                    <Form.Label htmlFor="basic-url">Your vanity URL</Form.Label>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon3">
-                        https://example.com/users/
-                        </InputGroup.Text>
-                        <Form.Control id="basic-url" aria-describedby="basic-addon3" />
-                    </InputGroup>
+                        <br></br>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="inputGroup-sizing-default">
+                            Currency Rate ({addNewEqualsCurrencyName})
+                            </InputGroup.Text>
+                            <Form.Control
+                            aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"
+                            />
+                        </InputGroup>
 
-                    <InputGroup className="mb-3">
-                        <InputGroup.Text>$</InputGroup.Text>
-                        <Form.Control aria-label="Amount (to the nearest dollar)" />
-                        <InputGroup.Text>.00</InputGroup.Text>
-                    </InputGroup>
+                        <Row>
 
-                    <InputGroup>
-                        <InputGroup.Text>With textarea</InputGroup.Text>
-                        <Form.Control as="textarea" aria-label="With textarea" />
-                    </InputGroup>
+                            <Col id="column_center">
+                                <h6 id="column_left">Year</h6>
+                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2022</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2021</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2020</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2019</Dropdown.Item>
+                                </DropdownButton>
+                            </Col>
+
+                            <Col id="column_center">
+                                <h6 id="column_left">Month</h6>
+                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2022</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2021</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2020</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setAddNewEqualsCurrencyName()}>2019</Dropdown.Item>
+                                </DropdownButton>
+                            </Col>
+
+                        </Row>
+
+                        <br></br>
+                        <br></br>
+                        <Row>
+
+                            <Col id="column_center">
+                                <h5 id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> equals to <a href="/#" id="blue_title">{addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>
+                            </Col>
+
+                            <Col id="column_center">
+                                <div id='column_center'>
+                                    <Button className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
+                                </div>
+                            </Col>
+
+                        </Row>
+
+                    </div>
 
                 </Col>
 
