@@ -19,19 +19,15 @@ function CurrencyRates() {
     const [equalsCurrencyName, setEqualsCurrencyName] = useState(equalscurrencyname);
     const [currencyRateList, setCurrencyRateList] = useState([]);
 
+    const currencyUrl = `http://localhost:8080/api/data/currency`;
 
     useEffect(() => {
-        const currencyNameUrl = `http://localhost:8080/api/data/currency`;
-
-        axios.get(currencyNameUrl).then((response) => {
+        axios.get(currencyUrl).then((response) => {
             setCurrencyList(response.data);
         })
 
     }, [])
     
-    console.log(currencyName + "/" + equalsCurrencyName);
-    console.log(currencyNameList);
-
     useEffect(() => {
         setCurrencyNameList([]);
         
@@ -39,7 +35,7 @@ function CurrencyRates() {
             setCurrencyNameList(oldArray => [...oldArray, element.currencyName])
         });
 
-    }, [])    
+    }, [currencyList])    
 
     useEffect(() => {
         const currencyRateURL = `http://localhost:8080/api/data/currency/rate/all/${currencyName}/${equalsCurrencyName}`;
@@ -47,10 +43,14 @@ function CurrencyRates() {
         axios.get(currencyRateURL).then((response) => {
             setCurrencyRateList(response.data);
         })
-
+        
     }, [currencyName, equalsCurrencyName])
 
+    console.log(currencyList);
     console.log(currencyRateList);
+    console.log(currencyName + "/" + equalsCurrencyName);
+    console.log(currencyNameList);
+
 
     return(
         <div className='admin_container'>
