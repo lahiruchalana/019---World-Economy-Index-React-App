@@ -9,6 +9,9 @@ import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
+import * as Icon from 'react-bootstrap-icons';
 
 
 function CurrencyRates() {
@@ -18,6 +21,7 @@ function CurrencyRates() {
     const [currencyName, setCurrencyName] = useState(currencyname);
     const [equalsCurrencyName, setEqualsCurrencyName] = useState(equalscurrencyname);
     const [currencyRateList, setCurrencyRateList] = useState([]);
+    const [currencyRateId, setCurrencyRateId] = useState(null);
 
     const currencyUrl = `http://localhost:8080/api/data/currency`;
 
@@ -46,10 +50,19 @@ function CurrencyRates() {
         
     }, [currencyName, equalsCurrencyName])
 
+    function deleteTableData(id) {
+        console.log("deleted " + id);
+    }
+
+    function updateTableData(id) {
+        console.log("updated " + id);
+    }
+
     console.log(currencyList);
     console.log(currencyRateList);
     console.log(currencyName + "/" + equalsCurrencyName);
     console.log(currencyNameList);
+    console.log("delete or update = " + currencyRateId + " currencyRateId");
 
 
     return(
@@ -98,6 +111,8 @@ function CurrencyRates() {
                             <tr>
                             <th>Id</th>
                             <th>Rates</th>
+                            <th>Year</th>
+                            <th>Month</th>
                             <th>Delete</th>
                             <th>Update</th>
                             </tr>
@@ -106,9 +121,17 @@ function CurrencyRates() {
                             {currencyRateList.map(element => {
                                 return <tr>
                                             <td>{element.currencyRateId}</td>
-                                            <td>{element.currencyRateValue}</td>
-                                            <td><btn>Delete</btn></td>
-                                            <td><btn>Update</btn></td>
+                                            <td>{element.currencyRateValue} {equalsCurrencyName}</td>
+                                            <td>{element.year}</td>
+                                            <td>{element.month}</td>
+                                            <td onClick={() => { 
+                                                setCurrencyRateId(element.currencyRateId);
+                                                deleteTableData(element.currencyRateId);  
+                                             }}><Button variant="outline-secondary"><Icon.Trash color='white' size={16}/></Button></td>
+                                            <td onClick={() => {
+                                                setCurrencyRateId(element.currencyRateId);
+                                                updateTableData(element.currencyRateId);
+                                            }}><Button variant="outline-secondary"><Icon.ArrowRepeat color='white' size={16}/></Button></td>
                                         </tr>
                             })}
                         </tbody>
