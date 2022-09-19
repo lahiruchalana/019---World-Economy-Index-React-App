@@ -24,7 +24,8 @@ function CurrencyRates() {
     const [currencyName, setCurrencyName] = useState(currencyname);
     const [equalsCurrencyName, setEqualsCurrencyName] = useState(equalscurrencyname);
     const [currencyRateList, setCurrencyRateList] = useState([]);
-    const [currencyRateId, setCurrencyRateId] = useState(null);
+    const [deleteCurrencyRateId, setDeleteCurrencyRateId] = useState(null);
+    const [updateCurrencyRateId, setUpdateCurrencyRateId] = useState(null);
     const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
     const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
     const [addNewCurrency, setAddNewCurrency] = useState(null);
@@ -33,7 +34,7 @@ function CurrencyRates() {
     const [addNewYear, setAddNewYear] = useState(2022);
     const [addNewMonth, setAddNewMonth] = useState("JANUARY");
     const [addNewDate, setAddNewDate] = useState(1);
-    const [addNewRecordStatus, setAddNewRecordStatus] = useState("past");
+    const [addNewRecordStatus, setAddNewRecordStatus] = useState("current");
     const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
     const [post, setPost] = useState([]);
 
@@ -85,7 +86,25 @@ function CurrencyRates() {
         
     }, [currencyName, equalsCurrencyName, post.length])
 
-    function addOrUpdateData() {
+    function addOrUpdateData() {    
+        if (addNewCurrency === null || addNewEqualsCurrency === null) {
+            axios.post(currencyRatePostUrl, {
+                currencyRateValue: addNewCurrencyRateValue,
+                recordStatus: addNewRecordStatus,
+                year: addNewYear,
+                month: addNewMonth,
+                currency: {
+                    currencyId: 2
+                },
+                equalsCurrency: {
+                    currencyId: 1
+                }
+            })
+            .then((response) => {
+                setPost(oldList => [...oldList, response.data]);
+            });
+        }
+
         axios.post(currencyRatePostUrl, {
             currencyRateValue: addNewCurrencyRateValue,
             recordStatus: addNewRecordStatus,
@@ -117,7 +136,8 @@ function CurrencyRates() {
     console.log(currencyRateList);
     console.log(currencyNameList);
     console.log(currencyName + "/" + equalsCurrencyName);
-    console.log("delete or update = " + currencyRateId + " currencyRateId");
+    console.log("delete = " + deleteCurrencyRateId + " currencyRateId");
+    console.log("update = " + updateCurrencyRateId + " currencyRateId");
 
     var margin_top = {
         marginTop:'10px',
@@ -157,7 +177,7 @@ function CurrencyRates() {
                     </Row>
 
                     <br></br>
-                    <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> equals to <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> rates in table</h5>
+                    <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> rates in table</h5>
 
                     <div id='thin_singele_line'></div>
                     <br></br>
@@ -190,11 +210,11 @@ function CurrencyRates() {
                                             <td>{element.year}</td>
                                             <td>{element.month}</td>
                                             <td onClick={() => { 
-                                                setCurrencyRateId(element.currencyRateId);
+                                                setDeleteCurrencyRateId(element.currencyRateId);
                                                 deleteTableData(element.currencyRateId);  
                                              }}><Button variant="outline-secondary"><Icon.Trash color='white' size={16}/></Button></td>
                                             <td onClick={() => {
-                                                setCurrencyRateId(element.currencyRateId);
+                                                setUpdateCurrencyRateId(element.currencyRateId);
                                                 updateTableData(element.currencyRateId);
                                             }}><Button variant="outline-secondary"><Icon.ArrowRepeat color='white' size={16}/></Button></td>
                                         </tr>
@@ -297,7 +317,7 @@ function CurrencyRates() {
 
                             <Col >
                                 <br ></br>
-                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> equals to <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>                                                        
+                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>                                                        
                             </Col>
                         </Row>
 
