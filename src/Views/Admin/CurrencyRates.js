@@ -48,8 +48,10 @@ function CurrencyRates() {
     const dateList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
     const currencyUrl = `http://localhost:8080/api/data/currency`;
+    const currencyRateGetUrl = "http://localhost:8080/api/data/currency/rate/all";
     const currencyRatePostUrl = "http://localhost:8080/api/data/currency/rate";
     const currencyRateUpdateUrl = "http://localhost:8080/api/data/currency/rate/update";
+    const currencyRateDeleteUrl = "http://localhost:8080/api/data/currency/rate/delete";
 
     useEffect(() => {   // get currency data (purpose to store in drop down buttons)
         axios.get(currencyUrl).then((response) => {
@@ -83,9 +85,7 @@ function CurrencyRates() {
     }, [currencyList])    
 
     useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        const currencyRateGetURL = `http://localhost:8080/api/data/currency/rate/all/${currencyName}/${equalsCurrencyName}`;
-
-        axios.get(currencyRateGetURL).then((response) => {
+        axios.get(`${currencyRateGetUrl}/${currencyName}/${equalsCurrencyName}`).then((response) => {
             setCurrencyRateList(response.data);
             setIsResponseErrorOnGetCurrencyRates(false);
         })
@@ -216,7 +216,7 @@ function CurrencyRates() {
             title: `Updated CurrencyRateId : ${updateCurrencyRateId}`,
             text: `You Have Updated Currency Rate Data!`,
             icon: "success",
-            timer: 2000,
+            timer: 3000,
         });
 
         if (isNaN(addNewCurrencyRateValue)) {
@@ -231,6 +231,16 @@ function CurrencyRates() {
     }
 
     function deleteTableData(id) {
+        axios.delete(`${currencyRateDeleteUrl}/${id}`)
+        .then(() => {
+            swal({
+                title: `Id : ${id} Currency Rate Deleted!`,
+                icon: "success",
+                timer: 5000,
+            });
+            setCurrencyRateResponse(oldList => [...oldList, null]);
+        })
+
         console.log("deleted " + id);
     }
 
@@ -272,10 +282,6 @@ function CurrencyRates() {
 
     var margin_top = {
         marginTop:'10px',
-    };
-
-    var warning_margin = {
-        marginTop:'-15x',
     };
 
     return(
