@@ -356,7 +356,7 @@ function Currency() {
 
             <br></br>
             <h2>Latest News Available</h2>
-            <div id='singele_line'></div>
+            <div id='single_line'></div>
 
             <Row>
                 <Col>

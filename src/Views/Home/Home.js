@@ -430,21 +430,21 @@ function Home() {
                     <br></br>
                     <h1>Latest News</h1>
 
-                    <div id='singele_line'></div>
+                    <div id='single_line'></div>
 
                     <div id='column_left'>
                         <br></br>
                         <Button id='column_left' className='w-100 border border-0'  style={button} variant="outline-secondary" size="lg">UK Inflation Rate Eases but Still Near 40-Year High</Button>
                     </div>
 
-                    <div id='thin_singele_line'></div>
+                    <div id='thin_single_line'></div>
 
                     <div id='column_left'>
                         <br></br>
                         <Button id='column_left' className='w-100 border border-0' style={button} variant="outline-secondary" size="lg">A US-China Battle on the Moon Is Possible, and Avoidable</Button>
                     </div>
 
-                    <div id='thin_singele_line'></div>
+                    <div id='thin_single_line'></div>
 
                     <div id='column_left'>
                         <br></br>

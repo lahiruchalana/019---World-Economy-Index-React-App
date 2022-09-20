@@ -30,13 +30,14 @@ function CurrencyRates() {
     const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
     const [addNewCurrency, setAddNewCurrency] = useState(null);
     const [addNewEqualsCurrency, setAddNewEqualsCurrency] = useState(null);
-    const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState(0.00);
+    const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState("");
     const [addNewYear, setAddNewYear] = useState(2022);
     const [addNewMonth, setAddNewMonth] = useState("JANUARY");
     const [addNewDate, setAddNewDate] = useState(1);
     const [addNewRecordStatus, setAddNewRecordStatus] = useState("current");
     const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
     const [post, setPost] = useState([]);
+    const [placeHolderForCurrencyRateValue, setPlaceHolderForCurrencyRateValue] = useState(0.00);
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
@@ -86,7 +87,7 @@ function CurrencyRates() {
         
     }, [currencyName, equalsCurrencyName, post.length])
 
-    function addOrUpdateData() {    
+    function addData() {    
         if (addNewCurrency === null || addNewEqualsCurrency === null) {
             axios.post(currencyRatePostUrl, {
                 currencyRateValue: addNewCurrencyRateValue,
@@ -124,12 +125,39 @@ function CurrencyRates() {
         console.log(post);
     }
 
+    function updateData() {
+        // updateCurrencyRateId
+
+        // using this Id update the relavent data of currency - axios PUT method
+
+        //todo 
+    }
+
     function deleteTableData(id) {
         console.log("deleted " + id);
     }
 
-    function updateTableData(id) {
-        console.log("updated " + id);
+    function updateTableData(element) {
+        setAddNewCurrencyName(element.currency.currencyName);
+        setAddNewEqualsCurrencyName(element.equalsCurrency.currencyName);
+        setAddNewCurrencyRateValue(element.currencyRateValue);
+        setPlaceHolderForCurrencyRateValue(element.currencyRateValue);
+        setAddNewYear(element.year);
+        setAddNewMonth(element.month);
+        setAddNewRecordStatus(element.recordStatus);
+
+        console.log("updating : " + element.currencyRateId);
+    }
+
+    function cancelForm() {
+        setUpdateCurrencyRateId(null);
+        setAddNewCurrencyRateValue("");
+        setPlaceHolderForCurrencyRateValue(0.00);
+        setAddNewYear(2022);
+        setAddNewMonth("JANUARY");
+        setAddNewRecordStatus("current");
+        setAddNewDate(1);
+
     }
 
     console.log(currencyList);
@@ -152,14 +180,14 @@ function CurrencyRates() {
 
                 <Col xs lg={4}>
                     <h2>Currency Rates</h2>
-                    <div id='singele_line'></div>
+                    <div id='single_line'></div>
 
                     <br></br>
                     
                     <Row>
                         
                         <Col id="column_center">
-                            <DropdownButton id="dropdown_basic_button" title="Currency" >
+                            <DropdownButton id="dropdown_basic_button" title={`${currencyName}`} >
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -167,7 +195,7 @@ function CurrencyRates() {
                         </Col>
 
                         <Col id="column_center">
-                            <DropdownButton id="dropdown_basic_button" title="Equals Currency">
+                            <DropdownButton id="dropdown_basic_button" title={`${equalsCurrencyName}`}>
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -179,7 +207,7 @@ function CurrencyRates() {
                     <br></br>
                     <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> rates in table</h5>
 
-                    <div id='thin_singele_line'></div>
+                    <div id='thin_single_line'></div>
                     <br></br>
 
                     {/* table starts */}
@@ -215,7 +243,7 @@ function CurrencyRates() {
                                              }}><Button variant="outline-secondary"><Icon.Trash color='white' size={16}/></Button></td>
                                             <td onClick={() => {
                                                 setUpdateCurrencyRateId(element.currencyRateId);
-                                                updateTableData(element.currencyRateId);
+                                                updateTableData(element);
                                             }}><Button variant="outline-secondary"><Icon.ArrowRepeat color='white' size={16}/></Button></td>
                                         </tr>
                             })}
@@ -228,9 +256,11 @@ function CurrencyRates() {
 
                 <Col>
                     <h2>Add New Currency Rate</h2>
-                    <div id='singele_line'></div>
+                    <div id='single_line'></div>
 
                     <br></br>
+
+                    {/* add/ update the currency rate data starts */}
 
                     <div id="form_block">
 
@@ -271,6 +301,8 @@ function CurrencyRates() {
                             aria-label="Default"
                             aria-describedby="inputGroup-sizing-default"
                             onChange={(e) => setAddNewCurrencyRateValue(e.target.value)}
+                            placeholder={`${placeHolderForCurrencyRateValue}`}
+                            value={`${addNewCurrencyRateValue}`}
                             />
                         </InputGroup>
 
@@ -316,9 +348,19 @@ function CurrencyRates() {
                             </Col>
 
                             <Col >
-                                <br ></br>
-                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5>                                                        
                             </Col>
+                            
+                        </Row>
+
+                        <Row>
+
+                            <Col  >
+                                <br ></br>
+                                <div id="thin_single_line"></div>
+                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5> 
+                                <div id="thin_single_line"></div>
+                            </Col>
+                            
                         </Row>
 
                         <br></br>
@@ -331,13 +373,24 @@ function CurrencyRates() {
 
                             <Col id="column_center">
                                 <div id='column_center'>
-                                    <Button onClick={addOrUpdateData} className='w-100' id='home_buttons' variant="primary" size="lg">Add/Update Data</Button>
+                                    <Button onClick={cancelForm} className='w-100' id='home_buttons' variant="primary" size="lg">Cancel</Button>
+                                </div>
+                            </Col>
+
+                            <Col id="column_center">
+                                <div id='column_center'>
+                                    { 
+                                    updateCurrencyRateId === null ? <Button onClick={addData} className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
+                                    : <Button onClick={updateData} className='w-100' id='home_buttons' variant="primary" size="lg">Update Data</Button> 
+                                    }
                                 </div>
                             </Col>
 
                         </Row>
 
                     </div>
+
+                    {/* add/ update the currency rate data ends */}
 
                 </Col>
 
