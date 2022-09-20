@@ -177,16 +177,26 @@ function CurrencyRates() {
     }
 
     function updateData() {
-        // updateCurrencyRateId
-
         axios.put(`${currencyRateUpdateUrl}/${updateCurrencyRateId}/${addNewCurrencyRateValue}/${addNewRecordStatus}/${addNewYear}/${addNewMonth}/${addNewCurrencyId}/${addNewEqualsCurrencyId}`, {})
         .then((response) => {
             setCurrencyRateResponse(oldList => [...oldList, response.data]);
         })
+        .catch(function (error) {
+            if (error.response) {
+              // Request made and server responded
+              console.log(error.response.data);
+              console.log("Reason For Error : " + error.response.data.message);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+        })
 
-        // using this Id update the relavent data of currency - axios PUT method
-
-        //todo 
     }
 
     function deleteTableData(id) {
@@ -194,8 +204,10 @@ function CurrencyRates() {
     }
 
     function updateFormData(element) {
+        setAddNewCurrency(element.currency);
         setAddNewCurrencyName(element.currency.currencyName);
         setAddNewCurrencyId(element.currency.currencyId);
+        setAddNewEqualsCurrency(element.equalsCurrency);
         setAddNewEqualsCurrencyName(element.equalsCurrency.currencyName);
         setAddNewEqualsCurrencyId(element.equalsCurrency.currencyId);
         setAddNewCurrencyRateValue(element.currencyRateValue);
@@ -225,10 +237,16 @@ function CurrencyRates() {
     console.log("delete = " + deleteCurrencyRateId + " currencyRateId");
     console.log("update = " + updateCurrencyRateId + " currencyRateId");
     console.log(currencyRateResponse);
+    console.log(addNewCurrencyName);
+    console.log(addNewEqualsCurrencyName);
 
 
     var margin_top = {
         marginTop:'10px',
+    };
+
+    var warning_margin = {
+        marginTop:'-15x',
     };
 
     return(
@@ -249,7 +267,7 @@ function CurrencyRates() {
                     <Row>
                         
                         <Col id="column_center">
-                            <DropdownButton id="dropdown_basic_button" title={`${currencyName}`} >
+                            <DropdownButton id="dropdown_basic_button" title={`${currencyName.toUpperCase()}`} >
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -257,7 +275,7 @@ function CurrencyRates() {
                         </Col>
 
                         <Col id="column_center">
-                            <DropdownButton id="dropdown_basic_button" title={`${equalsCurrencyName}`}>
+                            <DropdownButton id="dropdown_basic_button" title={`${equalsCurrencyName.toUpperCase()}`}>
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -355,7 +373,10 @@ function CurrencyRates() {
 
                         </Row>
 
-                        <br></br>
+                        <div id="info_in_form">Please Select Currency And Equals Currency Carefully***</div>
+
+                        <div id="margin_top_10"></div>
+
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="inputGroup-sizing-default">
                             <div id="text_bold">Currency Rate ({addNewEqualsCurrencyName}) </div>
@@ -369,6 +390,9 @@ function CurrencyRates() {
                             />
                         </InputGroup>
 
+                        <div style={warning_margin} id="warning_in_form">Please Select Currency And Equals Currency Carefully***</div>
+
+                        <div id="margin_top_10"></div>
                         <Row>
 
                             <Col id="column_center">
