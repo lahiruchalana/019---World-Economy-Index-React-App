@@ -2,10 +2,11 @@ import React from "react";
 import CanvasJSReact from '../assets/canvasjs.react';
 
 
-import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import VerticalNavBar from "./Components/VerticalNavBar";
+import CarouselComponent from "./Components/CarouselComponent";
 
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -330,125 +331,8 @@ function AdminHome() {
                 {/* 1st Column Navigation Starts */}
 
                 <Col id="vartical_nav" xs lg={2}>
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Home <a href='/#' id='button_sub_title_blue'> </a></Button>
-                    </div>
 
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Countries <a href='/#' id='button_sub_title_blue'> </a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Economy Index <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/currency/rate/usd/euro' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency Rates <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">GDP Data <a href='/admin/home/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">GDP Per Capita <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Economy Growth Rate <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-                                        
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Foreign Reserves <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Poverty Rate <a href='/#' id='button_sub_title_blue'> </a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Population <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Stock Market <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Economy Sectors <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Inflation <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">World Development Level <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Continents <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">World Economy News <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Other Sectors <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Reviews <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-                    
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Academy <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Forum <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Researches <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Invetments <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Settings <a href='/#' id='button_sub_title_blue'></a></Button>
-                    </div>
+                    <VerticalNavBar/>
                     
                 </Col>
 
@@ -458,92 +342,11 @@ function AdminHome() {
 
                 <Col>
 
+                    <div id='single_line'></div>
                     <h1 id="column_center">Admin Panel </h1>
-
-                    <div id='headings_carousel' href='/#'>
-                        <Carousel>
-                            <Carousel.Item interval={1000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4 >Get In Touch With Updates</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={2000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4>Create Latest News</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={2000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4>Update Data</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={2000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4>Comparison And Review Of Countries</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={2000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4>Researches</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={2000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4>Academy</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={2000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4>Investments</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item interval={2000}>
-                                <img height={250}
-                                className="d-block w-100"
-                                src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
-                                alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h4>Forum</h4>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                        </Carousel>
-                    </div>
+                    <div id='single_line'></div>
+                    
+                    <CarouselComponent />
 
                     <div id='column_center'>
                         <br></br>

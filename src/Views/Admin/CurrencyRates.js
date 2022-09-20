@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import VerticalNavBar from "./VerticalNavBar";
+import VerticalNavBar from "./Components/VerticalNavBar";
 import { useParams } from 'react-router';
 
 import axios from "axios";
@@ -11,10 +11,12 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
+
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import * as Icon from 'react-bootstrap-icons';
+import CarouselComponent from "./Components/CarouselComponent";
 
 
 function CurrencyRates() {
@@ -137,7 +139,7 @@ function CurrencyRates() {
         console.log("deleted " + id);
     }
 
-    function updateTableData(element) {
+    function updateFormData(element) {
         setAddNewCurrencyName(element.currency.currencyName);
         setAddNewEqualsCurrencyName(element.equalsCurrency.currencyName);
         setAddNewCurrencyRateValue(element.currencyRateValue);
@@ -179,6 +181,8 @@ function CurrencyRates() {
                 </Col>
 
                 <Col xs lg={4}>
+                    
+                    <div id='single_line'></div>
                     <h2>Currency Rates</h2>
                     <div id='single_line'></div>
 
@@ -243,7 +247,7 @@ function CurrencyRates() {
                                              }}><Button variant="outline-secondary"><Icon.Trash color='white' size={16}/></Button></td>
                                             <td onClick={() => {
                                                 setUpdateCurrencyRateId(element.currencyRateId);
-                                                updateTableData(element);
+                                                updateFormData(element);
                                             }}><Button variant="outline-secondary"><Icon.ArrowRepeat color='white' size={16}/></Button></td>
                                         </tr>
                             })}
@@ -255,6 +259,7 @@ function CurrencyRates() {
                 </Col>
 
                 <Col>
+                    <div id='single_line'></div>
                     <h2>Add New Currency Rate</h2>
                     <div id='single_line'></div>
 
@@ -389,6 +394,42 @@ function CurrencyRates() {
                         </Row>
 
                     </div>
+
+                    <br></br>
+                    <Row>
+
+                        <Col>
+
+                            <CarouselComponent />
+                           
+                        </Col>
+
+                        <Col>
+
+                            <div id="margin_top_10"></div>
+                            <div id='column_center'>
+                                <br></br>
+                                <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="secondary" size="lg">Create Latest News<a href='/#' id='button_sub_title_blue'></a></Button>
+                            </div>
+
+                            <div id='column_center'>
+                                <br></br>
+                                <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="secondary" size="lg">Create Social Media Posts<a href='/#' id='button_sub_title_blue'></a></Button>
+                            </div>
+
+                            <div id='column_center'>
+                                <br></br>
+                                <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="secondary" size="lg">Stock Market<a href='/#' id='button_sub_title_blue'></a></Button>
+                            </div>
+
+                            <div id='column_center'>
+                                <br></br>
+                                <Button href='/admin/home/#' className='w-100' id='button_low_top_margin' variant="secondary" size="lg">Overview<a href='/#' id='button_sub_title_blue'></a></Button>
+                            </div>  
+
+                        </Col>
+
+                    </Row>
 
                     {/* add/ update the currency rate data ends */}
 
