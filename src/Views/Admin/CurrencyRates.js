@@ -29,7 +29,9 @@ function CurrencyRates() {
     const [deleteCurrencyRateId, setDeleteCurrencyRateId] = useState(null);
     const [updateCurrencyRateId, setUpdateCurrencyRateId] = useState(null);
     const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
+    const [addNewCurrencyId, setAddNewCurrencyId] = useState(2);
     const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
+    const [addNewEqualsCurrencyId, setAddNewEqualsCurrencyId] = useState(1);
     const [addNewCurrency, setAddNewCurrency] = useState(null);
     const [addNewEqualsCurrency, setAddNewEqualsCurrency] = useState(null);
     const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState("");
@@ -38,7 +40,7 @@ function CurrencyRates() {
     const [addNewDate, setAddNewDate] = useState(1);
     const [addNewRecordStatus, setAddNewRecordStatus] = useState("current");
     const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
-    const [post, setPost] = useState([]);
+    const [currencyRateResponse, setCurrencyRateResponse] = useState([]);
     const [placeHolderForCurrencyRateValue, setPlaceHolderForCurrencyRateValue] = useState(0.00);
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
@@ -47,6 +49,7 @@ function CurrencyRates() {
 
     const currencyUrl = `http://localhost:8080/api/data/currency`;
     const currencyRatePostUrl = "http://localhost:8080/api/data/currency/rate";
+    const currencyRateUpdateUrl = "http://localhost:8080/api/data/currency/rate/update";
 
     useEffect(() => {   // get currency data (purpose to store in drop down buttons)
         axios.get(currencyUrl).then((response) => {
@@ -103,7 +106,7 @@ function CurrencyRates() {
             }
         })
         
-    }, [currencyName, equalsCurrencyName, post.length])
+    }, [currencyName, equalsCurrencyName, currencyRateResponse.length])
 
     function addData() {    
         if (addNewCurrency === null || addNewEqualsCurrency === null) {
@@ -120,7 +123,7 @@ function CurrencyRates() {
                 }
             })
             .then((response) => {
-                setPost(oldList => [...oldList, response.data]);
+                setCurrencyRateResponse(oldList => [...oldList, response.data]);
             })
             .catch(function (error) {
                 if (error.response) {
@@ -153,7 +156,7 @@ function CurrencyRates() {
             }
         })
         .then((response) => {
-            setPost(oldList => [...oldList, response.data]);
+            setCurrencyRateResponse(oldList => [...oldList, response.data]);
         })
         .catch(function (error) {
             if (error.response) {
@@ -171,12 +174,15 @@ function CurrencyRates() {
             }
         })
         
-
-        console.log(post);
     }
 
     function updateData() {
         // updateCurrencyRateId
+
+        axios.put(`${currencyRateUpdateUrl}/${updateCurrencyRateId}/${addNewCurrencyRateValue}/${addNewRecordStatus}/${addNewYear}/${addNewMonth}/${addNewCurrencyId}/${addNewEqualsCurrencyId}`, {})
+        .then((response) => {
+            setCurrencyRateResponse(oldList => [...oldList, response.data]);
+        })
 
         // using this Id update the relavent data of currency - axios PUT method
 
@@ -189,7 +195,9 @@ function CurrencyRates() {
 
     function updateFormData(element) {
         setAddNewCurrencyName(element.currency.currencyName);
+        setAddNewCurrencyId(element.currency.currencyId);
         setAddNewEqualsCurrencyName(element.equalsCurrency.currencyName);
+        setAddNewEqualsCurrencyId(element.equalsCurrency.currencyId);
         setAddNewCurrencyRateValue(element.currencyRateValue);
         setPlaceHolderForCurrencyRateValue(element.currencyRateValue);
         setAddNewYear(element.year);
@@ -216,6 +224,8 @@ function CurrencyRates() {
     console.log(currencyName + "/" + equalsCurrencyName);
     console.log("delete = " + deleteCurrencyRateId + " currencyRateId");
     console.log("update = " + updateCurrencyRateId + " currencyRateId");
+    console.log(currencyRateResponse);
+
 
     var margin_top = {
         marginTop:'10px',
