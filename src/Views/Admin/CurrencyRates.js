@@ -4,6 +4,8 @@ import { useParams } from 'react-router';
 
 import axios from "axios";
 
+import swal from 'sweetalert';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -28,12 +30,10 @@ function CurrencyRates() {
     const [currencyRateList, setCurrencyRateList] = useState([]);
     const [deleteCurrencyRateId, setDeleteCurrencyRateId] = useState(null);
     const [updateCurrencyRateId, setUpdateCurrencyRateId] = useState(null);
-    const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
-    const [addNewCurrencyId, setAddNewCurrencyId] = useState(2);
-    const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
-    const [addNewEqualsCurrencyId, setAddNewEqualsCurrencyId] = useState(1);
     const [addNewCurrency, setAddNewCurrency] = useState(null);
+    const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
     const [addNewEqualsCurrency, setAddNewEqualsCurrency] = useState(null);
+    const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
     const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState("");
     const [addNewYear, setAddNewYear] = useState(2022);
     const [addNewMonth, setAddNewMonth] = useState("JANUARY");
@@ -173,11 +173,26 @@ function CurrencyRates() {
               console.log('Error', error.message);
             }
         })
+
+        swal({
+            title: `Successfully Added A New Data`,
+            icon: "success",
+            timer: 1500,
+        });
+
+        if (isNaN(addNewCurrencyRateValue)) {
+            swal({
+                title: `${addNewCurrencyRateValue} Does Not A Number`,
+                text: `Change Currency Rate Value!`,
+                icon: "error",
+                timer: 8000,
+            });
+        }
         
     }
 
     function updateData() {
-        axios.put(`${currencyRateUpdateUrl}/${updateCurrencyRateId}/${addNewCurrencyRateValue}/${addNewRecordStatus}/${addNewYear}/${addNewMonth}/${addNewCurrencyId}/${addNewEqualsCurrencyId}`, {})
+        axios.put(`${currencyRateUpdateUrl}/${updateCurrencyRateId}/${addNewCurrencyRateValue}/${addNewRecordStatus}/${addNewYear}/${addNewMonth}/${addNewCurrency.currencyId}/${addNewEqualsCurrency.currencyId}`, {})
         .then((response) => {
             setCurrencyRateResponse(oldList => [...oldList, response.data]);
         })
@@ -197,6 +212,22 @@ function CurrencyRates() {
             }
         })
 
+        swal({
+            title: `Updated CurrencyRateId : ${updateCurrencyRateId}`,
+            text: `You Have Updated Currency Rate Data!`,
+            icon: "success",
+            timer: 2000,
+        });
+
+        if (isNaN(addNewCurrencyRateValue)) {
+            swal({
+                title: `${addNewCurrencyRateValue} Does Not A Number`,
+                text: `Change Currency Rate Value!`,
+                icon: "error",
+                timer: 8000,
+            });
+        }
+
     }
 
     function deleteTableData(id) {
@@ -206,10 +237,8 @@ function CurrencyRates() {
     function updateFormData(element) {
         setAddNewCurrency(element.currency);
         setAddNewCurrencyName(element.currency.currencyName);
-        setAddNewCurrencyId(element.currency.currencyId);
         setAddNewEqualsCurrency(element.equalsCurrency);
         setAddNewEqualsCurrencyName(element.equalsCurrency.currencyName);
-        setAddNewEqualsCurrencyId(element.equalsCurrency.currencyId);
         setAddNewCurrencyRateValue(element.currencyRateValue);
         setPlaceHolderForCurrencyRateValue(element.currencyRateValue);
         setAddNewYear(element.year);
@@ -237,8 +266,8 @@ function CurrencyRates() {
     console.log("delete = " + deleteCurrencyRateId + " currencyRateId");
     console.log("update = " + updateCurrencyRateId + " currencyRateId");
     console.log(currencyRateResponse);
-    console.log(addNewCurrencyName);
-    console.log(addNewEqualsCurrencyName);
+    console.log(addNewCurrency);
+    console.log(addNewEqualsCurrency);
 
 
     var margin_top = {
@@ -336,7 +365,10 @@ function CurrencyRates() {
 
                 <Col>
                     <div id='single_line'></div>
-                    <h2>Add New Currency Rate</h2>
+                    { 
+                        updateCurrencyRateId === null ? <h2>Add New Currency Rate</h2>
+                        : <h2>Update The Currency Rate</h2> 
+                    }
                     <div id='single_line'></div>
 
                     <br></br>
@@ -390,9 +422,6 @@ function CurrencyRates() {
                             />
                         </InputGroup>
 
-                        <div style={warning_margin} id="warning_in_form">Please Select Currency And Equals Currency Carefully***</div>
-
-                        <div id="margin_top_10"></div>
                         <Row>
 
                             <Col id="column_center">
