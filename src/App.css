@@ -181,3 +181,13 @@
   margin-top: 10px;
 }
 
+#text_bold {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+#extra_thin_single_line {
+  height: 2px;
+  background-color: #040484;
+}
+

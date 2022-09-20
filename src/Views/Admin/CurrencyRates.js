@@ -52,6 +52,21 @@ function CurrencyRates() {
         axios.get(currencyUrl).then((response) => {
             setCurrencyList(response.data);
         })
+        .catch(function (error) {
+            if (error.response) {
+              // Request made and server responded
+              console.log(error.response.data);
+              console.log("Reason For Error : " + error.response.data.message);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+        })
 
     }, [currencyUrl])
     
@@ -75,6 +90,7 @@ function CurrencyRates() {
             if (error.response) {
               // Request made and server responded
               console.log(error.response.data);
+              console.log("Reason For Error : " + error.response.data.message);
               console.log(error.response.status);
               console.log(error.response.headers);
               setIsResponseErrorOnGetCurrencyRates(true);
@@ -105,7 +121,23 @@ function CurrencyRates() {
             })
             .then((response) => {
                 setPost(oldList => [...oldList, response.data]);
-            });
+            })
+            .catch(function (error) {
+                if (error.response) {
+                  // Request made and server responded
+                  console.log(error.response.data);
+                  console.log("Reason For Error : " + error.response.data.message);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  console.log(error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message);
+                }
+            })
+            
         }
 
         axios.post(currencyRatePostUrl, {
@@ -122,7 +154,23 @@ function CurrencyRates() {
         })
         .then((response) => {
             setPost(oldList => [...oldList, response.data]);
-        });
+        })
+        .catch(function (error) {
+            if (error.response) {
+              // Request made and server responded
+              console.log(error.response.data);
+              console.log("Reason For Error : " + error.response.data.message);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+        })
+        
 
         console.log(post);
     }
@@ -209,7 +257,7 @@ function CurrencyRates() {
                     </Row>
 
                     <br></br>
-                    <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> rates in table</h5>
+                    <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> Rates In The Table</h5>
 
                     <div id='thin_single_line'></div>
                     <br></br>
@@ -300,7 +348,7 @@ function CurrencyRates() {
                         <br></br>
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="inputGroup-sizing-default">
-                            Currency Rate ({addNewEqualsCurrencyName})
+                            <div id="text_bold">Currency Rate ({addNewEqualsCurrencyName}) </div>
                             </InputGroup.Text>
                             <Form.Control
                             aria-label="Default"
@@ -361,9 +409,9 @@ function CurrencyRates() {
 
                             <Col  >
                                 <br ></br>
-                                <div id="thin_single_line"></div>
-                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> rate</h5> 
-                                <div id="thin_single_line"></div>
+                                <div id="extra_thin_single_line"></div>
+                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> Rate</h5> 
+                                <div id="extra_thin_single_line"></div>
                             </Col>
                             
                         </Row>
