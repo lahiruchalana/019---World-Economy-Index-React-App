@@ -360,7 +360,7 @@ function Home() {
                     </Col>
                     
                     <div style={button_styles} id='column_center'>
-                        <Button href='/currency/1' className='w-100' style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
+                        <Button href='/currency/euro/usd' className='w-100' style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
                     </div>
 
                     <div id='column_left'>
