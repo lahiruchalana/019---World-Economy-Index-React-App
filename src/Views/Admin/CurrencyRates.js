@@ -96,7 +96,17 @@ function CurrencyRates() {
               console.log("Reason For Error : " + error.response.data.message);
               console.log(error.response.status);
               console.log(error.response.headers);
-              setIsResponseErrorOnGetCurrencyRates(true);
+              if (error.response.status === 500){
+                  setIsResponseErrorOnGetCurrencyRates(true);
+
+                  swal({
+                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Does Not Exist Records`,
+                    text: `Change Currency!`,
+                    icon: "warning",
+                    timer: 8000,
+                });
+
+              }
             } else if (error.request) {
               // The request was made but no response was received
               console.log(error.request);
@@ -115,6 +125,7 @@ function CurrencyRates() {
                 recordStatus: addNewRecordStatus,
                 year: addNewYear,
                 month: addNewMonth,
+                date: addNewDate,
                 currency: {
                     currencyId: 2
                 },
@@ -140,6 +151,22 @@ function CurrencyRates() {
                   console.log('Error', error.message);
                 }
             })
+
+            swal({
+                title: `Successfully Added A New Data`,
+                icon: "success",
+                timer: 1500,
+            });
+    
+            if (isNaN(addNewCurrencyRateValue)) {
+                swal({
+                    title: `"${addNewCurrencyRateValue}" Does Not A Number`,
+                    text: `Change Currency Rate Value!`,
+                    icon: "error",
+                    timer: 8000,
+                });
+            }
+            
             
         }
 
@@ -148,6 +175,7 @@ function CurrencyRates() {
             recordStatus: addNewRecordStatus,
             year: addNewYear,
             month: addNewMonth,
+            date: addNewDate,
             currency: {
                 currencyId: addNewCurrency.currencyId
             },
@@ -182,7 +210,7 @@ function CurrencyRates() {
 
         if (isNaN(addNewCurrencyRateValue)) {
             swal({
-                title: `${addNewCurrencyRateValue} Does Not A Number`,
+                title: `"${addNewCurrencyRateValue}" Does Not A Number`,
                 text: `Change Currency Rate Value!`,
                 icon: "error",
                 timer: 8000,
@@ -192,7 +220,7 @@ function CurrencyRates() {
     }
 
     function updateData() {
-        axios.put(`${currencyRateUpdateUrl}/${updateCurrencyRateId}/${addNewCurrencyRateValue}/${addNewRecordStatus}/${addNewYear}/${addNewMonth}/${addNewCurrency.currencyId}/${addNewEqualsCurrency.currencyId}`, {})
+        axios.put(`${currencyRateUpdateUrl}/${updateCurrencyRateId}/${addNewCurrencyRateValue}/${addNewRecordStatus}/${addNewYear}/${addNewMonth}/${addNewDate}/${addNewCurrency.currencyId}/${addNewEqualsCurrency.currencyId}`, {})
         .then((response) => {
             setCurrencyRateResponse(oldList => [...oldList, response.data]);
         })
@@ -221,7 +249,7 @@ function CurrencyRates() {
 
         if (isNaN(addNewCurrencyRateValue)) {
             swal({
-                title: `${addNewCurrencyRateValue} Does Not A Number`,
+                title: `"${addNewCurrencyRateValue}" Does Not A Number`,
                 text: `Change Currency Rate Value!`,
                 icon: "error",
                 timer: 8000,
@@ -253,6 +281,7 @@ function CurrencyRates() {
         setPlaceHolderForCurrencyRateValue(element.currencyRateValue);
         setAddNewYear(element.year);
         setAddNewMonth(element.month);
+        setAddNewDate(element.date);
         setAddNewRecordStatus(element.recordStatus);
 
         console.log("updating : " + element.currencyRateId);
@@ -264,8 +293,8 @@ function CurrencyRates() {
         setPlaceHolderForCurrencyRateValue(0.00);
         setAddNewYear(2022);
         setAddNewMonth("JANUARY");
-        setAddNewRecordStatus("current");
         setAddNewDate(1);
+        setAddNewRecordStatus("current");
 
     }
 
@@ -302,7 +331,7 @@ function CurrencyRates() {
                     <Row>
                         
                         <Col id="column_center">
-                            <DropdownButton id="dropdown_basic_button" title={`${currencyName.toUpperCase()}`} >
+                            <DropdownButton variant="outline-secondary" id="dropdown_basic_button" title={`${currencyName.toUpperCase()}`} >
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -310,7 +339,7 @@ function CurrencyRates() {
                         </Col>
 
                         <Col id="column_center">
-                            <DropdownButton id="dropdown_basic_button" title={`${equalsCurrencyName.toUpperCase()}`}>
+                            <DropdownButton variant="outline-secondary" id="dropdown_basic_button" title={`${equalsCurrencyName.toUpperCase()}`}>
                                 {currencyNameList.map(currencyName => {
                                     return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                 })}
@@ -334,6 +363,7 @@ function CurrencyRates() {
                             <th>Rates</th>
                             <th>Year</th>
                             <th>Month</th>
+                            <th>Date</th>
                             <th>Delete</th>
                             <th>Update</th>
                             </tr>
@@ -346,12 +376,14 @@ function CurrencyRates() {
                                 <td>No Data</td>
                                 <td>No Data</td>
                                 <td>No Data</td>
+                                <td>No Data</td>
                                 </tr> :  currencyRateList.map(element => {
                                 return <tr>
                                             <td>{element.currencyRateId}</td>
                                             <td>{element.currencyRateValue} {equalsCurrencyName}</td>
                                             <td>{element.year}</td>
                                             <td>{element.month}</td>
+                                            <td>{element.date}</td>
                                             <td onClick={() => { 
                                                 setDeleteCurrencyRateId(element.currencyRateId);
                                                 deleteTableData(element.currencyRateId);  
