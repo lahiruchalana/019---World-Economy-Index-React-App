@@ -48,10 +48,7 @@ function CurrencyRates() {
     const dateList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
     const currencyUrl = `http://localhost:8080/api/data/currency`;
-    const currencyRateGetUrl = "http://localhost:8080/api/data/currency/rate/all";
-    const currencyRatePostUrl = "http://localhost:8080/api/data/currency/rate";
-    const currencyRateUpdateUrl = "http://localhost:8080/api/data/currency/rate/update";
-    const currencyRateDeleteUrl = "http://localhost:8080/api/data/currency/rate/delete";
+    const currencyRateURL = "http://localhost:8080/api/data/currencies/rates";
 
     useEffect(() => {   // get currency data (purpose to store in drop down buttons)
         axios.get(currencyUrl).then((response) => {
@@ -85,7 +82,7 @@ function CurrencyRates() {
     }, [currencyList])    
 
     useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        axios.get(`${currencyRateGetUrl}/${currencyName}/${equalsCurrencyName}`).then((response) => {
+        axios.get(`${currencyRateURL}/currencies/${currencyName}/equalsCurrencies/${equalsCurrencyName}/allCurrencyRates`).then((response) => {
             setCurrencyRateList(response.data);
             setIsResponseErrorOnGetCurrencyRates(false);
         })
@@ -120,7 +117,7 @@ function CurrencyRates() {
 
     function addData() {    
         if (addNewCurrency === null || addNewEqualsCurrency === null) {
-            axios.post(currencyRatePostUrl, {
+            axios.post(currencyRateURL, {
                 currencyRateValue: addNewCurrencyRateValue,
                 recordStatus: addNewRecordStatus,
                 year: addNewYear,
@@ -180,7 +177,7 @@ function CurrencyRates() {
             
         }
 
-        axios.post(currencyRatePostUrl, {
+        axios.post(currencyRateURL, {
             currencyRateValue: addNewCurrencyRateValue,
             recordStatus: addNewRecordStatus,
             year: addNewYear,
@@ -240,7 +237,16 @@ function CurrencyRates() {
     }
 
     function updateData() {
-        axios.put(`${currencyRateUpdateUrl}/${updateCurrencyRateId}/${addNewCurrencyRateValue}/${addNewRecordStatus}/${addNewYear}/${addNewMonth}/${addNewDate}/${addNewCurrency.currencyId}/${addNewEqualsCurrency.currencyId}`, {})
+        axios.put(`${currencyRateURL}/currencies/${addNewCurrency.currencyId}/currencyRates/${updateCurrencyRateId}`, {
+            currencyRateValue: addNewCurrencyRateValue,
+            recordStatus: addNewRecordStatus,
+            year: addNewYear,
+            month: addNewMonth,
+            date: addNewDate,
+            equalsCurrency: {
+                currencyId: addNewEqualsCurrency.currencyId
+            }
+        })
         .then((response) => {
             setCurrencyRateResponse(oldList => [...oldList, response.data]);
         })
@@ -279,7 +285,7 @@ function CurrencyRates() {
     }
 
     function deleteTableData(id) {
-        axios.delete(`${currencyRateDeleteUrl}/${id}`)
+        axios.delete(`${currencyRateURL}/currencyRates/${id}`)
         .then(() => {
             swal({
                 title: `Id : ${id} Currency Rate Deleted!`,
