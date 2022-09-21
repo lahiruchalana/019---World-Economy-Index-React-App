@@ -49,7 +49,7 @@ function CurrencyRates() {
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
     const dateList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
-    const currencyUrl = `http://localhost:8080/api/data/currency`;
+    const currencyUrl = `http://localhost:8080/api/data/currencies`;
     const currencyRateURL = "http://localhost:8080/api/data/currencies/rates";
 
     useEffect(() => {   // get currency data (purpose to store in drop down buttons)
@@ -118,7 +118,7 @@ function CurrencyRates() {
     }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order])
 
     function addData() {    
-        if (addNewCurrency === null || addNewEqualsCurrency === null) {
+        if (addNewCurrency === null && addNewEqualsCurrency === null) {
             axios.post(currencyRateURL, {
                 currencyRateValue: addNewCurrencyRateValue,
                 recordStatus: addNewRecordStatus,
@@ -144,12 +144,25 @@ function CurrencyRates() {
                   console.log(error.response.headers);
                   if (error.response.status === 500) {
 
-                    swal({
-                        title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
-                        text: `Change Date or Update!`,
-                        icon: "error",
-                        timer: 30000,
-                    });
+                    if(error.response.data.message === "not allowed to have many records for a date") {
+                    
+                        swal({
+                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                            text: `Change Date or Update!`,
+                            icon: "error",
+                            timer: 30000,
+                        });
+    
+                    } else {
+    
+                        swal({
+                            title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
+                            text: `Change A One Currency!`,
+                            icon: "error",
+                            timer: 30000,
+                        });
+    
+                    }
 
                   }
                 } else if (error.request) {
@@ -177,6 +190,146 @@ function CurrencyRates() {
             }
             
             
+        } else if (addNewCurrency === null && addNewEqualsCurrency != null) {
+            axios.post(currencyRateURL, {
+                currencyRateValue: addNewCurrencyRateValue,
+                recordStatus: addNewRecordStatus,
+                year: addNewYear,
+                month: addNewMonth,
+                date: addNewDate,
+                currency: {
+                    currencyId: 2
+                },
+                equalsCurrency: {
+                    currencyId: addNewEqualsCurrency.currencyId
+                }
+            })
+            .then((response) => {
+                setCurrencyRateResponse(oldList => [...oldList, response.data]);
+            })
+            .catch(function (error) {
+                if (error.response) {
+                  // Request made and server responded
+                  console.log(error.response.data);
+                  console.log("Reason For Error : " + error.response.data.message);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                  if (error.response.status === 500) {
+
+                    if(error.response.data.message === "not allowed to have many records for a date") {
+                    
+                        swal({
+                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                            text: `Change Date or Update!`,
+                            icon: "error",
+                            timer: 30000,
+                        });
+    
+                    } else {
+    
+                        swal({
+                            title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
+                            text: `Change A One Currency!`,
+                            icon: "error",
+                            timer: 30000,
+                        });
+    
+                    }
+
+                  }
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  console.log(error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message);
+                }
+            })
+
+            swal({
+                title: `Successfully Added A New Data`,
+                icon: "success",
+                timer: 8000,
+            });
+    
+            if (isNaN(addNewCurrencyRateValue)) {
+                swal({
+                    title: `"${addNewCurrencyRateValue}" Does Not A Number`,
+                    text: `Change Currency Rate Value!`,
+                    icon: "error",
+                    timer: 15000,
+                });
+            }
+        } else if (addNewCurrency != null && addNewEqualsCurrency === null) {
+            axios.post(currencyRateURL, {
+                currencyRateValue: addNewCurrencyRateValue,
+                recordStatus: addNewRecordStatus,
+                year: addNewYear,
+                month: addNewMonth,
+                date: addNewDate,
+                currency: {
+                    currencyId: addNewCurrency.currencyId
+                },
+                equalsCurrency: {
+                    currencyId: 1
+                }
+            })
+            .then((response) => {
+                setCurrencyRateResponse(oldList => [...oldList, response.data]);
+            })
+            .catch(function (error) {
+                if (error.response) {
+                  // Request made and server responded
+                  console.log(error.response.data);
+                  console.log("Reason For Error : " + error.response.data.message);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                  if (error.response.status === 500) {
+
+                    if(error.response.data.message === "not allowed to have many records for a date") {
+                    
+                        swal({
+                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                            text: `Change Date or Update!`,
+                            icon: "error",
+                            timer: 30000,
+                        });
+    
+                    } else {
+    
+                        swal({
+                            title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
+                            text: `Change A One Currency!`,
+                            icon: "error",
+                            timer: 30000,
+                        });
+    
+                    }
+
+                  }
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  console.log(error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message);
+                }
+            })
+
+            swal({
+                title: `Successfully Added A New Data`,
+                icon: "success",
+                timer: 8000,
+            });
+    
+            if (isNaN(addNewCurrencyRateValue)) {
+                swal({
+                    title: `"${addNewCurrencyRateValue}" Does Not A Number`,
+                    text: `Change Currency Rate Value!`,
+                    icon: "error",
+                    timer: 15000,
+                });
+            }
         }
 
         axios.post(currencyRateURL, {
@@ -204,12 +357,26 @@ function CurrencyRates() {
               console.log(error.response.headers);
               if (error.response.status === 500) {
 
-                swal({
-                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
-                    text: `Change Date or Update!`,
-                    icon: "error",
-                    timer: 30000,
-                });
+                if(error.response.message == "not allowed to have many records for a date") {
+                    
+                    swal({
+                        title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                        text: `Change Date or Update!`,
+                        icon: "error",
+                        timer: 30000,
+                    });
+
+                } else {
+
+                    swal({
+                        title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
+                        text: `Change A One Currency!`,
+                        icon: "error",
+                        timer: 30000,
+                    });
+
+                }
+
 
               }
             } else if (error.request) {
