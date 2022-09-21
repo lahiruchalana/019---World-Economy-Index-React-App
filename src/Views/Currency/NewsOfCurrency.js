@@ -19,7 +19,7 @@ function NewsOfCurrency() {
     const [currencyDataArray, setCurrencyDataArray] = useState([]);
     const { currencyname, equalscurrencyname } = useParams();
 
-    const currencyURL = `http://localhost:8080/api/data/currency/rate/all/${currencyname}/${equalscurrencyname}`;   
+    const currencyRateURL = `http://localhost:8080/api/data/currencies/rates`;   
 
     const monthsShort = {
         JANUARY: 0,
@@ -38,7 +38,7 @@ function NewsOfCurrency() {
 
 
     useEffect(() => {
-        axios.get(currencyURL).then((response) => {
+        axios.get(`${currencyRateURL}/currencies/${currencyname}/equalsCurrencies/${equalscurrencyname}/allCurrencyRates`).then((response) => {
             setCurrency(response.data);
         })
         .catch(function (error) {
