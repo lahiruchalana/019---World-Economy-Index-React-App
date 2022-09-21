@@ -103,7 +103,7 @@ function CurrencyRates() {
                     title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Does Not Exist Records`,
                     text: `Change Currency!`,
                     icon: "warning",
-                    timer: 8000,
+                    timer: 20000,
                 });
 
               }
@@ -143,6 +143,16 @@ function CurrencyRates() {
                   console.log("Reason For Error : " + error.response.data.message);
                   console.log(error.response.status);
                   console.log(error.response.headers);
+                  if (error.response.status === 500) {
+
+                    swal({
+                        title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                        text: `Change Date or Update!`,
+                        icon: "error",
+                        timer: 30000,
+                    });
+
+                  }
                 } else if (error.request) {
                   // The request was made but no response was received
                   console.log(error.request);
@@ -155,7 +165,7 @@ function CurrencyRates() {
             swal({
                 title: `Successfully Added A New Data`,
                 icon: "success",
-                timer: 1500,
+                timer: 8000,
             });
     
             if (isNaN(addNewCurrencyRateValue)) {
@@ -163,7 +173,7 @@ function CurrencyRates() {
                     title: `"${addNewCurrencyRateValue}" Does Not A Number`,
                     text: `Change Currency Rate Value!`,
                     icon: "error",
-                    timer: 8000,
+                    timer: 15000,
                 });
             }
             
@@ -193,6 +203,16 @@ function CurrencyRates() {
               console.log("Reason For Error : " + error.response.data.message);
               console.log(error.response.status);
               console.log(error.response.headers);
+              if (error.response.status === 500) {
+
+                swal({
+                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                    text: `Change Date or Update!`,
+                    icon: "error",
+                    timer: 30000,
+                });
+
+              }
             } else if (error.request) {
               // The request was made but no response was received
               console.log(error.request);
@@ -205,7 +225,7 @@ function CurrencyRates() {
         swal({
             title: `Successfully Added A New Data`,
             icon: "success",
-            timer: 1500,
+            timer: 8000,
         });
 
         if (isNaN(addNewCurrencyRateValue)) {
@@ -213,7 +233,7 @@ function CurrencyRates() {
                 title: `"${addNewCurrencyRateValue}" Does Not A Number`,
                 text: `Change Currency Rate Value!`,
                 icon: "error",
-                timer: 8000,
+                timer: 20000,
             });
         }
         
@@ -244,7 +264,7 @@ function CurrencyRates() {
             title: `Updated CurrencyRateId : ${updateCurrencyRateId}`,
             text: `You Have Updated Currency Rate Data!`,
             icon: "success",
-            timer: 3000,
+            timer: 8000,
         });
 
         if (isNaN(addNewCurrencyRateValue)) {
@@ -252,7 +272,7 @@ function CurrencyRates() {
                 title: `"${addNewCurrencyRateValue}" Does Not A Number`,
                 text: `Change Currency Rate Value!`,
                 icon: "error",
-                timer: 8000,
+                timer: 20000,
             });
         }
 
@@ -264,7 +284,7 @@ function CurrencyRates() {
             swal({
                 title: `Id : ${id} Currency Rate Deleted!`,
                 icon: "success",
-                timer: 5000,
+                timer: 8000,
             });
             setCurrencyRateResponse(oldList => [...oldList, null]);
         })
