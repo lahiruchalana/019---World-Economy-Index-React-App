@@ -42,6 +42,8 @@ function CurrencyRates() {
     const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
     const [currencyRateResponse, setCurrencyRateResponse] = useState([]);
     const [placeHolderForCurrencyRateValue, setPlaceHolderForCurrencyRateValue] = useState(0.00);
+    const [sortingProperty, setSortingProperty] = useState("Date");
+    const [order, setOrder] = useState("Asc");
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
@@ -82,7 +84,7 @@ function CurrencyRates() {
     }, [currencyList])    
 
     useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        axios.get(`${currencyRateURL}/currencies/${currencyName}/allCurrencyRates?equalsCurrencyName=${equalsCurrencyName}`).then((response) => {
+        axios.get(`${currencyRateURL}/currencies/${currencyName}/allCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
             setCurrencyRateList(response.data);
             setIsResponseErrorOnGetCurrencyRates(false);
         })
@@ -113,7 +115,7 @@ function CurrencyRates() {
             }
         })
         
-    }, [currencyName, equalsCurrencyName, currencyRateResponse.length])
+    }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order])
 
     function addData() {    
         if (addNewCurrency === null || addNewEqualsCurrency === null) {
@@ -361,42 +363,79 @@ function CurrencyRates() {
                     <div id='single_line'></div>
                     <h2>Currency Rates</h2>
                     <div id='single_line'></div>
-
-                    <br></br>
                     
-                    <Row>
+                    <Row id="margin_top_10">
                         
                         <Col id="column_center">
-                            <DropdownButton variant="outline-secondary" id="dropdown_basic_button" title={`${currencyName.toUpperCase()}`} >
-                                {currencyNameList.map(currencyName => {
-                                    return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
-                                })}
-                            </DropdownButton>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="outline-primary" id="dropdown_basic_button">
+                                {currencyName.toUpperCase()} <Icon.CaretDownFill></Icon.CaretDownFill>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {currencyNameList.map(currencyName => {
+                                        return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    })}
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </Col>
 
                         <Col id="column_center">
-                            <DropdownButton variant="outline-secondary" id="dropdown_basic_button" title={`${equalsCurrencyName.toUpperCase()}`}>
-                                {currencyNameList.map(currencyName => {
-                                    return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
-                                })}
-                            </DropdownButton>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="outline-primary" id="dropdown_basic_button">
+                                {equalsCurrencyName.toUpperCase()} <Icon.CaretDownFill></Icon.CaretDownFill>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {currencyNameList.map(currencyName => {
+                                        return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    })}
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </Col>
 
                     </Row>
+                    
+                    <Row id="margin_top_10">
 
-                    <br></br>
-                    <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> Rates In The Table</h5>
+                        <Col xs lg={3}>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="outline-secondary" id="dropdown_basic_button">
+                                Sort By {sortingProperty} <Icon.CaretDownFill></Icon.CaretDownFill>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => setSortingProperty("Date")}>Date</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setSortingProperty("Value")}>Value</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setSortingProperty("Id")}>Id</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>      
+                        </Col>
 
-                    <div id='thin_single_line'></div>
-                    <br></br>
+                        <Col xs lg={3}>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="outline-secondary" id="dropdown_basic_button">
+                                {(order=="Asc") ? "Low to High" : "Hight to Low"} <Icon.CaretDownFill></Icon.CaretDownFill>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => setOrder("Asc")}>Low to High</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setOrder("Desc")}>Hight to Low</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>      
+                        </Col>
+
+                        <Col>
+                            <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> Rates In The Table</h5>
+                        </Col>
+
+
+                    </Row>
+
 
                     {/* table starts */}
 
-                    <Table striped bordered hover variant="dark">
+                    <Table striped bordered hover variant="dark" id="margin_top_10">
                         <thead>
                             <tr>
                             <th>Id</th>
-                            <th>Rates</th>
+                            <th>Rate Values</th>
                             <th>Year</th>
                             <th>Month</th>
                             <th>Date</th>
