@@ -333,10 +333,10 @@ function Currency() {
 
                     <Row>
                         <Col xs lg="2">
-                            <Image id='uklrain_flag_image' src="https://cdn-icons-png.flaticon.com/64/330/330540.png"></Image>
+                            <Image id='uklrain_flag_image' src="https://cdn-icons-png.flaticon.com/64/206/206725.png"></Image>
                         </Col>
                         <Col>
-                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Ukraine Need You</Button>
+                            <Button className='w-100 rounded-pill border border-0' id='button_support_ukrain' variant="outline-primary" size="lg">Visit Sri Lanka</Button>
                         </Col>
                     </Row>
 
