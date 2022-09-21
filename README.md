@@ -1,3 +1,22 @@
+# World Economy Index.
+
+World Economy Index is a Economy related web application. there are many features added to people to interacted with it.
+
+* Find Economy Related Data
+* News
+* Analyse Data
+* Understandable Graphs Charts
+* Researches
+* Academy
+* Forum
+* Investments
+
+## This is the front end of the World Economy Index Application
+
+Used React.js to developed this application with React-Bootstrap, ChartJS, Axios, SweetAlert.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

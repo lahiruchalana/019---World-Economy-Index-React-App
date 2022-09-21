@@ -64,7 +64,7 @@ function NewsOfCurrency() {
 
         currency.forEach(element => {
             const currencyData = {
-                x: new Date (Number(element.year), monthsShort[element.month]),
+                x: new Date (Number(element.year), monthsShort[element.month], Number(element.date)),
                 y: element.currencyRateValue
             }
 
@@ -85,7 +85,7 @@ function NewsOfCurrency() {
             text: "Euro Rate"
         },
         axisX: {
-            valueFormatString: "YYYY-MMM"
+            valueFormatString: "YYYY-MMM-DD"
         },
         axisY: {
             title: "USD",
@@ -93,7 +93,7 @@ function NewsOfCurrency() {
         },
         data: [{
             yValueFormatString: "$##,###,###.###",
-            xValueFormatString: "YYYY-MMMM",
+            xValueFormatString: "YYYY-MMMM-DD",
             type: "spline",
             dataPoints: currencyDataArray
         }]
