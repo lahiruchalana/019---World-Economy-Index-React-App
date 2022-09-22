@@ -32,7 +32,7 @@ function App() {
               <Route path="/news/currency/:currencyname/:equalscurrencyname" element={<NewsOfCurrency />}  />
             </Routes >
             <Routes >
-              <Route path='/currency/:id' element={<Currency />}/>
+              <Route path='/currency/:currencyname/:equalscurrencyname' element={<Currency />}/>
             </Routes>
             <Routes>
               <Route path='/gdp/:id' element={<GDP />}/>

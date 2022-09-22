@@ -38,7 +38,7 @@ function NewsOfCurrency() {
 
 
     useEffect(() => {
-        axios.get(`${currencyRateURL}/currencies/${currencyname}/equalsCurrencies/${equalscurrencyname}/allCurrencyRates`).then((response) => {
+        axios.get(`${currencyRateURL}/currencies/${currencyname}/allCurrencyRates?equalsCurrencyName=${equalscurrencyname}`).then((response) => {
             setCurrency(response.data);
         })
         .catch(function (error) {
@@ -57,7 +57,7 @@ function NewsOfCurrency() {
             }
         })
         
-    }, []);    
+    }, [currencyname, equalscurrencyname, currencyRateURL]);    
 
     useEffect(() => {
         setCurrencyDataArray([]);

@@ -82,7 +82,7 @@ function CurrencyRates() {
     }, [currencyList])    
 
     useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        axios.get(`${currencyRateURL}/currencies/${currencyName}/equalsCurrencies/${equalsCurrencyName}/allCurrencyRates`).then((response) => {
+        axios.get(`${currencyRateURL}/currencies/${currencyName}/allCurrencyRates?equalsCurrencyName=${equalsCurrencyName}`).then((response) => {
             setCurrencyRateList(response.data);
             setIsResponseErrorOnGetCurrencyRates(false);
         })
@@ -257,6 +257,16 @@ function CurrencyRates() {
               console.log("Reason For Error : " + error.response.data.message);
               console.log(error.response.status);
               console.log(error.response.headers);
+              if (error.response.status === 500) {
+
+                swal({
+                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                    text: `Change Date or Update!`,
+                    icon: "error",
+                    timer: 30000,
+                });
+
+              }
             } else if (error.request) {
               // The request was made but no response was received
               console.log(error.request);
