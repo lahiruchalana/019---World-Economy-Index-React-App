@@ -12,6 +12,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Image from "react-bootstrap/Image";
+import Dropdown from 'react-bootstrap/Dropdown';
+
+import * as Icon from 'react-bootstrap-icons';
+
+import swal from 'sweetalert';
 
 
 function NewsOfCurrency() {
@@ -19,6 +24,14 @@ function NewsOfCurrency() {
     const [currencyDataArray, setCurrencyDataArray] = useState([]);
     const { currencyname, equalscurrencyname } = useParams();
 
+    const [currencyList, setCurrencyList] = useState([]);
+    const [currencyNameList, setCurrencyNameList] = useState([]);
+    const [currencyName, setCurrencyName] = useState(currencyname);
+    const [equalsCurrencyName, setEqualsCurrencyName] = useState(equalscurrencyname);
+    const [isAvailableData, setIsAvailableData] = useState(false);
+
+
+    const currencyUrl = `http://localhost:8080/api/data/currencies`;
     const currencyRateURL = `http://localhost:8080/api/data/currencies/rates`;   
 
     const monthsShort = {
@@ -37,9 +50,9 @@ function NewsOfCurrency() {
       };
 
 
-    useEffect(() => {
-        axios.get(`${currencyRateURL}/currencies/${currencyname}/allCurrencyRates?equalsCurrencyName=${equalscurrencyname}`).then((response) => {
-            setCurrency(response.data);
+      useEffect(() => {   // get currency data (purpose to store in drop down buttons)
+        axios.get(currencyUrl).then((response) => {
+            setCurrencyList(response.data);
         })
         .catch(function (error) {
             if (error.response) {
@@ -56,8 +69,53 @@ function NewsOfCurrency() {
               console.log('Error', error.message);
             }
         })
+
+    }, [currencyUrl])
+    
+    useEffect(() => {   // create currencyNameList using currencyList (includes only currencyNames)
+        setCurrencyNameList([]);
         
-    }, []);    
+        currencyList.forEach(element => {
+            setCurrencyNameList(oldArray => [...oldArray, element.currencyName])
+        });
+
+    }, [currencyList])  
+
+    useEffect(() => {
+        axios.get(`${currencyRateURL}/currencies/${currencyName}/allCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&sortingProperty=Date&order=Asc`).then((response) => {
+            setCurrency(response.data);
+        })
+        .catch(function (error) {
+            if (error.response) {
+              // Request made and server responded
+              console.log(error.response.data);
+              console.log("Reason For Error : " + error.response.data.message);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+              if (error.response.status === 500){
+                setIsAvailableData(false);
+                setCurrencyDataArray([]);
+
+                swal({
+                  title: `Please Change A Currency!`,
+                  text: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Does Not Exist Records`,
+                  icon: "warning",
+                  timer: 20000,
+              });
+
+            }
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+        })
+
+        setIsAvailableData(true);
+        
+    }, [currencyName, equalsCurrencyName, currencyRateURL]);    
 
     useEffect(() => {
         setCurrencyDataArray([]);
@@ -82,17 +140,17 @@ function NewsOfCurrency() {
     const options = {
         animationEnabled: true,
         title:{
-            text: "Euro Rate"
+            text: `${currencyName} Rate`
         },
         axisX: {
             valueFormatString: "YYYY-MMM-DD"
         },
         axisY: {
-            title: "USD",
-            prefix: "$"
+            title: `${equalsCurrencyName}`,
+            prefix: ``
         },
         data: [{
-            yValueFormatString: "$##,###,###.###",
+            yValueFormatString: `${equalsCurrencyName}##,###,###.###`,
             xValueFormatString: "YYYY-MMMM-DD",
             type: "spline",
             dataPoints: currencyDataArray
@@ -114,10 +172,10 @@ function NewsOfCurrency() {
                     <div id='column_left'>
                         <br></br>
                         <Card className='w-100'>
-                            <Card.Img height={300} variant="top" src="https://cdn.pixabay.com/photo/2017/03/05/00/34/panorama-2117310__340.jpg" />
+                            <Card.Img height={400} variant="top" src="https://cdn.pixabay.com/photo/2020/10/02/21/06/dome-5622133_960_720.jpg" />
                             <Card.Body>
                                 <a href="/Currency" id='title_in_card'>
-                                    <Card.Title id='subscribe_title_in_card'>Be Updated With Us, Subscribe Us. Economy, Forum, Researches, Investments and Academy All in a One Place </Card.Title>
+                                    <Card.Title id='subscribe_title_in_card'>Forum To Spread Knowledge, Be Updated With Us, Subscribe Us. Study With Us. </Card.Title>
                                     <Card.Title id='subscribe_title_in_card'> - World Economy Index - </Card.Title>
                                 </a>
                             </Card.Body>
@@ -127,13 +185,64 @@ function NewsOfCurrency() {
                     {/* News Content Starts */}
 
                     <br></br>
-                    <h2>Breaking - Putin Hit A Massive Damage On Euro</h2>
-                    <h6>2022_09_23, Amesterdam, Netherland - Mark Zchenn</h6>
-                    <br></br>
-                    <h5>The euro fell below $0.99 this morning for the first time in two decades as the energy crisis rocks the financial markets. Meanwhile, benchmark European prices jumped as much as 35 percent after Russia's state energy firm Gazprom announced its Nord Stream 1 pipeline to Germany will remain closed indefinitely. <br></br><br></br>
-                    </h5>
 
-                    <br></br>
+                    <Row>
+
+                        <Col>
+                           <h2>Currency Rates</h2>
+                           <h6>2022_09_22, Last Update</h6>
+                        </Col>
+
+                        <Col>
+                           
+                        </Col>
+
+                        <Col id="column_center">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="outline-primary" id="dropdown_basic_button">
+                                {currencyName.toUpperCase()} <Icon.CaretDownFill></Icon.CaretDownFill>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {currencyNameList.map(currencyName => {
+                                        return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    })}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
+
+                        <Col id="column_center">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="outline-primary" id="dropdown_basic_button">
+                                {equalsCurrencyName.toUpperCase()} <Icon.CaretDownFill></Icon.CaretDownFill>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    {currencyNameList.map(currencyName => {
+                                        return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
+                                    })}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
+
+                    </Row>
+
+                    <Row>
+
+                        <Col>
+                        
+                        </Col>
+
+                        <Col id='column_center'>
+                            <div id="extra_thin_single_line"></div>
+                            <div id="margin_top_10"></div>
+                            {
+                                isAvailableData==false ? <h4 id='text_style_one'>No Available Data</h4> :
+                                <h4 id='text_style_one'>1 {currencyName} Equals To Charted {equalsCurrencyName} Rates</h4>
+                            }
+                            <div id="margin_top_10"></div>
+                            <div id="extra_thin_single_line"></div>
+                        </Col>
+                    </Row>
+
                     <br></br>
 
                     {/* Charts or Tables Starts */}
@@ -279,95 +388,6 @@ function NewsOfCurrency() {
                                 </a>
                             </Card.Body>
                         </Card>
-                    </div>
-
-
-                    <Col>
-                        <div id='headings_carousel'>
-                            <Carousel>
-                                <Carousel.Item interval={1000}>
-                                    <img height={150}
-                                    className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2016/10/16/13/06/new-york-1745089__340.jpg"
-                                    alt="First slide"
-                                    />
-                                    <Carousel.Caption>
-                                        <h4>United States</h4>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item interval={1500}>
-                                    <img
-                                    height={150}
-                                    className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2019/12/14/12/08/night-4694750__340.jpg"
-                                    alt="Second slide"
-                                    />
-                                    <Carousel.Caption>
-                                    <h4>China</h4>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item interval={1000}>
-                                    <img
-                                    height={150}
-                                    className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2016/01/03/00/16/big-ben-1118888__340.jpg"
-                                    alt="Third slide"
-                                    />
-                                    <Carousel.Caption>
-                                    <h4>United Kingdom</h4>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item interval={1500}>
-                                    <img
-                                    height={150}
-                                    className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2020/09/14/22/27/river-5572289__340.jpg"
-                                    alt="Third slide"
-                                    />
-                                    <Carousel.Caption>
-                                    <h4>Japan</h4>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item interval={1000}>
-                                    <img
-                                    height={150}
-                                    className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2020/04/08/13/24/sunset-5017360__340.jpg"
-                                    alt="Third slide"
-                                    />
-                                    <Carousel.Caption>
-                                    <h4>India</h4>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item interval={1500}>
-                                    <img
-                                    height={150}
-                                    className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2016/07/30/08/13/moscow-1556561__340.jpg"
-                                    alt="Third slide"
-                                    />
-                                    <Carousel.Caption>
-                                    <h4>Russia</h4>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                                <Carousel.Item interval={1000}>
-                                    <img
-                                    height={150}
-                                    className="d-block w-100"
-                                    src="https://cdn.pixabay.com/photo/2019/08/19/15/13/eiffel-tower-4416700__340.jpg"
-                                    alt="Third slide"
-                                    />
-                                    <Carousel.Caption>
-                                    <h4>France</h4>
-                                    </Carousel.Caption>
-                                </Carousel.Item>
-                            </Carousel>
-                        </div>
-                    </Col>
-
-                    <div id='column_center'>
-                        <br></br>
-                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Your Country <a href='/#' id='button_sub_title_blue'>Dive In</a></Button>
                     </div>
 
                     <Row>
