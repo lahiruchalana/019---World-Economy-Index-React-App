@@ -84,8 +84,8 @@ function CurrencyRates() {
     }, [currencyList])    
 
     useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        axios.get(`${currencyRateURL}/currencies/${currencyName}/allCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
-            setCurrencyRateList(response.data);
+        axios.get(`${currencyRateURL}/currencies/${currencyName}/paginationAllCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&pageNumber=0&pageSize=3&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
+            setCurrencyRateList(response.data.content);
             setIsResponseErrorOnGetCurrencyRates(false);
         })
         .catch(function (error) {
@@ -117,8 +117,8 @@ function CurrencyRates() {
         
     }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order])
 
-    function addData() {    
-        if (addNewCurrency === null && addNewEqualsCurrency === null) {
+    function addData() {    // post a currency rate record
+        if (addNewCurrency === null && addNewEqualsCurrency === null) { // after loaded the page this execute for adding (without selecting currencies - default there)
             axios.post(currencyRateURL, {
                 currencyRateValue: addNewCurrencyRateValue,
                 recordStatus: addNewRecordStatus,
@@ -190,7 +190,7 @@ function CurrencyRates() {
             }
             
             
-        } else if (addNewCurrency === null && addNewEqualsCurrency != null) {
+        } else if (addNewCurrency === null && addNewEqualsCurrency != null) { // when chnage a one currency from dropdown (equalsCurrency changes)
             axios.post(currencyRateURL, {
                 currencyRateValue: addNewCurrencyRateValue,
                 recordStatus: addNewRecordStatus,
@@ -260,7 +260,7 @@ function CurrencyRates() {
                     timer: 15000,
                 });
             }
-        } else if (addNewCurrency != null && addNewEqualsCurrency === null) {
+        } else if (addNewCurrency != null && addNewEqualsCurrency === null) { // when currency change (currency changes)
             axios.post(currencyRateURL, {
                 currencyRateValue: addNewCurrencyRateValue,
                 recordStatus: addNewRecordStatus,
@@ -332,7 +332,7 @@ function CurrencyRates() {
             }
         }
 
-        axios.post(currencyRateURL, {
+        axios.post(currencyRateURL, {   // when change two currencies 
             currencyRateValue: addNewCurrencyRateValue,
             recordStatus: addNewRecordStatus,
             year: addNewYear,
@@ -405,7 +405,7 @@ function CurrencyRates() {
         
     }
 
-    function updateData() {
+    function updateData() {   // update the record of currency rate
         axios.put(`${currencyRateURL}/currencies/${addNewCurrency.currencyId}/currencyRates/${updateCurrencyRateId}`, {
             currencyRateValue: addNewCurrencyRateValue,
             recordStatus: addNewRecordStatus,
@@ -463,7 +463,7 @@ function CurrencyRates() {
 
     }
 
-    function deleteTableData(id) {
+    function deleteTableData(id) {      // delete a currency rate by id
         axios.delete(`${currencyRateURL}/currencyRates/${id}`)
         .then(() => {
             swal({
@@ -477,7 +477,7 @@ function CurrencyRates() {
         console.log("deleted " + id);
     }
 
-    function updateFormData(element) {
+    function updateFormData(element) {      // when click on the update of a currency rate --> the form fill with relavent currency rate data
         setAddNewCurrency(element.currency);
         setAddNewCurrencyName(element.currency.currencyName);
         setAddNewEqualsCurrency(element.equalsCurrency);
@@ -492,7 +492,7 @@ function CurrencyRates() {
         console.log("updating : " + element.currencyRateId);
     }
 
-    function cancelForm() {
+    function cancelForm() {     // clear all the data of form in adding or updating 
         setUpdateCurrencyRateId(null);
         setAddNewCurrencyRateValue("");
         setPlaceHolderForCurrencyRateValue(0.00);
@@ -513,7 +513,7 @@ function CurrencyRates() {
     console.log(addNewCurrency);
     console.log(addNewEqualsCurrency);
 
-
+    // file in side styles
     var margin_top = {
         marginTop:'10px',
     };
@@ -521,6 +521,9 @@ function CurrencyRates() {
     return(
         <div className='admin_container'>
             <Row>
+
+                {/* Table view starts */}
+
                 <Col id="vartical_nav" xs lg={2}>
                     <VerticalNavBar/>
                 </Col>
@@ -642,6 +645,12 @@ function CurrencyRates() {
                     {/* table ends */}
 
                 </Col>
+
+                {/* Table view ends */}
+
+
+
+                {/* Create/ Update view starts */}
 
                 <Col>
                     <div id='single_line'></div>
@@ -825,6 +834,9 @@ function CurrencyRates() {
                     {/* add/ update the currency rate data ends */}
 
                 </Col>
+
+                {/* Create/ Update view ends */}
+
 
             </Row>
         </div>

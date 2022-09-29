@@ -13,6 +13,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function AdminHome() {
 
+    // users vs income chart
     const optionsUsersAndIncome = {
         animationEnabled: true,
         title:{
@@ -89,6 +90,7 @@ function AdminHome() {
         }]
     }
 
+    // academy students data chart
     const optionsAcademyStudents = {
         animationEnabled: true,
         title:{
@@ -121,6 +123,8 @@ function AdminHome() {
             ]
         }]
     }
+
+    // updates data chart
     const optionsUpdates = {
         animationEnabled: true,
         title:{
@@ -154,6 +158,7 @@ function AdminHome() {
         }]
     }
 
+    // user types data chart
     const optionsUsers = {
         exportEnabled: true,
         animationEnabled: true,
@@ -179,6 +184,7 @@ function AdminHome() {
     }
 
     
+    // users by country chart
     const optionsUsersByCountry = {
         animationEnabled: true,
         title:{
@@ -207,6 +213,7 @@ function AdminHome() {
         }]
     }
 
+    // forum users data chart
     const optionsForumUsers = {
         animationEnabled: true,
         exportEnabled: true,
@@ -289,6 +296,7 @@ function AdminHome() {
         ]
     }
 
+    // researches per day chart
     const optionsResearchesPerDay = {
         animationEnabled: true,
         title:{
