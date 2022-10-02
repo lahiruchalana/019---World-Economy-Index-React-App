@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from "react";
 import VerticalNavBar from "./Components/VerticalNavBar";
-import { useParams } from 'react-router';
 
 import axios from "axios";
 
@@ -22,19 +21,16 @@ import * as Icon from 'react-bootstrap-icons';
 import CarouselComponent from "./Components/CarouselComponent";
 
 
-function CurrencyRates() {
-    const { currencyname, equalscurrencyname } = useParams(); 
+function GDP() {
     const [currencyList, setCurrencyList] = useState([]);
     const [currencyNameList, setCurrencyNameList] = useState([]);
-    const [currencyName, setCurrencyName] = useState(currencyname);
-    const [equalsCurrencyName, setEqualsCurrencyName] = useState(equalscurrencyname);
+    const [currencyName, setCurrencyName] = useState("usa");
     const [currencyRateList, setCurrencyRateList] = useState([]);
     const [deleteCurrencyRateId, setDeleteCurrencyRateId] = useState(null);
     const [updateCurrencyRateId, setUpdateCurrencyRateId] = useState(null);
     const [addNewCurrency, setAddNewCurrency] = useState(null);
     const [addNewCurrencyName, setAddNewCurrencyName] = useState("USD");
     const [addNewEqualsCurrency, setAddNewEqualsCurrency] = useState(null);
-    const [addNewEqualsCurrencyName, setAddNewEqualsCurrencyName] = useState("Euro");
     const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState("");
     const [addNewYear, setAddNewYear] = useState(2022);
     const [addNewMonth, setAddNewMonth] = useState("JANUARY");
@@ -52,8 +48,9 @@ function CurrencyRates() {
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
     const dayList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
-    const currencyUrl = `http://localhost:8080/world-economy-index/api/data/currencies`;
+    const currencyURL = "http://localhost:8080/world-economy-index/api/data/currencies/rates";
     const currencyRateURL = "http://localhost:8080/world-economy-index/api/data/currencies/rates";
+
 
     useEffect(() => {   // get currency data (purpose to store in drop down buttons)
         axios.get(currencyUrl).then((response) => {
@@ -86,8 +83,8 @@ function CurrencyRates() {
 
     }, [currencyList])    
 
-    useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        axios.get(`${currencyRateURL}/currencies/${currencyName}/paginationAllCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&pageNumber=${pageNumber}&pageSize=10&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
+    useEffect(() => {   // load currency rates relavent to currencyName 
+        axios.get(`${currencyRateURL}/currencies/${currencyName}/paginationAllCurrencyRates?&pageNumber=${pageNumber}&pageSize=10&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
             setCurrencyRateList(response.data.content);
             setIsResponseErrorOnGetCurrencyRates(false);
             setTotalPage(response.data.totalPages);
@@ -105,7 +102,7 @@ function CurrencyRates() {
                   setIsResponseErrorOnGetCurrencyRates(true);
 
                   swal({
-                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Does Not Exist Records`,
+                    title: `${currencyName.toUpperCase()} Does Not Exist Records`,
                     text: `Change Currency!`,
                     icon: "warning",
                     timer: 20000,
@@ -121,7 +118,7 @@ function CurrencyRates() {
             }
         })
         
-    }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order, pageNumber, totalPage])
+    }, [currencyName, currencyRateResponse.length, sortingProperty, order, pageNumber, totalPage])
 
     function addData() {    // post a currency rate record
         if (addNewCurrency === null && addNewEqualsCurrency === null) { // after loaded the page this execute for adding (without selecting currencies - default there)
@@ -153,22 +150,13 @@ function CurrencyRates() {
                     if(error.response.data.exceptionId == "data.already-exist") {
                     
                         swal({
-                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
+                            title: `${currencyName.toUpperCase()}  Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                             text: `Change Date or Update!`,
                             icon: "error",
                             timer: 30000,
                         });
     
-                    } else {
-    
-                        swal({
-                            title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
-                            text: `Change A One Currency!`,
-                            icon: "error",
-                            timer: 30000,
-                        });
-    
-                    }
+                    } 
 
                   }
                 } else if (error.request) {
@@ -196,146 +184,6 @@ function CurrencyRates() {
             }
             
             
-        } else if (addNewCurrency === null && addNewEqualsCurrency != null) { // when chnage a one currency from dropdown (equalsCurrency changes)
-            axios.post(currencyRateURL, {
-                currencyRateValue: addNewCurrencyRateValue,
-                recordStatus: addNewRecordStatus,
-                year: addNewYear,
-                month: addNewMonth,
-                day: addNewDay,
-                currency: {
-                    currencyId: 2
-                },
-                equalsCurrency: {
-                    currencyId: addNewEqualsCurrency.currencyId
-                }
-            })
-            .then((response) => {
-                setCurrencyRateResponse(oldList => [...oldList, response.data]);
-            })
-            .catch(function (error) {
-                if (error.response) {
-                  // Request made and server responded
-                  console.log(error.response.data);
-                  console.log("Reason For Error : " + error.response.data.message);
-                  console.log(error.response.status);
-                  console.log(error.response.headers);
-                  if (error.response.status === 500) {
-
-                    if(error.response.data.exceptionId == "data.already-exist") {
-                    
-                        swal({
-                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
-                            text: `Change Date or Update!`,
-                            icon: "error",
-                            timer: 30000,
-                        });
-    
-                    } else {
-    
-                        swal({
-                            title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
-                            text: `Change A One Currency!`,
-                            icon: "error",
-                            timer: 30000,
-                        });
-    
-                    }
-
-                  }
-                } else if (error.request) {
-                  // The request was made but no response was received
-                  console.log(error.request);
-                } else {
-                  // Something happened in setting up the request that triggered an Error
-                  console.log('Error', error.message);
-                }
-            })
-
-            swal({
-                title: `Successfully Added A New Data`,
-                icon: "success",
-                timer: 8000,
-            });
-    
-            if (isNaN(addNewCurrencyRateValue)) {
-                swal({
-                    title: `"${addNewCurrencyRateValue}" Does Not A Number`,
-                    text: `Change Currency Rate Value!`,
-                    icon: "error",
-                    timer: 15000,
-                });
-            }
-        } else if (addNewCurrency != null && addNewEqualsCurrency === null) { // when currency change (currency changes)
-            axios.post(currencyRateURL, {
-                currencyRateValue: addNewCurrencyRateValue,
-                recordStatus: addNewRecordStatus,
-                year: addNewYear,
-                month: addNewMonth,
-                day: addNewDay,
-                currency: {
-                    currencyId: addNewCurrency.currencyId
-                },
-                equalsCurrency: {
-                    currencyId: 1
-                }
-            })
-            .then((response) => {
-                setCurrencyRateResponse(oldList => [...oldList, response.data]);
-            })
-            .catch(function (error) {
-                if (error.response) {
-                  // Request made and server responded
-                  console.log(error.response.data);
-                  console.log("Reason For Error : " + error.response.data.message);
-                  console.log(error.response.status);
-                  console.log(error.response.headers);
-                  if (error.response.status === 500) {
-
-                    if(error.response.data.exceptionId == "data.already-exist") {
-                    
-                        swal({
-                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
-                            text: `Change Date or Update!`,
-                            icon: "error",
-                            timer: 30000,
-                        });
-    
-                    } else {
-    
-                        swal({
-                            title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
-                            text: `Change A One Currency!`,
-                            icon: "error",
-                            timer: 30000,
-                        });
-    
-                    }
-
-                  }
-                } else if (error.request) {
-                  // The request was made but no response was received
-                  console.log(error.request);
-                } else {
-                  // Something happened in setting up the request that triggered an Error
-                  console.log('Error', error.message);
-                }
-            })
-
-            swal({
-                title: `Successfully Added A New Data`,
-                icon: "success",
-                timer: 8000,
-            });
-    
-            if (isNaN(addNewCurrencyRateValue)) {
-                swal({
-                    title: `"${addNewCurrencyRateValue}" Does Not A Number`,
-                    text: `Change Currency Rate Value!`,
-                    icon: "error",
-                    timer: 15000,
-                });
-            }
         }
 
         axios.post(currencyRateURL, {   // when change two currencies 
@@ -367,22 +215,13 @@ function CurrencyRates() {
                 if(error.response.data.exceptionId == "data.already-exist") {
                     
                     swal({
-                        title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
+                        title: `${currencyName.toUpperCase()}  Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                         text: `Change Date or Update!`,
                         icon: "error",
                         timer: 30000,
                     });
 
-                } else {
-
-                    swal({
-                        title: `${addNewCurrencyName.toUpperCase()} And ${addNewEqualsCurrencyName.toUpperCase()} Are Same`,
-                        text: `Change A One Currency!`,
-                        icon: "error",
-                        timer: 30000,
-                    });
-
-                }
+                } 
 
 
               }
@@ -436,7 +275,7 @@ function CurrencyRates() {
               if (error.response.status === 500) {
 
                 swal({
-                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
+                    title: `${currencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                     text: `Change Date or Update!`,
                     icon: "error",
                     timer: 30000,
@@ -488,7 +327,6 @@ function CurrencyRates() {
         setAddNewCurrency(element.currency);
         setAddNewCurrencyName(element.currency.currencyName);
         setAddNewEqualsCurrency(element.equalsCurrency);
-        setAddNewEqualsCurrencyName(element.equalsCurrency.currencyName);
         setAddNewCurrencyRateValue(element.currencyRateValue);
         setPlaceHolderForCurrencyRateValue(element.currencyRateValue);
         setAddNewYear(element.year);
@@ -522,23 +360,14 @@ function CurrencyRates() {
     );
     } // pagination ends
 
-    console.log(currencyList);
-    console.log(currencyRateList);
-    console.log(currencyNameList);
-    console.log(currencyName + "/" + equalsCurrencyName);
-    console.log("delete = " + deleteCurrencyRateId + " currencyRateId");
-    console.log("update = " + updateCurrencyRateId + " currencyRateId");
-    console.log(currencyRateResponse);
-    console.log(addNewCurrency);
-    console.log(addNewEqualsCurrency);
-
     // file in side styles
     var margin_top = {
         marginTop:'10px',
     };
-
+        
     return(
         <div className='admin_container'>
+
             <Row>
 
                 {/* Table view starts */}
@@ -550,9 +379,9 @@ function CurrencyRates() {
                 <Col xs lg={5}>
                     
                     <div id='single_line'></div>
-                    <h2>Currency Rates</h2>
+                    <h2>Country Data</h2>
                     <div id='single_line'></div>
-                    
+
                     <Row id="margin_top_10">
                         
                         <Col id="column_center">
@@ -563,19 +392,6 @@ function CurrencyRates() {
                                 <Dropdown.Menu>
                                     {currencyNameList.map(currencyName => {
                                         return <Dropdown.Item onClick={() => setCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
-                                    })}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </Col>
-
-                        <Col id="column_center">
-                            <Dropdown>
-                                <Dropdown.Toggle variant="outline-primary" id="dropdown_basic_button">
-                                {equalsCurrencyName.toUpperCase()} <Icon.CaretDownFill></Icon.CaretDownFill>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    {currencyNameList.map(currencyName => {
-                                        return <Dropdown.Item onClick={() => setEqualsCurrencyName(currencyName)}>{currencyName}</Dropdown.Item>
                                     })}
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -611,12 +427,10 @@ function CurrencyRates() {
                         </Col>
 
                         <Col>
-                            <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{equalsCurrencyName.toUpperCase()}</a> Rates In The Table</h5>
+                            <h5 id="column_center">1 <a href="/#" id="blue_title">{currencyName.toUpperCase()}</a> Rates In The Table</h5>
                         </Col>
 
-
                     </Row>
-
 
                     {/* table starts */}
 
@@ -624,10 +438,10 @@ function CurrencyRates() {
                         <thead>
                             <tr>
                             <th>Id</th>
-                            <th>Rate Values</th>
-                            <th>Year</th>
-                            <th>Month</th>
-                            <th>Day</th>
+                            <th>GDP</th>
+                            <th>Growth Rate</th>
+                            <th>Per Capita</th>
+                            <th>Date</th>
                             <th>Delete</th>
                             <th>Update</th>
                             </tr>
@@ -644,7 +458,7 @@ function CurrencyRates() {
                                 </tr> :  currencyRateList.map(element => {
                                 return <tr>
                                             <td>{element.currencyRateId}</td>
-                                            <td>{element.currencyRateValue} {equalsCurrencyName}</td>
+                                            <td>{element.currencyRateValue}</td>
                                             <td>{element.year}</td>
                                             <td>{element.month}</td>
                                             <td>{element.day}</td>
@@ -690,14 +504,8 @@ function CurrencyRates() {
                             }} />
                         </Pagination>
                     </div>
-                    
+
                 </Col>
-
-                {/* Table view ends */}
-
-
-
-                {/* Create/ Update view starts */}
 
                 <Col>
                     <div id='single_line'></div>
@@ -727,17 +535,6 @@ function CurrencyRates() {
                                 </DropdownButton>
                             </Col>
 
-                            <Col id="column_center">
-                                <h6 id="column_left">Select Equals Currency</h6>
-                                <DropdownButton  id="dropdown_basic_button" variant="outline-secondary" title={`${addNewEqualsCurrencyName}`}>
-                                    {currencyList.map(currency => {
-                                        return <Dropdown.Item onClick={() => {
-                                            setAddNewEqualsCurrency(currency);
-                                            setAddNewEqualsCurrencyName(currency.currencyName);
-                                        }}>{currency.currencyName}</Dropdown.Item>
-                                    })}
-                                </DropdownButton>
-                            </Col>
 
                         </Row>
 
@@ -747,7 +544,7 @@ function CurrencyRates() {
 
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="inputGroup-sizing-default">
-                            <div id="text_bold">Currency Rate ({addNewEqualsCurrencyName}) </div>
+                            <div id="text_bold">Currency Rate</div>
                             </InputGroup.Text>
                             <Form.Control
                             aria-label="Default"
@@ -792,17 +589,6 @@ function CurrencyRates() {
                             </Col>
 
                             <Col >
-                            </Col>
-                            
-                        </Row>
-
-                        <Row>
-
-                            <Col  >
-                                <br ></br>
-                                <div id="extra_thin_single_line"></div>
-                                <h5 style={margin_top} id="column_center">1 <a href="/#" id="blue_title">{addNewCurrencyName.toUpperCase()}</a> = <a href="/#" id="blue_title">{addNewCurrencyRateValue} {addNewEqualsCurrencyName.toUpperCase()}</a> Rate</h5> 
-                                <div id="extra_thin_single_line"></div>
                             </Col>
                             
                         </Row>
@@ -873,13 +659,10 @@ function CurrencyRates() {
                     {/* add/ update the currency rate data ends */}
 
                 </Col>
-
-                {/* Create/ Update view ends */}
-
-
+            
             </Row>
+  
         </div>
     );
 }
-
-export default CurrencyRates;
+export default GDP;
