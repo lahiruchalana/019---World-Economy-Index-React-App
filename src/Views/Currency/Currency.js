@@ -31,8 +31,8 @@ function NewsOfCurrency() {
     const [isAvailableData, setIsAvailableData] = useState(false);
 
 
-    const currencyUrl = `http://localhost:8080/api/data/currencies`;
-    const currencyRateURL = `http://localhost:8080/api/data/currencies/rates`;   
+    const currencyUrl = `http://localhost:8080/world-economy-index/api/data/currencies`;
+    const currencyRateURL = `http://localhost:8080/world-economy-index/api/data/currencies/rates`;   
 
     const monthsShort = {
         JANUARY: 0,
@@ -122,7 +122,7 @@ function NewsOfCurrency() {
 
         currency.forEach(element => {
             const currencyData = {
-                x: new Date (Number(element.year), monthsShort[element.month], Number(element.date)),
+                x: new Date (Number(element.year), monthsShort[element.month], Number(element.day)),
                 y: element.currencyRateValue
             }
 

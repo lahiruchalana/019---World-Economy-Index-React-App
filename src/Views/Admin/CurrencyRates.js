@@ -37,20 +37,21 @@ function CurrencyRates() {
     const [addNewCurrencyRateValue, setAddNewCurrencyRateValue] = useState("");
     const [addNewYear, setAddNewYear] = useState(2022);
     const [addNewMonth, setAddNewMonth] = useState("JANUARY");
-    const [addNewDate, setAddNewDate] = useState(1);
+    const [addNewDay, setAddNewDay] = useState(1);
     const [addNewRecordStatus, setAddNewRecordStatus] = useState("current");
     const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
     const [currencyRateResponse, setCurrencyRateResponse] = useState([]);
     const [placeHolderForCurrencyRateValue, setPlaceHolderForCurrencyRateValue] = useState(0.00);
     const [sortingProperty, setSortingProperty] = useState("Date");
     const [order, setOrder] = useState("Asc");
+    const [pageNumber, setPageNumber] = useState(0);
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
-    const dateList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+    const dayList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
-    const currencyUrl = `http://localhost:8080/api/data/currencies`;
-    const currencyRateURL = "http://localhost:8080/api/data/currencies/rates";
+    const currencyUrl = `http://localhost:8080/world-economy-index/api/data/currencies`;
+    const currencyRateURL = "http://localhost:8080/world-economy-index/api/data/currencies/rates";
 
     useEffect(() => {   // get currency data (purpose to store in drop down buttons)
         axios.get(currencyUrl).then((response) => {
@@ -84,7 +85,7 @@ function CurrencyRates() {
     }, [currencyList])    
 
     useEffect(() => {   // load currency rates relavent to currencyName and equalsCurrencyName
-        axios.get(`${currencyRateURL}/currencies/${currencyName}/paginationAllCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&pageNumber=0&pageSize=3&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
+        axios.get(`${currencyRateURL}/currencies/${currencyName}/paginationAllCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&pageNumber=${pageNumber}&pageSize=8&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
             setCurrencyRateList(response.data.content);
             setIsResponseErrorOnGetCurrencyRates(false);
         })
@@ -115,7 +116,7 @@ function CurrencyRates() {
             }
         })
         
-    }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order])
+    }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order, pageNumber])
 
     function addData() {    // post a currency rate record
         if (addNewCurrency === null && addNewEqualsCurrency === null) { // after loaded the page this execute for adding (without selecting currencies - default there)
@@ -124,7 +125,7 @@ function CurrencyRates() {
                 recordStatus: addNewRecordStatus,
                 year: addNewYear,
                 month: addNewMonth,
-                date: addNewDate,
+                day: addNewDay,
                 currency: {
                     currencyId: 2
                 },
@@ -144,10 +145,10 @@ function CurrencyRates() {
                   console.log(error.response.headers);
                   if (error.response.status === 500) {
 
-                    if(error.response.data.message === "not allowed to have many records for a date") {
+                    if(error.response.data.exceptionId == "data.already-exist") {
                     
                         swal({
-                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                             text: `Change Date or Update!`,
                             icon: "error",
                             timer: 30000,
@@ -196,7 +197,7 @@ function CurrencyRates() {
                 recordStatus: addNewRecordStatus,
                 year: addNewYear,
                 month: addNewMonth,
-                date: addNewDate,
+                day: addNewDay,
                 currency: {
                     currencyId: 2
                 },
@@ -216,10 +217,10 @@ function CurrencyRates() {
                   console.log(error.response.headers);
                   if (error.response.status === 500) {
 
-                    if(error.response.data.message === "not allowed to have many records for a date") {
+                    if(error.response.data.exceptionId == "data.already-exist") {
                     
                         swal({
-                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                             text: `Change Date or Update!`,
                             icon: "error",
                             timer: 30000,
@@ -266,7 +267,7 @@ function CurrencyRates() {
                 recordStatus: addNewRecordStatus,
                 year: addNewYear,
                 month: addNewMonth,
-                date: addNewDate,
+                day: addNewDay,
                 currency: {
                     currencyId: addNewCurrency.currencyId
                 },
@@ -286,10 +287,10 @@ function CurrencyRates() {
                   console.log(error.response.headers);
                   if (error.response.status === 500) {
 
-                    if(error.response.data.message === "not allowed to have many records for a date") {
+                    if(error.response.data.exceptionId == "data.already-exist") {
                     
                         swal({
-                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                            title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                             text: `Change Date or Update!`,
                             icon: "error",
                             timer: 30000,
@@ -337,7 +338,7 @@ function CurrencyRates() {
             recordStatus: addNewRecordStatus,
             year: addNewYear,
             month: addNewMonth,
-            date: addNewDate,
+            day: addNewDay,
             currency: {
                 currencyId: addNewCurrency.currencyId
             },
@@ -352,15 +353,16 @@ function CurrencyRates() {
             if (error.response) {
               // Request made and server responded
               console.log(error.response.data);
+              console.log(error.response.data.exceptionId)
               console.log("Reason For Error : " + error.response.data.message);
               console.log(error.response.status);
               console.log(error.response.headers);
               if (error.response.status === 500) {
 
-                if(error.response.message == "not allowed to have many records for a date") {
+                if(error.response.data.exceptionId == "data.already-exist") {
                     
                     swal({
-                        title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                        title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                         text: `Change Date or Update!`,
                         icon: "error",
                         timer: 30000,
@@ -411,7 +413,7 @@ function CurrencyRates() {
             recordStatus: addNewRecordStatus,
             year: addNewYear,
             month: addNewMonth,
-            date: addNewDate,
+            day: addNewDay,
             equalsCurrency: {
                 currencyId: addNewEqualsCurrency.currencyId
             }
@@ -429,7 +431,7 @@ function CurrencyRates() {
               if (error.response.status === 500) {
 
                 swal({
-                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDate}" Date`,
+                    title: `${currencyName.toUpperCase()} / ${equalsCurrencyName.toUpperCase()} Already Exist A Currency Rate Records For "${addNewYear}-${addNewMonth}-${addNewDay}" Date`,
                     text: `Change Date or Update!`,
                     icon: "error",
                     timer: 30000,
@@ -486,7 +488,7 @@ function CurrencyRates() {
         setPlaceHolderForCurrencyRateValue(element.currencyRateValue);
         setAddNewYear(element.year);
         setAddNewMonth(element.month);
-        setAddNewDate(element.date);
+        setAddNewDay(element.day);
         setAddNewRecordStatus(element.recordStatus);
 
         console.log("updating : " + element.currencyRateId);
@@ -498,7 +500,7 @@ function CurrencyRates() {
         setPlaceHolderForCurrencyRateValue(0.00);
         setAddNewYear(2022);
         setAddNewMonth("JANUARY");
-        setAddNewDate(1);
+        setAddNewDay(1);
         setAddNewRecordStatus("current");
 
     }
@@ -608,7 +610,7 @@ function CurrencyRates() {
                             <th>Rate Values</th>
                             <th>Year</th>
                             <th>Month</th>
-                            <th>Date</th>
+                            <th>Day</th>
                             <th>Delete</th>
                             <th>Update</th>
                             </tr>
@@ -628,7 +630,7 @@ function CurrencyRates() {
                                             <td>{element.currencyRateValue} {equalsCurrencyName}</td>
                                             <td>{element.year}</td>
                                             <td>{element.month}</td>
-                                            <td>{element.date}</td>
+                                            <td>{element.day}</td>
                                             <td onClick={() => { 
                                                 setDeleteCurrencyRateId(element.currencyRateId);
                                                 deleteTableData(element.currencyRateId);  
@@ -732,10 +734,10 @@ function CurrencyRates() {
                             </Col>
 
                             <Col id="column_center">
-                                <h6 id="column_left">Date</h6>
-                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewDate}`}>
-                                    {dateList.map(date => {
-                                        return <Dropdown.Item onClick={() => setAddNewDate(date)}>{date}</Dropdown.Item>
+                                <h6 id="column_left">Day</h6>
+                                <DropdownButton  id="form_dropdown_basic_button" variant="outline-secondary" title={`${addNewDay}`}>
+                                    {dayList.map(day => {
+                                        return <Dropdown.Item onClick={() => setAddNewDay(day)}>{day}</Dropdown.Item>
                                     })}
                                 </DropdownButton>
                             </Col>
