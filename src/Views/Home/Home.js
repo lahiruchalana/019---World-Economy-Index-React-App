@@ -224,7 +224,7 @@ function Home() {
                     
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Per Capita <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button href='/gdp-per-capita/usa' className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Per Capita <a href='/gdp-per-capita/usa' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                                         
                     <div id='column_center'>

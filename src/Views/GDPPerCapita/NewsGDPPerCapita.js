@@ -15,12 +15,12 @@ import Image from "react-bootstrap/Image";
 
 
 function NewsGDPPerCapita() {
-    const [currency, setCurrency] = useState([]);
-    const [currencyDataArray, setCurrencyDataArray] = useState([]);
+    const [gdpPerCapita, setGdpPerCapita] = useState([]);
+    const [gdpPerCapitaDataArray, setGdpPerCapitaDataArray] = useState([]);
     const { countryname } = useParams();
     
 
-    const currencyRateURL = `http://localhost:8080/world-economy-index/api/data/gdps`;   
+    const gdpPerCapitaRateURL = `http://localhost:8080/world-economy-index/api/data/gdps`;   
 
     const monthsShort = {
         JANUARY: 0,
@@ -39,8 +39,8 @@ function NewsGDPPerCapita() {
 
 
     useEffect(() => {
-        axios.get(`${currencyRateURL}/countries/${countryname}/gdps-by-name-sorting?sortingProperty=Date&order=Asc`).then((response) => {
-            setCurrency(response.data);
+        axios.get(`${gdpPerCapitaRateURL}/countries/${countryname}/gdps-by-name-sorting?sortingProperty=Date&order=Asc`).then((response) => {
+            setGdpPerCapita(response.data);
         })
         .catch(function (error) {
             if (error.response) {
@@ -58,29 +58,29 @@ function NewsGDPPerCapita() {
             }
         })
         
-    }, [countryname, currencyRateURL]);    
+    }, [countryname, gdpPerCapitaRateURL]);    
 
     useEffect(() => {
-        setCurrencyDataArray([]);
+        setGdpPerCapitaDataArray([]);
 
-        currency.forEach(element => {
+        gdpPerCapita.forEach(element => {
             var yearMonthString = element.yearMonth
             var yearString = String(yearMonthString).slice(3, 7)
             var monthString = String(yearMonthString).slice(0,2)
 
-            const currencyData = {
+            const gdpPerCapitaData = {
                 x: new Date (Number(yearString), Number(monthString)),
                 y: element.gdpPerCapita
             }
 
-            console.log(currencyData);
-            setCurrencyDataArray(oldArray => [...oldArray, currencyData]);
+            console.log(gdpPerCapitaData);
+            setGdpPerCapitaDataArray(oldArray => [...oldArray, gdpPerCapitaData]);
     
         })
-    }, [currency.length]);
+    }, [gdpPerCapita.length]);
 
-    console.log(currency);
-    console.log(currencyDataArray);
+    console.log(gdpPerCapita);
+    console.log(gdpPerCapitaDataArray);
 
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -90,7 +90,7 @@ function NewsGDPPerCapita() {
             text: "Global GDP Per Capita"
         },
         axisX: {
-            valueFormatString: "YYYY-MMM-DD"
+            valueFormatString: "YYYY-MMMM"
         },
         axisY: {
             title: "USD",
@@ -100,7 +100,7 @@ function NewsGDPPerCapita() {
             yValueFormatString: "$##,###,###.####",
             xValueFormatString: "YYYY-MMMM",
             type: "spline",
-            dataPoints: currencyDataArray
+            dataPoints: gdpPerCapitaDataArray
         }]
     };
 
@@ -119,10 +119,10 @@ function NewsGDPPerCapita() {
                     <div id='column_left'>
                         <br></br>
                         <Card className='w-100'>
-                            <Card.Img height={300} variant="top" src="https://cdn.pixabay.com/photo/2017/03/05/00/34/panorama-2117310__340.jpg" />
+                            <Card.Img height={450} variant="top" src="https://images.pexels.com/photos/3964406/pexels-photo-3964406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
-                                    <Card.Title id='subscribe_title_in_card'>Be Updated With Us, Subscribe Us. Economy, Forum, Researches, Investments and Academy All in a One Place </Card.Title>
+                                <a href="/#" id='title_in_card'>
+                                    <Card.Title id='subscribe_title_in_card'>Be Updated With Us @Washington DC</Card.Title>
                                     <Card.Title id='subscribe_title_in_card'> - World Economy Index - </Card.Title>
                                 </a>
                             </Card.Body>
@@ -135,10 +135,9 @@ function NewsGDPPerCapita() {
                     <h2>Global GDP Per Capita Fallen</h2>
                     <h6>2022_09_29, Munich, Germany - Senchers Gobrashav</h6>
                     <br></br>
-                    <h5>The euro fell below $0.99 this morning for the first time in two decades as the energy crisis rocks the financial markets. Meanwhile, benchmark European prices jumped as much as 35 percent after Russia's state energy firm Gazprom announced its Nord Stream 1 pipeline to Germany will remain closed indefinitely. <br></br><br></br>
-                        It had been shut down for three days, reportedly for maintenance work, but will remain closed for longer after Gazprom claimed it had found an oil leak in a turbine, sparking fears of further increases in energy prices around Europe. <br></br> <br></br>
-                        The former chief executive of Energy UK said the Russian President has been "playing" the "economic war" and "psychological war extremely well" amid the fallout over the decision to keep the pipeline closed. <br></br>
-                        Angela Knight told Times Radio yesterday: "He's actually playing the economic war extremely well, he's playing the psychological war extremely well.
+                    <h5>The world economy is paying a high price for Russia’s unprovoked, unjustifiable and illegal war of aggression against Ukraine. With the impacts of the COVID-19 pandemic still lingering, the war is dragging down growth and putting additional upward pressure on prices, above all for food and energy. Global GDP stagnated in the second quarter of 2022 and output declined in the G20 economies. High inflation is persisting for longer than expected. In many economies, inflation in the first half of 2022 was at its highest since the 1980s. With recent indicators taking a turn for the worse, the global economic outlook has darkened.<br></br><br></br>
+                        Despite a boost in activity as COVID-19 infections drop worldwide, global growth is projected to remain subdued in the second half of 2022, before slowing further in 2023 to an annual growth of just 2.2%.<br></br> <br></br>
+                        Compared to OECD forecasts from December 2021, before Russia’s aggression against Ukraine, global GDP is now projected to be at least USD 2.8 trillion lower in 2023.
                     </h5>
 
                     <br></br>
@@ -277,18 +276,19 @@ function NewsGDPPerCapita() {
                         </div>
                     </Col>
 
+                    
                     <div id='column_left'>
                         <br></br>
-                        <Card className='w-100'>
-                            <Card.Img variant="top" src="https://images.pexels.com/photos/4133256/pexels-photo-4133256.jpeg?auto=compress&cs=tinysrgb&w=1600" />
+                        <Card className='w-100' style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
-                                    <Card.Title>India Becomes The Most Populous Country In The World?? <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
+                                <a href="/#" id='title_in_card'>
+                                    <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
-                    </div>
-
+                    </div>                    
+                
 
                     <Col>
                         <div id='headings_carousel'>
@@ -412,7 +412,7 @@ function NewsGDPPerCapita() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
+                                <a href="/#" id='title_in_card'>
                                     <Card.Title>Global Poverty Rate Increased. Lower Income People Going... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
@@ -426,7 +426,7 @@ function NewsGDPPerCapita() {
                         <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
+                                <a href="/#" id='title_in_card'>
                                     <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
                                 </a>
                             </Card.Body>
@@ -440,7 +440,7 @@ function NewsGDPPerCapita() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2017/10/13/11/49/putin-2847423__340.jpg" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
+                                <a href="/#" id='title_in_card'>
                                     <Card.Title>Putin Tells Xi He Understands China ‘Concerns’ on War in Ukraine... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
@@ -454,7 +454,7 @@ function NewsGDPPerCapita() {
                         <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2015/09/13/15/14/money-938269__340.jpg" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
+                                <a href="/#" id='title_in_card'>
                                     <Card.Title>Offshore Yuan Drops Past 7 Per Dollar for First Time Since 2020... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
                                 </a>
                             </Card.Body>
