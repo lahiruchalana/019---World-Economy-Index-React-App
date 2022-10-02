@@ -10,7 +10,7 @@ function CarouselComponent() {
             <div id='headings_carousel' href='/#'>
                 <Carousel>
                     <Carousel.Item interval={1000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
@@ -20,7 +20,7 @@ function CarouselComponent() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={2000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
@@ -30,7 +30,7 @@ function CarouselComponent() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={2000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
@@ -40,7 +40,7 @@ function CarouselComponent() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={2000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
@@ -50,7 +50,7 @@ function CarouselComponent() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={2000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
@@ -60,7 +60,7 @@ function CarouselComponent() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={2000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
@@ -70,7 +70,7 @@ function CarouselComponent() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={2000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
@@ -80,7 +80,7 @@ function CarouselComponent() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={2000}>
-                        <img height={250}
+                        <img height={225}
                         className="d-block w-100"
                         src="https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__340.jpg"
                         alt="First slide"
