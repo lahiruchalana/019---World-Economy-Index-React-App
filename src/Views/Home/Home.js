@@ -212,7 +212,7 @@ function Home() {
                                 Coming global economic crisis will hit to GDP per capita plus falling living conditions of global communities, 
                                 specially lower income and pover income people.
                                 </Card.Text>
-                                <Button variant="primary">Go Deep On News</Button>
+                                <Button variant="primary" href='/news/gdp-per-capita/usa'>Go Deep On News</Button>
                             </Card.Body>
                         </Card>                    
                     </div>
@@ -239,7 +239,7 @@ function Home() {
 
                     <div id='column_center'>
                         <br></br>
-                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Population <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">Economy Freedom <a href='/#' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
 
                 </Col>
@@ -255,7 +255,7 @@ function Home() {
                         <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/220365/pexels-photo-220365.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
+                                <a href="/#" id='title_in_card'>
                                     <Card.Title>Global Poverty Rate Increased. Lower Income People Going... <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
@@ -267,8 +267,8 @@ function Home() {
                         <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/4133256/pexels-photo-4133256.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
-                                    <Card.Title>India Becomes The Most Populous Country In The World?? <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
+                                <a href="/#" id='title_in_card'>
+                                    <Card.Title>India's Economic Freedom Ranking 131st, How Become World Power? <a href='/#' id='button_sub_date'>2022-09-16</a></Card.Title>
                                 </a>
                             </Card.Body>
                         </Card>
@@ -368,7 +368,7 @@ function Home() {
                         <Card className='w-100' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src="https://images.pexels.com/photos/745243/pexels-photo-745243.jpeg?auto=compress&cs=tinysrgb&w=1600" />
                             <Card.Body>
-                                <a href="/Currency" id='title_in_card'>
+                                <a href="/#" id='title_in_card'>
                                     <Card.Title>China Increased GDP Growth Rate In 2022. Corona Virus Caused A Large Scale Of Fallen Of All Over The... <a href='/#' id='button_sub_date'>2022-09-06</a></Card.Title>
                                 </a>
                             </Card.Body>
