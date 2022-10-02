@@ -13,6 +13,8 @@ import GDP from './Views/GDP/GDP';
 import AdminHome from './Views/Admin/AdminHome';
 import CurrencyRates from './Views/Admin/CurrencyRates';
 import NewsGDPPerCapita from './Views/GDPPerCapita/NewsGDPPerCapita';
+import GDPPerCapita from './Views/GDPPerCapita/GDPPerCapita';
+import Country from './Views/Admin/Country';
 
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
             <Routes>
               <Route path='/admin/currency/rate/:currencyname/:equalscurrencyname' element={<CurrencyRates/>}/>
             </Routes>
+            <Routes>
+              <Route path='/admin/country' element={<Country/>}/>
+            </Routes>
             <Routes >
               <Route path="/news/currency/:currencyname/:equalscurrencyname" element={<NewsOfCurrency />}  />
             </Routes >
@@ -37,6 +42,9 @@ function App() {
             </Routes>
             <Routes >
               <Route path='/news/gdp-per-capita/:countryname' element={<NewsGDPPerCapita />}/>
+            </Routes>
+            <Routes >
+              <Route path='/gdp-per-capita/:countryname' element={<GDPPerCapita />}/>
             </Routes>
             <Routes>
               <Route path='/gdp/:id' element={<GDP />}/>

@@ -12,6 +12,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Pagination from 'react-bootstrap/Pagination';
 
 
 import Form from 'react-bootstrap/Form';
@@ -45,6 +46,7 @@ function CurrencyRates() {
     const [sortingProperty, setSortingProperty] = useState("Date");
     const [order, setOrder] = useState("Asc");
     const [pageNumber, setPageNumber] = useState(0);
+    const [totalPage, setTotalPage] = useState(1);
 
     const yearList = [2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999]
     const monthList = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 'NOVEMBER', "DECEMBER"];
@@ -88,6 +90,9 @@ function CurrencyRates() {
         axios.get(`${currencyRateURL}/currencies/${currencyName}/paginationAllCurrencyRates?equalsCurrencyName=${equalsCurrencyName}&pageNumber=${pageNumber}&pageSize=8&sortingProperty=${sortingProperty}&order=${order}`).then((response) => {
             setCurrencyRateList(response.data.content);
             setIsResponseErrorOnGetCurrencyRates(false);
+            setTotalPage(response.data.totalPages);
+
+            console.log(`total pages = ${response.data.totalPages}`);
         })
         .catch(function (error) {
             if (error.response) {
@@ -116,7 +121,7 @@ function CurrencyRates() {
             }
         })
         
-    }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order, pageNumber])
+    }, [currencyName, equalsCurrencyName, currencyRateResponse.length, sortingProperty, order, pageNumber, totalPage])
 
     function addData() {    // post a currency rate record
         if (addNewCurrency === null && addNewEqualsCurrency === null) { // after loaded the page this execute for adding (without selecting currencies - default there)
@@ -505,6 +510,18 @@ function CurrencyRates() {
 
     }
 
+
+    let items = []; // pagination starts
+    for (let number = 1; number <= totalPage; number++) {
+    items.push(
+        <Pagination.Item key={number} active={number === (pageNumber + 1)} onClick={() => {
+            setPageNumber(number - 1);
+        }}>
+        {number}
+        </Pagination.Item>,
+    );
+    } // pagination ends
+
     console.log(currencyList);
     console.log(currencyRateList);
     console.log(currencyNameList);
@@ -645,6 +662,34 @@ function CurrencyRates() {
                     </Table>
 
                     {/* table ends */}
+                    
+                    <Pagination>
+                        <Pagination.First onClick={() => {
+                            setPageNumber(0);
+                        }}/>
+                        <Pagination.Prev onClick={() => {
+                            if (pageNumber === 0) {
+                                console.log("can not change page number")
+                            } else {
+                                setPageNumber(pageNumber - 1);
+                            }
+                        }}/>
+
+                        {items}
+                        
+                        <Pagination.Next onClick={() => {
+                            if (pageNumber === (totalPage - 1)) {
+                                console.log("can not change page number")
+                            } else {
+                                setPageNumber(pageNumber + 1);
+                            }
+                        }} />
+                        <Pagination.Last onClick={() => {
+                            setPageNumber(totalPage - 1);
+                        }} />
+                    </Pagination>
+
+
 
                 </Col>
 

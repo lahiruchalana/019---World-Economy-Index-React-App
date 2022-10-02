@@ -16,7 +16,7 @@ function VerticalNavBar() {
 
             <div id='column_center'>
                 <br></br>
-                <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Countries <a href='/#' id='button_sub_title_blue'> </a></Button>
+                <Button href='/admin/country' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Countries <a href='/#' id='button_sub_title_blue'> </a></Button>
             </div>
 
             <div id='column_center'>
