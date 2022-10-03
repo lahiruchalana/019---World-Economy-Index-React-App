@@ -212,19 +212,19 @@ function Home() {
                                 Coming global economic crisis will hit to GDP per capita plus falling living conditions of global communities, 
                                 specially lower income and pover income people.
                                 </Card.Text>
-                                <Button variant="primary" href='/news/gdp-per-capita/usa'>Go Deep On News</Button>
+                                <Button variant="primary" href='/news/gdp-per-capita/Global'>Go Deep On News</Button>
                             </Card.Body>
                         </Card>                    
                     </div>
 
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/gdp/1' className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Data <a href='/gdp/1' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button href='/#' className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Data <a href='/gdp/1' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                     
                     <div id='column_center'>
                         <br></br>
-                        <Button href='/gdp-per-capita/usa' className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Per Capita <a href='/gdp-per-capita/usa' id='button_sub_title_blue'>Updated</a></Button>
+                        <Button href='/#' className='w-100' id='button_low_top_margin' variant="outline-secondary" size="lg">GDP Per Capita <a href='/gdp-per-capita/usa' id='button_sub_title_blue'>Updated</a></Button>
                     </div>
                                         
                     <div id='column_center'>
@@ -360,7 +360,7 @@ function Home() {
                     </Col>
                     
                     <div style={button_styles} id='column_center'>
-                        <Button href='/currency/Euro/USD' className='w-100' style={button} id='home_buttons' variant="outline-success" size="lg">Other Currency Rates</Button>
+                        <Button href='/currency/Euro/USD' className='w-100' style={button} id='home_buttons' variant="primary" size="lg">Currency Rates</Button>
                     </div>
 
                     <div id='column_left'>
