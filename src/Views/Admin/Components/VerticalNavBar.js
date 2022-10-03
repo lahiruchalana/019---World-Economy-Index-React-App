@@ -21,12 +21,12 @@ function VerticalNavBar() {
 
             <div id='column_center'>
                 <br></br>
-                <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Economy Index <a href='/#' id='button_sub_title_blue'></a></Button>
+                <Button href='/admin/economy/index' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Economy Index <a href='/#' id='button_sub_title_blue'></a></Button>
             </div>
 
             <div id='column_center'>
                 <br></br>
-                <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency <a href='/#' id='button_sub_title_blue'></a></Button>
+                <Button href='/admin/currency' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">Currency <a href='/#' id='button_sub_title_blue'></a></Button>
             </div>
 
             <div id='column_center'>
@@ -36,7 +36,7 @@ function VerticalNavBar() {
 
             <div id='column_center'>
                 <br></br>
-                <Button href='/admin/home/#' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">GDP Data <a href='/admin/home/#' id='button_sub_title_blue'></a></Button>
+                <Button href='/admin/gdp' className='w-100' id='vertical_nav_button' variant="outline-secondary" size="lg">GDP Data <a href='/admin/home/#' id='button_sub_title_blue'></a></Button>
             </div>
 
             <div id='column_center'>
