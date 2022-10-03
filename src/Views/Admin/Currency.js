@@ -27,10 +27,10 @@ function Currency() {
     const [countryName, setCountryName] = useState("USA");
     const [countryIdList, setCountryIdList] = useState([]);
     const [currencyList, setCurrencyList] = useState([]);
-    const [updateCountryId, setUpdateCountry] = useState(null);
+    const [updateCurrencyId, setUpdateCurrency] = useState(null);
     const [AddNewCurrency, setAddNewCurrency] = useState("");
     const [addNewCountryIdList, setAddNewCountryIdList] = useState([]);
-    const [countryResponse, setCountryResponse] = useState([]);
+    const [currencyResponse, setCurrencyResponse] = useState([]);
     const [placeHolderForCountry, setPlaceHolderForCountry] = useState("Country");
     const [placeHolderForSubContinent, setPlaceHolderForSubContinent] = useState("Sub Continent");
     const [pageNumber, setPageNumber] = useState(0);
@@ -43,8 +43,8 @@ function Currency() {
     const countryUrl = "http://localhost:8080/world-economy-index/api/data/countries"; 
    
     useEffect(() => {   // get country data (purpose to store in drop down buttons)
-        axios.get(countryUrl).then((response) => {
-            setCountryList(response.data);
+        axios.get(`${countryUrl}/countries-pagination?&pageNumber=0&pageSize=300`).then((response) => {
+            setCountryList(response.data.content);
         })
         .catch(function (error) {
             if (error.response) {
@@ -80,7 +80,7 @@ function Currency() {
             }
         })
         
-    }, [countryResponse.length, pageNumber, totalPage])
+    }, [currencyResponse.length, pageNumber, totalPage])
 
     function addData() {    // post a country data record
         axios.post(currencyUrl, {    
@@ -88,7 +88,7 @@ function Currency() {
             countryList: countryIdList,
         })
         .then((response) => {
-            setCountryResponse(oldList => [...oldList, response.data]);
+            setCurrencyResponse(oldList => [...oldList, response.data]);
         })
         .catch(function (error) {
             if (error.response) {
@@ -102,8 +102,8 @@ function Currency() {
                 if(error.response.data.exceptionId == "data.already-exist") {
                     
                     swal({
-                        title: `${AddNewCurrency.toUpperCase()}  Already Exist A Country Data Record`,
-                        text: `Change Country or Update!`,
+                        title: `${AddNewCurrency.toUpperCase()}  Already Exist A Currency  Data Record`,
+                        text: `Change Currency or Update!`,
                         icon: "error",
                         timer: 30000,
                     });
@@ -127,12 +127,12 @@ function Currency() {
     }
 
     function updateData() {   // update the record of country data
-        axios.put(`${currencyUrl}/currencies/${updateCountryId}`, {
-            countryName: AddNewCurrency,
-            continentName: addNewCountryIdList,
+        axios.put(`${currencyUrl}/currencies/${updateCurrencyId}`, {
+            currencyName: AddNewCurrency,
+            countryList: countryIdList,
         })
         .then((response) => {
-            setCountryResponse(oldList => [...oldList, response.data]);
+            setCurrencyResponse(oldList => [...oldList, response.data]);
         })
         .catch(function (error) {
             if (error.response) {
@@ -158,7 +158,7 @@ function Currency() {
         })
 
         swal({
-            title: `Updated CountryId : ${updateCountryId}`,
+            title: `Updated CountryId : ${updateCurrencyId}`,
             text: `You Have Updated Country Data!`,
             icon: "success",
             timer: 8000,
@@ -174,25 +174,32 @@ function Currency() {
                 icon: "success",
                 timer: 8000,
             });
-            setCountryResponse(oldList => [...oldList, null]);
+            setCurrencyResponse(oldList => [...oldList, null]);
         })
 
         console.log("deleted " + id + " " + name);
     }
 
-    function updateFormData(element) {      // when click on the update of a country --> the form fill with relavent country data data
-        setAddNewCurrency(element.countryName);
-        setAddNewCountryIdList(element.continentName);
-        setPlaceHolderForCountry(element.countryName);
-        setPlaceHolderForSubContinent(element.continentName);
+    function updateFormData(element) {      // when click on the update of a currency --> the form fill with relavent country data data
+        setAddNewCurrency(element.currencyName);
+        setCountryNameList([]);
+        setCountryIdList([]);
+        element.countryList.map(country => {
+            setCountryNameList(oldList => [...oldList, country.countryName ])
+            setCountryIdList(oldList => [...oldList, {"countryId" : country.countryId}]);
+        })
+        setPlaceHolderForCountry(element.currencyName);
 
+        console.log(countryNameList)
+        console.log(countryIdList)
         console.log("updating : " + element.countryId);
     }
 
     function cancelForm() {     // clear all the data of form in adding or updating 
-        setUpdateCountry(null);
+        setUpdateCurrency(null);
         setAddNewCurrency("");
-        setAddNewCountryIdList([]);
+        setCountryIdList([]);
+        setCountryNameList([]);
         setPlaceHolderForCountry("Country");
         setPlaceHolderForSubContinent("Continent");
     }
@@ -209,7 +216,6 @@ function Currency() {
     );
     } // pagination ends
 
-    console.log(countryIdList);
         
     return(
         <div className='admin_container'>
@@ -249,10 +255,10 @@ function Currency() {
                                                 return ele.countryName + ", "
                                             })}</td>
                                             <td onClick={() => { 
-                                                deleteTableData(element.countryId, element.countryName);  
+                                                deleteTableData(element.currencyId, element.currencyName);  
                                              }}><Button variant="outline-secondary"><Icon.Trash color='white' size={16}/></Button></td>
                                             <td onClick={() => {
-                                                setUpdateCountry(element.countryId);
+                                                setUpdateCurrency(element.currencyId);
                                                 updateFormData(element);
                                             }}><Button variant="outline-secondary"><Icon.ArrowRepeat color='white' size={16}/></Button></td>
                                         </tr>
@@ -295,7 +301,7 @@ function Currency() {
                 <Col>
                     <div id='single_line'></div>
                     { 
-                        updateCountryId === null ? <h2>Add New Currency Data</h2>
+                        updateCurrencyId === null ? <h2>Add New Currency Data</h2>
                         : <h2>Update The Currency Data</h2> 
                     }
                     <div id='single_line'></div>
@@ -393,7 +399,7 @@ function Currency() {
                             <Col id="column_center">
                                 <div id='column_center'>
                                     { 
-                                    updateCountryId === null ? <Button onClick={addData} className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
+                                    updateCurrencyId === null ? <Button onClick={addData} className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
                                     : <Button onClick={updateData} className='w-100' id='home_buttons' variant="primary" size="lg">Update Data</Button> 
                                     }
                                 </div>
