@@ -7,8 +7,6 @@ import swal from 'sweetalert';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Pagination from 'react-bootstrap/Pagination';
@@ -22,63 +20,24 @@ import CarouselComponent from "./Components/CarouselComponent";
 
 
 function Country() {
-    const [currencyList, setCurrencyList] = useState([]);
-    const [currencyNameList, setCurrencyNameList] = useState([]);
-    const [currencyName, setCurrencyName] = useState("usa");
-    const [currencyRateList, setCurrencyRateList] = useState([]);
-    const [updateCurrencyRateId, setUpdateCurrencyRateId] = useState(null);
-    const [addNewCurrency, setAddNewCurrency] = useState(null);
+    const [countryList, setCountryList] = useState([]);
+    const [updateCountryId, setUpdateCountry] = useState(null);
     const [addNewCountry, setAddNewCountry] = useState("");
     const [addNewContinent, setAddNewContinent] = useState("");
     const [addNewSubContinent, setAddNewSubContinent] = useState("");
-    const [addNewYear, setAddNewYear] = useState(2022);
-    const [addNewMonth, setAddNewMonth] = useState("JANUARY");
-    const [addNewDay, setAddNewDay] = useState(1);
-    const [addNewRecordStatus, setAddNewRecordStatus] = useState("current");
-    const [isResponseErrorOnGetCurrencyRates, setIsResponseErrorOnGetCurrencyRates] = useState(false);
-    const [currencyRateResponse, setCurrencyRateResponse] = useState([]);
+    const [countryResponse, setCountryResponse] = useState([]);
     const [placeHolderForCountry, setPlaceHolderForCountry] = useState("Country");
     const [placeHolderForContinent, setPlaceHolderForContinent] = useState("Continet");
     const [placeHolderForSubContinent, setPlaceHolderForSubContinent] = useState("Sub Continent");
-    const [sortingProperty, setSortingProperty] = useState("Date");
-    const [order, setOrder] = useState("Asc");
     const [pageNumber, setPageNumber] = useState(0);
     const [totalPage, setTotalPage] = useState(1);
 
-    const currencyUrl = "http://localhost:8080/world-economy-index/api/data/countries";
-     
-    useEffect(() => {   // get currency data (purpose to store in drop down buttons)
-        axios.get(`${currencyUrl}/countries-pagination?&pageNumber=0&pageSize=300`).then((response) => {
-            setCurrencyList(response.data.content);
-        })
-        .catch(function (error) {
-            if (error.response) {
-              console.log(error.response.data);
-              console.log("Reason For Error : " + error.response.data.message);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            } else if (error.request) {
-              console.log(error.request);
-            } else {
-              console.log('Error', error.message);
-            }
-        })
+    const countryUrl = "http://localhost:8080/world-economy-index/api/data/countries"; 
+   
 
-    }, [currencyUrl])
-    
-    useEffect(() => {   // create currencyNameList using currencyList (includes only currencyNames)
-        setCurrencyNameList([]);
-        
-        currencyList.forEach(element => {
-            setCurrencyNameList(oldArray => [...oldArray, element.countryName])
-        });
-
-    }, [currencyList])    
-
-    useEffect(() => {   // load currency rates relavent to currencyName 
-        axios.get(`${currencyUrl}/countries-pagination?&pageNumber=${pageNumber}&pageSize=12`).then((response) => {
-            setCurrencyRateList(response.data.content);
-            setIsResponseErrorOnGetCurrencyRates(false);
+    useEffect(() => {   // load country data relavent to countryName 
+        axios.get(`${countryUrl}/countries-pagination?&pageNumber=${pageNumber}&pageSize=12`).then((response) => {
+            setCountryList(response.data.content);
             setTotalPage(response.data.totalPages);
         })
         .catch(function (error) {
@@ -87,16 +46,6 @@ function Country() {
               console.log("Reason For Error : " + error.response.data.message);
               console.log(error.response.status);
               console.log(error.response.headers);
-              if (error.response.status === 500){
-                  setIsResponseErrorOnGetCurrencyRates(true);
-
-                  swal({
-                    title: `${currencyName.toUpperCase()} Does Not Exist Records`,
-                    icon: "warning",
-                    timer: 20000,
-                });
-
-              }
             } else if (error.request) {
               console.log(error.request);
             } else {
@@ -104,16 +53,16 @@ function Country() {
             }
         })
         
-    }, [currencyName, currencyRateResponse.length, sortingProperty, order, pageNumber, totalPage])
+    }, [countryResponse.length, pageNumber, totalPage])
 
-    function addData() {    // post a currency rate record
-        axios.post(currencyUrl, {   // when change two currencies 
+    function addData() {    // post a country data record
+        axios.post(countryUrl, {    
             countryName: addNewCountry,
             continentName: addNewContinent,
             subContinentName: addNewSubContinent
         })
         .then((response) => {
-            setCurrencyRateResponse(oldList => [...oldList, response.data]);
+            setCountryResponse(oldList => [...oldList, response.data]);
         })
         .catch(function (error) {
             if (error.response) {
@@ -151,14 +100,14 @@ function Country() {
 
     }
 
-    function updateData() {   // update the record of currency rate
-        axios.put(`${currencyUrl}/countries/${updateCurrencyRateId}`, {
+    function updateData() {   // update the record of country data
+        axios.put(`${countryUrl}/countries/${updateCountryId}`, {
             countryName: addNewCountry,
             continentName: addNewContinent,
             subContinentName: addNewSubContinent
         })
         .then((response) => {
-            setCurrencyRateResponse(oldList => [...oldList, response.data]);
+            setCountryResponse(oldList => [...oldList, response.data]);
         })
         .catch(function (error) {
             if (error.response) {
@@ -167,7 +116,7 @@ function Country() {
               console.log(error.response.status);
               console.log(error.response.headers);
               if (error.response.status === 500) {
-                
+
                 swal({
                     title: `${addNewCountry.toUpperCase()}  Already Exist A Country Data Record`,
                     text: `Change Country or Update!`,
@@ -184,29 +133,29 @@ function Country() {
         })
 
         swal({
-            title: `Updated CurrencyRateId : ${updateCurrencyRateId}`,
-            text: `You Have Updated Currency Rate Data!`,
+            title: `Updated CountryId : ${updateCountryId}`,
+            text: `You Have Updated Country Data!`,
             icon: "success",
             timer: 8000,
         });
 
     }
 
-    function deleteTableData(id, name) {      // delete a currency rate by id
-        axios.delete(`${currencyUrl}/countries/${id}`)
+    function deleteTableData(id, name) {      // delete a country by id
+        axios.delete(`${countryUrl}/countries/${id}`)
         .then(() => {
             swal({
                 title: `${name} Country Data Deleted!`,
                 icon: "success",
                 timer: 8000,
             });
-            setCurrencyRateResponse(oldList => [...oldList, null]);
+            setCountryResponse(oldList => [...oldList, null]);
         })
 
         console.log("deleted " + id + " " + name);
     }
 
-    function updateFormData(element) {      // when click on the update of a currency rate --> the form fill with relavent currency rate data
+    function updateFormData(element) {      // when click on the update of a country --> the form fill with relavent country data data
         setAddNewCountry(element.countryName);
         setAddNewContinent(element.continentName);
         setAddNewSubContinent(element.subContinentName);
@@ -218,7 +167,7 @@ function Country() {
     }
 
     function cancelForm() {     // clear all the data of form in adding or updating 
-        setUpdateCurrencyRateId(null);
+        setUpdateCountry(null);
         setAddNewCountry("");
         setAddNewContinent("");
         setAddNewSubContinent("");
@@ -271,14 +220,7 @@ function Country() {
                             </tr>
                         </thead>
                         <tbody>
-                            {isResponseErrorOnGetCurrencyRates === true  ? <tr>
-                                <td>No Data</td>
-                                <td>No Data</td>
-                                <td>No Data</td>
-                                <td>No Data</td>
-                                <td>No Data</td>
-                                <td>No Data</td>
-                                </tr> :  currencyRateList.map(element => {
+                            {countryList.map(element => {
                                 return <tr>
                                             <td>{element.countryId}</td>
                                             <td>{element.countryName}</td>
@@ -288,7 +230,7 @@ function Country() {
                                                 deleteTableData(element.countryId, element.countryName);  
                                              }}><Button variant="outline-secondary"><Icon.Trash color='white' size={16}/></Button></td>
                                             <td onClick={() => {
-                                                setUpdateCurrencyRateId(element.countryId);
+                                                setUpdateCountry(element.countryId);
                                                 updateFormData(element);
                                             }}><Button variant="outline-secondary"><Icon.ArrowRepeat color='white' size={16}/></Button></td>
                                         </tr>
@@ -331,23 +273,21 @@ function Country() {
                 <Col>
                     <div id='single_line'></div>
                     { 
-                        updateCurrencyRateId === null ? <h2>Add New Country Data</h2>
+                        updateCountryId === null ? <h2>Add New Country Data</h2>
                         : <h2>Update The Country Data</h2> 
                     }
                     <div id='single_line'></div>
 
                     <br></br>
 
-                    {/* add/ update the currency rate data starts */}
+                    {/* add/ update the country data starts */}
 
                     <div id="form_block">
 
                         <div id="margin_top_10"></div>
 
+                        <h6 id="column_left">Country Name</h6>
                         <InputGroup className="mb-3">
-                            <InputGroup.Text id="inputGroup-sizing-default">
-                            <div id="text_bold">Country Name</div>
-                            </InputGroup.Text>
                             <Form.Control
                             aria-label="Default"
                             aria-describedby="inputGroup-sizing-default"
@@ -415,7 +355,7 @@ function Country() {
                             <Col id="column_center">
                                 <div id='column_center'>
                                     { 
-                                    updateCurrencyRateId === null ? <Button onClick={addData} className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
+                                    updateCountryId === null ? <Button onClick={addData} className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
                                     : <Button onClick={updateData} className='w-100' id='home_buttons' variant="primary" size="lg">Update Data</Button> 
                                     }
                                 </div>
