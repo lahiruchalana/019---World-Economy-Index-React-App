@@ -14,6 +14,8 @@ import Pagination from 'react-bootstrap/Pagination';
 
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import * as Icon from 'react-bootstrap-icons';
 import CarouselComponent from "./Components/CarouselComponent";
@@ -21,23 +23,48 @@ import CarouselComponent from "./Components/CarouselComponent";
 
 function Currency() {
     const [countryList, setCountryList] = useState([]);
-    const [updateCountryId, setUpdateCountry] = useState(null);
-    const [addNewCountry, setAddNewCountry] = useState("");
-    const [addNewContinent, setAddNewContinent] = useState("");
-    const [addNewSubContinent, setAddNewSubContinent] = useState("");
-    const [countryResponse, setCountryResponse] = useState([]);
+    const [countryNameList, setCountryNameList] = useState([]);
+    const [countryName, setCountryName] = useState("USA");
+    const [countryIdList, setCountryIdList] = useState([]);
+    const [currencyList, setCurrencyList] = useState([]);
+    const [updateCurrencyId, setUpdateCurrency] = useState(null);
+    const [AddNewCurrency, setAddNewCurrency] = useState("");
+    const [addNewCountryIdList, setAddNewCountryIdList] = useState([]);
+    const [currencyResponse, setCurrencyResponse] = useState([]);
     const [placeHolderForCountry, setPlaceHolderForCountry] = useState("Country");
-    const [placeHolderForContinent, setPlaceHolderForContinent] = useState("Continet");
     const [placeHolderForSubContinent, setPlaceHolderForSubContinent] = useState("Sub Continent");
     const [pageNumber, setPageNumber] = useState(0);
     const [totalPage, setTotalPage] = useState(1);
 
+    const [field, setField] = useState([]);
+
+
+    const currencyUrl = "http://localhost:8080/world-economy-index/api/data/currencies"; 
     const countryUrl = "http://localhost:8080/world-economy-index/api/data/countries"; 
    
+    useEffect(() => {   // get country data (purpose to store in drop down buttons)
+        axios.get(`${countryUrl}/countries-pagination?&pageNumber=0&pageSize=300`).then((response) => {
+            setCountryList(response.data.content);
+        })
+        .catch(function (error) {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log("Reason For Error : " + error.response.data.message);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log('Error', error.message);
+            }
+        })
+
+    }, [countryUrl])
+    
 
     useEffect(() => {   // load country data relavent to countryName 
-        axios.get(`${countryUrl}/countries-pagination?&pageNumber=${pageNumber}&pageSize=12`).then((response) => {
-            setCountryList(response.data.content);
+        axios.get(`${currencyUrl}/currencies-pagination?&pageNumber=${pageNumber}&pageSize=12`).then((response) => {
+            setCurrencyList(response.data.content);
             setTotalPage(response.data.totalPages);
         })
         .catch(function (error) {
@@ -53,16 +80,15 @@ function Currency() {
             }
         })
         
-    }, [countryResponse.length, pageNumber, totalPage])
+    }, [currencyResponse.length, pageNumber, totalPage])
 
     function addData() {    // post a country data record
-        axios.post(countryUrl, {    
-            countryName: addNewCountry,
-            continentName: addNewContinent,
-            subContinentName: addNewSubContinent
+        axios.post(currencyUrl, {    
+            currencyName: AddNewCurrency,
+            countryList: countryIdList,
         })
         .then((response) => {
-            setCountryResponse(oldList => [...oldList, response.data]);
+            setCurrencyResponse(oldList => [...oldList, response.data]);
         })
         .catch(function (error) {
             if (error.response) {
@@ -76,8 +102,8 @@ function Currency() {
                 if(error.response.data.exceptionId == "data.already-exist") {
                     
                     swal({
-                        title: `${addNewCountry.toUpperCase()}  Already Exist A Country Data Record`,
-                        text: `Change Country or Update!`,
+                        title: `${AddNewCurrency.toUpperCase()}  Already Exist A Currency  Data Record`,
+                        text: `Change Currency or Update!`,
                         icon: "error",
                         timer: 30000,
                     });
@@ -101,13 +127,12 @@ function Currency() {
     }
 
     function updateData() {   // update the record of country data
-        axios.put(`${countryUrl}/countries/${updateCountryId}`, {
-            countryName: addNewCountry,
-            continentName: addNewContinent,
-            subContinentName: addNewSubContinent
+        axios.put(`${currencyUrl}/currencies/${updateCurrencyId}`, {
+            currencyName: AddNewCurrency,
+            countryList: countryIdList,
         })
         .then((response) => {
-            setCountryResponse(oldList => [...oldList, response.data]);
+            setCurrencyResponse(oldList => [...oldList, response.data]);
         })
         .catch(function (error) {
             if (error.response) {
@@ -118,7 +143,7 @@ function Currency() {
               if (error.response.status === 500) {
 
                 swal({
-                    title: `${addNewCountry.toUpperCase()}  Already Exist A Country Data Record`,
+                    title: `${AddNewCurrency.toUpperCase()}  Already Exist A Country Data Record`,
                     text: `Change Country or Update!`,
                     icon: "error",
                     timer: 30000,
@@ -133,7 +158,7 @@ function Currency() {
         })
 
         swal({
-            title: `Updated CountryId : ${updateCountryId}`,
+            title: `Updated CountryId : ${updateCurrencyId}`,
             text: `You Have Updated Country Data!`,
             icon: "success",
             timer: 8000,
@@ -142,38 +167,41 @@ function Currency() {
     }
 
     function deleteTableData(id, name) {      // delete a country by id
-        axios.delete(`${countryUrl}/countries/${id}`)
+        axios.delete(`${currencyUrl}/currencies/${id}`)
         .then(() => {
             swal({
                 title: `${name} Country Data Deleted!`,
                 icon: "success",
                 timer: 8000,
             });
-            setCountryResponse(oldList => [...oldList, null]);
+            setCurrencyResponse(oldList => [...oldList, null]);
         })
 
         console.log("deleted " + id + " " + name);
     }
 
-    function updateFormData(element) {      // when click on the update of a country --> the form fill with relavent country data data
-        setAddNewCountry(element.countryName);
-        setAddNewContinent(element.continentName);
-        setAddNewSubContinent(element.subContinentName);
-        setPlaceHolderForCountry(element.countryName);
-        setPlaceHolderForContinent(element.continentName);
-        setPlaceHolderForSubContinent(element.subContinentName);
+    function updateFormData(element) {      // when click on the update of a currency --> the form fill with relavent country data data
+        setAddNewCurrency(element.currencyName);
+        setCountryNameList([]);
+        setCountryIdList([]);
+        element.countryList.map(country => {
+            setCountryNameList(oldList => [...oldList, country.countryName ])
+            setCountryIdList(oldList => [...oldList, {"countryId" : country.countryId}]);
+        })
+        setPlaceHolderForCountry(element.currencyName);
 
+        console.log(countryNameList)
+        console.log(countryIdList)
         console.log("updating : " + element.countryId);
     }
 
     function cancelForm() {     // clear all the data of form in adding or updating 
-        setUpdateCountry(null);
-        setAddNewCountry("");
-        setAddNewContinent("");
-        setAddNewSubContinent("");
+        setUpdateCurrency(null);
+        setAddNewCurrency("");
+        setCountryIdList([]);
+        setCountryNameList([]);
         setPlaceHolderForCountry("Country");
-        setPlaceHolderForContinent("Continent");
-        setPlaceHolderForSubContinent("Sub-Continent");
+        setPlaceHolderForSubContinent("Continent");
     }
 
 
@@ -203,7 +231,7 @@ function Currency() {
                 <Col xs lg={5}>
                     
                     <div id='single_line'></div>
-                    <h2>Country Data</h2>
+                    <h2>Currency Data</h2>
                     <div id='single_line'></div>
 
                     {/* table starts */}
@@ -212,25 +240,25 @@ function Currency() {
                         <thead>
                             <tr>
                             <th>Id</th>
+                            <th>Currency</th>
                             <th>Country</th>
-                            <th>Continent</th>
-                            <th>Sub-Continent</th>
                             <th>Delete</th>
                             <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {countryList.map(element => {
+                            {currencyList.map(element => {
                                 return <tr>
-                                            <td>{element.countryId}</td>
-                                            <td>{element.countryName}</td>
-                                            <td>{element.continentName}</td>
-                                            <td>{element.subContinentName}</td>
+                                            <td>{element.currencyId}</td>
+                                            <td>{element.currencyName}</td>
+                                            <td>{element.countryList.map(ele => {
+                                                return ele.countryName + ", "
+                                            })}</td>
                                             <td onClick={() => { 
-                                                deleteTableData(element.countryId, element.countryName);  
+                                                deleteTableData(element.currencyId, element.currencyName);  
                                              }}><Button variant="outline-secondary"><Icon.Trash color='white' size={16}/></Button></td>
                                             <td onClick={() => {
-                                                setUpdateCountry(element.countryId);
+                                                setUpdateCurrency(element.currencyId);
                                                 updateFormData(element);
                                             }}><Button variant="outline-secondary"><Icon.ArrowRepeat color='white' size={16}/></Button></td>
                                         </tr>
@@ -273,8 +301,8 @@ function Currency() {
                 <Col>
                     <div id='single_line'></div>
                     { 
-                        updateCountryId === null ? <h2>Add New Country Data</h2>
-                        : <h2>Update The Country Data</h2> 
+                        updateCurrencyId === null ? <h2>Add New Currency Data</h2>
+                        : <h2>Update The Currency Data</h2> 
                     }
                     <div id='single_line'></div>
 
@@ -286,57 +314,73 @@ function Currency() {
 
                         <div id="margin_top_10"></div>
 
-                        <h6 id="column_left">Country Name</h6>
+                        <h6 id="column_left">Currency Name</h6>
                         <InputGroup className="mb-3">
                             <Form.Control
                             aria-label="Default"
                             aria-describedby="inputGroup-sizing-default"
-                            onChange={(e) => setAddNewCountry(e.target.value)}
+                            onChange={(e) => setAddNewCurrency(e.target.value)}
                             placeholder={`${placeHolderForCountry}`}
-                            value={`${addNewCountry}`}
+                            value={`${AddNewCurrency}`}
                             />
                         </InputGroup>
 
                         <Row>
 
                             <Col id="column_center">
-                                <h6 id="column_left">Continent</h6>
+                                {/* <h6 id="column_left">Continent</h6>
                                 <InputGroup className="mb-3">
                                     <Form.Control
                                     aria-label="Default"
                                     aria-describedby="inputGroup-sizing-default"
-                                    onChange={(e) => setAddNewContinent(e.target.value)}
+                                    onChange={(e) => setAddNewCountryIdList(e.target.value)}
                                     placeholder={`${placeHolderForContinent}`}
                                     value={`${addNewContinent}`}
                                     />
-                                </InputGroup>
+                                </InputGroup> */}
+
+                                {/* <Form.Group as={Col}>
+                                    <Form.Control as="select" multiple value={field} onChange={e => setField(oldList => [...oldList, {"countryId": e.target.value}])}>
+                                    <option value="field1">Field 1</option>
+                                    <option value="field2">Field 2</option>
+                                    <option value="field3">Field 3</option>
+                                    <option value="field3">Field 3</option>
+                                    <option value="field3">Field 3</option>
+                                    <option value="field3">Field 3</option>
+                                    <option value="field3">Field 3</option>
+                                    <option value="field3">Field 3</option>
+                                    <option value="field3">Field 3</option>
+                                    </Form.Control>
+                                </Form.Group> */}
+
+                                <h6 id="column_left">Select Countries</h6>
+                                <Col id="column_center">
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="outline-primary" id="dropdown_basic_button">
+                                        {countryName.toUpperCase()} <Icon.CaretDownFill></Icon.CaretDownFill>
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            {countryList.map(country => {
+                                                return <Dropdown.Item onClick={() => {
+                                                    setCountryName(country.countryName);
+                                                    setCountryIdList(oldList => [...oldList, {"countryId" : country.countryId}]);
+                                                    setCountryNameList(oldList => [...oldList, country.countryName])
+                                                }}>{country.countryName}</Dropdown.Item>
+                                            })}
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </Col>
                             </Col>
 
                             <Col >
-                                
+                                <h6 id="column_left">Selected Countries</h6>
+                                {countryNameList.map(country => {
+                                    return <h5>{country}</h5>
+                                })}
                             </Col>
 
                         </Row>
                         
-                        <Row>
-                            
-                            <Col id="column_center">
-                                <h6 id="column_left">Sub-Continent</h6>
-                                <InputGroup className="mb-3">
-                                    <Form.Control
-                                    aria-label="Default"
-                                    aria-describedby="inputGroup-sizing-default"
-                                    onChange={(e) => setAddNewSubContinent(e.target.value)}
-                                    placeholder={`${placeHolderForSubContinent}`}
-                                    value={`${addNewSubContinent}`}
-                                    />
-                                </InputGroup>
-                            </Col>
-
-                            <Col >
-                            </Col>
-                            
-                        </Row>
 
                         <br></br>
                         <br></br>
@@ -355,7 +399,7 @@ function Currency() {
                             <Col id="column_center">
                                 <div id='column_center'>
                                     { 
-                                    updateCountryId === null ? <Button onClick={addData} className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
+                                    updateCurrencyId === null ? <Button onClick={addData} className='w-100' id='home_buttons' variant="primary" size="lg">Add Data</Button>
                                     : <Button onClick={updateData} className='w-100' id='home_buttons' variant="primary" size="lg">Update Data</Button> 
                                     }
                                 </div>

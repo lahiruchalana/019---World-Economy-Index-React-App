@@ -379,7 +379,7 @@ function GDP() {
                 <Col xs lg={5}>
                     
                     <div id='single_line'></div>
-                    <h2>Country Data</h2>
+                    <h2>GDP Data</h2>
                     <div id='single_line'></div>
 
                     <Row id="margin_top_10">
@@ -510,8 +510,8 @@ function GDP() {
                 <Col>
                     <div id='single_line'></div>
                     { 
-                        updateCurrencyRateId === null ? <h2>Add New Currency Rate</h2>
-                        : <h2>Update The Currency Rate</h2> 
+                        updateCurrencyRateId === null ? <h2>Add New GDP Data</h2>
+                        : <h2>Update The GDP Data</h2> 
                     }
                     <div id='single_line'></div>
 
